@@ -1,20 +1,18 @@
 {
-  "name": "stackoverflow copy paste",
+  "name": "Localhost beautify",
   "description": "description",
   "version": "2.0",
   "permissions": [
-    "activeTab",
-	"tabs",
-	"http://*/*",
-	"https://*/*"
+    "http://localhost/*",
+    "http://localhost:5555/*"
   ],
   "content_scripts" : [{
-        "matches" : [ "http://stackoverflow.com/*"],
+        "matches" : [ "http://localhost:5555/~*/*"],
         "js" : ["config.js","extension.js"],
         "css" : ["styles.css"]
     }],
   "browser_action": {
-    "default_title": "Save copy text to db"
+    "default_title": "localhost kenaks"
   },
   "manifest_version": 2
 }
