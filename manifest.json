@@ -1,0 +1,20 @@
+{
+  "name": "stackoverflow copy paste",
+  "description": "description",
+  "version": "2.0",
+  "permissions": [
+    "activeTab",
+	"tabs",
+	"http://*/*",
+	"https://*/*"
+  ],
+  "content_scripts" : [{
+        "matches" : [ "http://stackoverflow.com/*"],
+        "js" : ["config.js","extension.js"],
+        "css" : ["styles.css"]
+    }],
+  "browser_action": {
+    "default_title": "Save copy text to db"
+  },
+  "manifest_version": 2
+}

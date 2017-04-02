@@ -1,0 +1,6 @@
+::selection {
+  background: lightgreen; /* WebKit/Blink Browsers */
+}
+::-moz-selection {
+  background: lightgreen; /* Gecko Browsers */
+}
