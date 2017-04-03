@@ -1,9 +1,13 @@
-var findSlash=window.parent.location.href.length-1;
+﻿var findSlash=window.parent.location.href.length-1;
+var findOrderStatus = window.parent.location.href.length;
+var findOrder = window.parent.location.href.length-3;
+var timer;
 if(window.parent.location.href[findSlash]!="/") {
-    console.warn("ei saa sisse:(");
+    console.warn("see on juba fail");
+    document.body.style.opacity="1";
 }
 
-if(window.parent.location.href[findSlash]=="/") {
+if(window.parent.location.href[findSlash]=="/" || window.parent.location.href.slice(findOrder, findOrderStatus)=="O=D" || window.parent.location.href.slice(findOrder, findOrderStatus)=="O=A") {
 
     var div = document.createElement("DIV");
     div.setAttribute("id", "createdDiv");
@@ -18,19 +22,19 @@ if(window.parent.location.href[findSlash]=="/") {
     document.getElementById("createdDiv").style.height="100%";
     document.getElementById("createdDiv").style.top="0";
     document.getElementById("createdDiv").style.width="5%";
-    document.getElementById("createdDiv").style.backgroundColor="rgba(65, 75, 102, 0.75)";
+    document.getElementById("createdDiv").style.backgroundColor="gray";
     document.getElementById("createdDiv").style.opacity="0.75";
     document.getElementById("backImg").style.position="fixed";
-    document.getElementById("backImg").style.bottom="50%";
+    document.getElementById("backImg").style.bottom="46%";
     document.getElementById("backImg").style.left="-10%";
     document.getElementById("backImg").style.height="8%";
     document.getElementById("backImg").style.width="5%";
 
     document.getElementById("createdDiv").addEventListener("mouseenter", function () {
-        document.getElementById("createdDiv").style.backgroundColor="#8ea5b5";
+        document.getElementById("createdDiv").style.backgroundColor="#535654";
     });
     document.getElementById("createdDiv").addEventListener("mouseleave", function () {
-        document.getElementById("createdDiv").style.backgroundColor="rgba(65, 75, 102, 0.75)";
+        document.getElementById("createdDiv").style.backgroundColor="gray";
     });
 
     console.log("loaded extension!");
@@ -39,8 +43,10 @@ if(window.parent.location.href[findSlash]=="/") {
     for (var i = window.parent.location.href.length; slash != 2; i--) {
         if (window.parent.location.href[i] == "/") {
             back = window.parent.location.href.slice(0, i);
-            console.log("tsyklis sees!!!! BACK=" + back);
             slash = slash + 1;
+        }
+        if(window.parent.location.href[i] == "/" && slash == 2){
+            console.log("BACK=" + back);
         }
     }
 
@@ -51,39 +57,42 @@ if(window.parent.location.href[findSlash]=="/") {
                 location.href = back;
             });
             links[4].parentElement.parentElement.remove();
-            links[4].parentElement.parentElement.addEventListener("click", function () {location.href = links[4].innerHTML;});
         }
-        else if (i == 5) {links[5].parentElement.parentElement.addEventListener("click", function () {location.href = links[5].innerHTML;});}
-        else if (i == 6) {links[6].parentElement.parentElement.addEventListener("click", function () {location.href = links[6].innerHTML;});}
-        else if (i == 7) {links[7].parentElement.parentElement.addEventListener("click", function () {location.href = links[7].innerHTML;});}
-        else if (i == 8) {links[8].parentElement.parentElement.addEventListener("click", function () {location.href = links[8].innerHTML;});}
-        else if (i == 9) {links[9].parentElement.parentElement.addEventListener("click", function () {location.href = links[9].innerHTML;});}
-        else if (i == 10) {links[10].parentElement.parentElement.addEventListener("click", function () {location.href = links[10].innerHTML;});}
-        else if (i == 11) {links[11].parentElement.parentElement.addEventListener("click", function () {location.href = links[11].innerHTML;});}
-        else if (i == 12) {links[12].parentElement.parentElement.addEventListener("click", function () {location.href = links[12].innerHTML;});}
-        else if (i == 13) {links[13].parentElement.parentElement.addEventListener("click", function () {location.href = links[13].innerHTML;});}
-        else if (i == 13) {links[14].parentElement.parentElement.addEventListener("click", function () {location.href = links[14].innerHTML;});}
-        else if (i == 15) {links[15].parentElement.parentElement.addEventListener("click", function () {location.href = links[15].innerHTML;});}
-        else if (i == 16) {links[16].parentElement.parentElement.addEventListener("click", function () {location.href = links[16].innerHTML;});}
-        else if (i == 17) {links[17].parentElement.parentElement.addEventListener("click", function () {location.href = links[17].innerHTML;});}
-        else if (i == 18) {links[18].parentElement.parentElement.addEventListener("click", function () {location.href = links[18].innerHTML;});}
-        else if (i == 19) {links[19].parentElement.parentElement.addEventListener("click", function () {location.href = links[19].innerHTML;});}
-        else if (i == 20) {links[20].parentElement.parentElement.addEventListener("click", function () {location.href = links[20].innerHTML;});}
-        else if (i == 21) {links[21].parentElement.parentElement.addEventListener("click", function () {location.href = links[21].innerHTML;});}
-        else if (i == 22) {links[22].parentElement.parentElement.addEventListener("click", function () {location.href = links[22].innerHTML;});}
-        else if (i == 23) {links[23].parentElement.parentElement.addEventListener("click", function () {location.href = links[23].innerHTML;});}
-        else if (i == 24) {links[24].parentElement.parentElement.addEventListener("click", function () {location.href = links[24].innerHTML;});}
-        else if (i == 25) {links[25].parentElement.parentElement.addEventListener("click", function () {location.href = links[25].innerHTML;});}
-        else if (i == 26) {links[26].parentElement.parentElement.addEventListener("click", function () {location.href = links[26].innerHTML;});}
         if (i < 4) {
             links[i].style.textDecoration = "none";
             links[i].style.fontSize = "20px";
-            links[i].style.color = "rgb(85, 0, 0)";
+            links[i].style.color = "#393D40";
             links[i].style.paddingRight = "30px";
         } else {
             links[i].style.textDecoration = "none";
             links[i].style.fontSize = "20px";
+            links[i].style.color = "#D69764";
+            links[i].id = links[i].innerHTML;
+            addClickEvent(links[i].parentElement.parentElement, links[i].innerHTML);
+            if(links[i].innerHTML[links[i].innerHTML.length-1]=="/") {
+                addEvent(links[i].id, links[i], links[i].innerHTML);
+            }
+
         }
+    }
+    var cursorX;
+    var cursorY;
+    document.onmousemove = function(e){
+        cursorX = e.pageX;
+        cursorY = e.pageY;
+    }
+    function addEvent(id,link,text){
+        link.parentElement.addEventListener("mouseenter", function (event) {
+            getURLContents(id,event,text);
+        });
+        link.parentElement.addEventListener("mouseleave", function () {
+            window.clearTimeout(timer);
+            var element = document.getElementById("folderContentREAL");
+            element.parentNode.removeChild(element);
+        });
+    }
+    function addClickEvent(link,text){
+        link.addEventListener("click", function () {location.href = text;});
     }
 
     var addresses = document.getElementsByTagName("address");
@@ -133,43 +142,100 @@ if(window.parent.location.href[findSlash]=="/") {
     var h1C = document.getElementsByTagName("h1");
     var pos = (window.innerWidth / 2) - ((h1C[0].innerHTML.length / 2) * 23) + "px";
     h1C[0].style.left = pos;
-    console.log("INDEX OF ... kohal" + pos);
+    console.log("INDEX OF... (alumine) on kohal " + pos);
 
     window.onresize = function(){
         pos = (window.innerWidth / 2) - ((h1C[0].innerHTML.length / 2) * 23) + "px";
         h1C[0].style.left = pos;
-        console.log("INDEX OF ... kohal" + pos);
     };
 
+    document.body.style.opacity="1";
 
-    var tagsArray = [];
 
-    var tags = document.querySelectorAll('.post-tag.js-gps-track');
-    for (var i = 0; i < tags.length; i++) {
-        tags[i].style.border = "3px solid red";
-        tagsArray.push(tags[i].innerText);
+
+
+    function getURLContents(id,event,url){
+console.log(id);
+console.log("SEE OLI ID");
+var url = url;
+        timer= window.setTimeout(function(event){
+            console.log(event);
+            var xmlhttp = new XMLHttpRequest();
+            xmlhttp.onreadystatechange = function(){
+
+                if(xmlhttp.readyState == 4 && xmlhttp.status == 200){
+                    console.log('successfully loaded');
+                    // serveri vastuse sisu
+                    var response = xmlhttp.responseText;
+
+                    var folderContent = document.createElement("DIV");
+                    folderContent.setAttribute("id", "folderContent");
+                    folderContent.innerHTML=response;
+                    var links = folderContent.querySelectorAll("a");
+
+                    var folderContentREAL = document.createElement("DIV");
+                    folderContentREAL.setAttribute("id", "folderContentREAL");
+
+                    var folderPos;
+                    for (var i = 0; i < links.length; i++) {
+                        if (i > 4) {
+
+
+                            console.log(links[i]);
+                            var newLink = document.createElement("a");
+                            newLink.setAttribute("id", i);
+                            newLink.setAttribute("href", links[i].innerHTML);
+                            newLink.innerHTML=links[i].innerHTML;
+                            newLink.id="hoverDark";
+
+                            folderContentREAL.appendChild(newLink);
+                            folderContentREAL.innerHTML+="<br>";
+
+                        }
+                    }
+                    document.getElementById(id).appendChild(folderContentREAL);
+                    var newFolder = document.getElementById("folderContentREAL");
+
+                    newFolder.style.width="auto";
+                    newFolder.style.paddingBottom="10px";
+                    newFolder.style.paddingTop="10px";
+                    newFolder.style.position="fixed";
+                    newFolder.style.backgroundColor="rgba(214,151,100,0.85)";
+                    newFolder.style.borderRadius="15px";
+                    newFolder.style.borderTopLeftRadius="0px";
+                    newFolder.style.top=cursorY+10;
+                    newFolder.style.left=cursorX+25;
+                    newFolder.style.boxShadow="0px 0px 5px 10px  rgba(214,151,100,0.85)";
+					newFolder.style.transition="opacity 1s";
+                    newFolder.className = 'fadeable';
+                    window.setTimeout( function() {
+
+                        newFolder.className += ' fade-in';
+
+                    }, 100);
+
+					
+                    var children = newFolder.childNodes;
+					
+                    children.forEach(function(item){
+							
+							item.style.color="#393D40";
+							item.style.textDecoration="none";
+							var DirEnd = item.innerHTML;
+							var DirStart = item.parentElement.parentElement.href;
+							item.href= DirStart+DirEnd;
+                    });
+
+
+                }
+            };
+            xmlhttp.open('GET',url,true);
+            xmlhttp.send();
+        },500);
+
+
+
     }
 
-    document.getElementsByTagName('body')[0].addEventListener('copy', function () {
-        console.log('kopeeris');
-        var text = window.getSelection().toString();
-        var question = document.querySelector('.question-hyperlink').innerText;
 
-
-        //console.log(obj);
-
-        var id = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
-            var r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
-            return v.toString(16);
-        });
-
-
-        var block = window.getSelection().anchorNode.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement;
-
-        block.style.backgroundColor = "lightgreen";
-        window.setTimeout(function () {
-            block.style.backgroundColor = "white";
-        }, 200);
-
-    });
 }
