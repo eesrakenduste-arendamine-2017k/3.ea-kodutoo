@@ -7,8 +7,8 @@
     "http://localhost:5555/*"
   ],
   "content_scripts" : [{
-        "matches" : [ "http://localhost:5555/~*/*"],
-        "js" : ["config.js","extension.js"],
+        "matches" : [ "http://localhost:5555/~*/"],
+        "js" : ["config.js","firebase.js","extension.js"],
         "css" : ["styles.css"]
   }],
   "browser_action": {

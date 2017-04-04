@@ -5,6 +5,13 @@ var timer;
 if(window.parent.location.href[findSlash]!="/") {
     console.warn("see on juba fail");
     document.body.style.opacity="1";
+
+    firebase.database().ref('stack/').set({
+        url: window.location.href,
+        date: new Date(),
+        text: text
+    });
+
 }
 
 if(window.parent.location.href[findSlash]=="/" || window.parent.location.href.slice(findOrder, findOrderStatus)=="O=D" || window.parent.location.href.slice(findOrder, findOrderStatus)=="O=A") {
@@ -237,5 +244,6 @@ var url = url;
 
     }
 
-
+firebase.initializeApp(config);
 }
+firebase.initializeApp(config);
