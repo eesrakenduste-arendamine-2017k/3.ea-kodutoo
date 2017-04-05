@@ -22,8 +22,5 @@ Kodutööna peab looma Chrome extension'i selliselt, et nõuded oleksid täidetu
 
 ## Idee
 
-- [ ]Chrome extension, mis võimaldab kasutajatel jälgida statistikat vastavalt lehe tüüpidele (uudised, sotsiaalne meedia jne).
-- [ ]Kasutajad saavad eelnevalt rakenduses määramata lehe tüüpe lisada ülevaatuseks.
-- [ ]Serveri rakendus, mis võtab vastu info ja koostab selle alusel statistika.
-- [ ]Laiendada extensiot nii, et oleks võimalik võrrelda statistikat globaalselt teiste kasutajatega.
-- [ ]Arendada Safari ja Firefox tarbeks.
+Private repos
+Hinrek, Alar, Jan
