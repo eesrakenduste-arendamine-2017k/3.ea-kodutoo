@@ -2,19 +2,21 @@
 var findOrderStatus = window.parent.location.href.length;
 var findOrder = window.parent.location.href.length-3;
 var timer;
+var urlB4;
+
+firebase.initializeApp(config);
+
 if(window.parent.location.href[findSlash]!="/") {
     console.warn("see on juba fail");
     document.body.style.opacity="1";
 
-    firebase.database().ref('stack/').set({
-        url: window.location.href,
-        date: new Date(),
-        text: text
-    });
+
 
 }
 
 if(window.parent.location.href[findSlash]=="/" || window.parent.location.href.slice(findOrder, findOrderStatus)=="O=D" || window.parent.location.href.slice(findOrder, findOrderStatus)=="O=A") {
+
+
 
     var div = document.createElement("DIV");
     div.setAttribute("id", "createdDiv");
@@ -39,10 +41,60 @@ if(window.parent.location.href[findSlash]=="/" || window.parent.location.href.sl
 
     document.getElementById("createdDiv").addEventListener("mouseenter", function () {
         document.getElementById("createdDiv").style.backgroundColor="#535654";
+        document.getElementById("createdDiv").style.cursor="pointer";
     });
     document.getElementById("createdDiv").addEventListener("mouseleave", function () {
         document.getElementById("createdDiv").style.backgroundColor="gray";
     });
+
+    var div2 = document.createElement("DIV");
+    div2.setAttribute("id", "createdDiv2");
+    document.body.appendChild(div2);
+    document.getElementById("createdDiv2").style.position="fixed";
+    document.getElementById("createdDiv2").style.width="60%";
+    document.getElementById("createdDiv2").style.height="50";
+    document.getElementById("createdDiv2").style.right="0";
+    document.getElementById("createdDiv2").style.left="0";
+    document.getElementById("createdDiv2").style.top="0";
+    document.getElementById("createdDiv2").style.margin="auto";
+    document.getElementById("createdDiv2").style.backgroundColor="red";
+    document.getElementById("createdDiv2").innerHTML="Reload Page";
+    document.getElementById("createdDiv2").style.textAlign="center";
+    document.getElementById("createdDiv2").style.fontSize="45px";
+    document.getElementById("createdDiv2").style.backgroundColor="gray";
+    document.getElementById("createdDiv2").style.opacity="0.75";
+
+    document.getElementById("createdDiv2").addEventListener("mouseenter", function () {
+        document.getElementById("createdDiv2").style.backgroundColor="#535654";
+        document.getElementById("createdDiv2").style.color="#D69764";
+        document.getElementById("createdDiv2").style.cursor="pointer";
+    });
+    document.getElementById("createdDiv2").addEventListener("mouseleave", function () {
+        document.getElementById("createdDiv2").style.backgroundColor="gray";
+        document.getElementById("createdDiv2").style.color="#3f3f40";
+    });
+    document.getElementById("createdDiv2").addEventListener("click", function () {
+        location.reload();
+    });
+
+    var currentDate = new Date();
+    var month = currentDate.getMonth();
+    var date = currentDate.getDate();
+    var hours = currentDate.getHours();
+    var minutes = currentDate.getMinutes();
+    var seconds = currentDate.getSeconds();
+
+
+    var length = location.href.length;
+    var heading;
+    for(var i=length-2;location.href[i]!="/"; i--){
+        if(location.href[i]=="/"){
+            var start = location.href.slice(0,location.href[i]).length;
+            heading=location.href.slice(start,length-2);
+        }
+    }
+
+
 
     console.log("loaded extension!");
     var slash = 0;
@@ -91,6 +143,7 @@ if(window.parent.location.href[findSlash]=="/" || window.parent.location.href.sl
     function addEvent(id,link,text){
         link.parentElement.addEventListener("mouseenter", function (event) {
             getURLContents(id,event,text);
+            link.parentElement.style.cursor="pointer";
         });
         link.parentElement.addEventListener("mouseleave", function () {
             window.clearTimeout(timer);
@@ -99,6 +152,7 @@ if(window.parent.location.href[findSlash]=="/" || window.parent.location.href.sl
         });
     }
     function addClickEvent(link,text){
+        urlB4 = window.location.href;
         link.addEventListener("click", function () {location.href = text;});
     }
 
@@ -162,8 +216,7 @@ if(window.parent.location.href[findSlash]=="/" || window.parent.location.href.sl
 
 
     function getURLContents(id,event,url){
-console.log(id);
-console.log("SEE OLI ID");
+console.log("ID hetkel: "+id);
 var url = url;
         timer= window.setTimeout(function(event){
             console.log(event);
@@ -203,6 +256,7 @@ var url = url;
                     document.getElementById(id).appendChild(folderContentREAL);
                     var newFolder = document.getElementById("folderContentREAL");
 
+
                     newFolder.style.width="auto";
                     newFolder.style.paddingBottom="10px";
                     newFolder.style.paddingTop="10px";
@@ -215,6 +269,28 @@ var url = url;
                     newFolder.style.boxShadow="0px 0px 5px 10px  rgba(214,151,100,0.85)";
 					newFolder.style.transition="opacity 1s";
                     newFolder.className = 'fadeable';
+
+                    var styling = document.createElement("DIV");
+                    styling.setAttribute("id", "styling");
+                    var styling2 = document.createElement("DIV");
+                    styling2.setAttribute("id", "styling2");
+
+                    styling.style.position="fixed";
+                    styling.style.height="20";
+                    styling.style.width="20";
+                    styling.style.backgroundColor="red";
+                    styling.style.top=cursorY+10;
+                    styling.style.left=cursorX+25;
+                    styling.style.borderRadius="50%";
+
+                    styling2.style.borderRadius="fixed";
+                    styling2.style.borderRadius="20";
+                    styling2.style.borderRadius="20";
+                    styling2.style.backgroundColor="red";
+                    styling2.style.top=cursorY+10;
+                    styling2.style.left=cursorX+25;
+                    styling2.style.borderRadius="50%";
+
                     window.setTimeout( function() {
 
                         newFolder.className += ' fade-in';
@@ -240,10 +316,13 @@ var url = url;
             xmlhttp.send();
         },500);
 
-
+        firebase.database().ref('stack/' + date+"-"+month+'/'+hours+"-"+minutes+"-"+seconds).set({
+            url: window.location.href,
+            test: urlB4
+        });
 
     }
 
-firebase.initializeApp(config);
+    firebase.initializeApp(config);
 }
-firebase.initializeApp(config);
+
