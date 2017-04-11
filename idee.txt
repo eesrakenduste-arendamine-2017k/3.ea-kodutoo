@@ -1,0 +1,9 @@
+Extensioni idee seisneb selles, et ekraanil on märkmiku ikoon,
+mida saab mööda ekraani ringi liigutada ning clickimisel avaneb märkmik/todo list vms, 
+kuhu saab siis lisada ning eemaldada märkmeid, mis suhtleb reaalajas andmebaasiga
+
+Pole veel üritanud seda projekti chromes tööle saada, tegelen hetkel põhifunktsionaalsustega.
+
+Kas manifesti faili saab lisada ainult cssi ja javascripti faile?
+Kas HTML faili saab ka laadida extensionisse või peab kogu juurde tuleva HTML-i javascriptiga tekitama?
+
