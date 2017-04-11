@@ -2,9 +2,9 @@
     float: left;
     width: 70px;
     height: 70px;
-    margin: 10px;
+    margin: 0px;
     padding: 10px;
-    border: 1px solid black;
+    border: 1px solid black; /*ajutine, et näha lihtsalt kus kastid asuvad*/
 }
 
 #form{
@@ -26,7 +26,7 @@
 	margin-left: -200px;
 	word-wrap: break-word;  
 	border-radius: 5px;
-	background-color: #ffebcc;
+	background-color: #fff5cc;
 	
 }
 li{
@@ -40,6 +40,11 @@ li{
 	left: 4px;
 	top: 5px;
 	border-radius: 3px;
+}
+#submit {
+	position: absolute; 
+	left: 65%;
+	top: 4px;
 }
 #closeBtn {
 	position: absolute;

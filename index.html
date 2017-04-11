@@ -2,7 +2,8 @@
 <html>
 <head>
 	<link rel="stylesheet" href="style.css" />
-	
+	<script src="https://www.gstatic.com/firebasejs/3.7.5/firebase.js"></script>
+
 </head>
 <body>
 
@@ -21,8 +22,10 @@
 	
 	<div id="list">
 		<img src="close.png" id="closeBtn" width="35" height="35" onclick="display()">
-		
-		<input type="text" id="input">
+		<form>
+			<input type="submit" id="submit" onclick="getNote()">
+			<input type="text" id="input">
+		</form>
 	</div>	
 		
 	<script type="text/javascript" src="script.js"></script>
