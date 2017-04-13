@@ -1,0 +1,21 @@
+	{
+		"name": "WebNotes",
+		"description": "easy note making extension",
+		"version": "1.0",
+		"premissions": [
+			"activeTab",
+			"tabs",
+			"http://*/*",
+			"https://*/*",
+			"*"
+		],
+		"content_scripts" : [{
+			"matches" : [ "*://*/*", "http://*/*", "https://*/*"],
+			"js" : ["react.js", "firebase.js", "background.js"],
+			"css" : ["styles.css"]
+		}],
+		"browser_action": {
+			"default_title": "Web Notes"
+		},
+		"manifest_version": 2
+	}
