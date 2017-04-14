@@ -20,10 +20,10 @@
 /*drag ikooni css*/
 #drag-1 {
 	position: fixed;
-	width: 90px;
-	height: 90px;
+	width: 50px;
+	height: 50px;
 	border-radius: 0.75em;
-	z-index: 900;
+	z-index: 90000;
 	top: 100px;
 }
 
@@ -42,17 +42,18 @@
 #listInput {
 	z-index: 900;
 	position: absolute;
-	top: 8px;
-	left: 8px;
+	top: 4px;
+	left: 4px;
 	width: 60%;
 	display: block; 
 	border-radius: 3px;
 	
 	
 }
+
 #submitButton {
 	position: absolute;
-	top: 3px;
+	top: 4px;
 	left: 66%;
 	-webkit-box-shadow:inset 0px 1px 0px 0px #dcecfb;
 	box-shadow:inset 0px 1px 0px 0px #dcecfb;
@@ -110,7 +111,7 @@
 	position: fixed;
 	border: 4px lightblue;
 	width: 400px;
-	height: 600px;
+	
 	top: 20%;
 	left: 50%;
 	margin-left: -200px;
@@ -124,12 +125,25 @@
 	box-shadow: 1px 1px 11px 2px rgba(0,0,0,0.33);
 
 }
+.listItem {
+	text-align: left;
+	margin-right: 20px;
+}
 .liItem {
-	padding-top: 40px;
-	
-	
+	padding-top: 40px;	
 }	
 
-
-
+#dataDiv {
+	margin-top: 55px;
+	margin-bottom: 30px;
+	margin-left: 10px;
 	
+}
+.deleteValue {
+	height: 10px;
+	width: 10px;
+}
+.deleteValue {
+	margin-right: 10px;
+	margin-left: 0px;
+}
