@@ -73,21 +73,22 @@ var ref = database.ref("note");
 
 // submit data onkeypress
 window.addEventListener('keypress', function (e) {
-    if (e.keyCode == 13) {
-       var userNote = document.getElementById("listInput").value;
-	//input ei tohi tühi olla
-	if(userNote.length == 0){
-		alert("Tühi väli!");
-	} else {
-	var data = {
-	note: userNote
-	}
-	//andmebaasi saatmine
-	ref.push(data);
-	console.log(userNote);
-	}
-	//teen inputi tühjaks peale väärtuse sisestamist
-	document.getElementById("listInput").value = "";
+    //kas keypress oli "Enter" ja et kas õige input field on active
+	if (e.keyCode == 13 && document.activeElement.id == "listInput") {
+		   var userNote = document.getElementById("listInput").value;
+		//input ei tohi tühi olla
+		if(userNote.length == 0){
+			alert("Tühi väli!");
+		} else {
+		var data = {
+		note: userNote
+		}
+		//andmebaasi saatmine
+		ref.push(data);
+		console.log(userNote);
+		}
+		//teen inputi tühjaks peale väärtuse sisestamist
+		document.getElementById("listInput").value = "";
     }
 }, false);
 
@@ -98,15 +99,15 @@ document.getElementById("submitButton").addEventListener("click", function(){
 	if(userNote.length == 0){
 		alert("Tühi väli!");
 	} else {
-	var data = {
-	note: userNote
-	}
-	//andmebaasi saatmine
-	ref.push(data);
-	console.log("added element with value: " + userNote);
-	//teen inputi tühjaks peale väärtuse sisestamist
-	document.getElementById("listInput").value = "";
-	}
+		var data = {
+		note: userNote
+		}
+		//andmebaasi saatmine
+		ref.push(data);
+		console.log("added element with value: " + userNote);
+		//teen inputi tühjaks peale väärtuse sisestamist
+		document.getElementById("listInput").value = "";
+		}
 });
 
 //remove elemendid class-i järgi
