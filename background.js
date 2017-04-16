@@ -1,75 +1,164 @@
-//firebase
-var scriptTag = '<script src="https://www.gstatic.com/firebasejs/3.7.6/firebase.js"></script>';
-
-
-//interact.js
-var interactJS = '<script src="https://cdnjs.cloudflare.com/ajax/libs/interact.js/1.2.6/interact.min.js"></script>';
-
 //note ikoon
-var notesIcon ='<img src="https://assets.materialup.com/uploads/d0b393f6-3975-48dd-b7ca-bf0289187c6e/preview" id="drag-1" class="draggable">'
+var notesIcon ='<img src="https://icons.veryicon.com/ico/Application/openPhone/Notes.ico" id="drag-1" class="draggable">'
 
-//------------- LISTIS OLEVAD ELEMENDID S-------------
 //close list button
 var closeIcon = "<img src='https://www.faricy.com/wp-content/uploads/2016/08/close-button.png' class='closeIcon' id='closeIcon'>";
-var listInput = '<form id="submitForm"><input type="text" id="listInput"><input type="submit" id="submitButton" value="Sisesta"></form>';
-// list div
+
+// list div, kogu sisu
 var listDiv = '<div id="list"></div>';
 
-var listForm = '<form id="listForm"></form>';
-var formData = '<input type="submit" id="submitButton"><input type="text" id="listInput">';
+var formData = '<input type="button" value="Submit" id="submitButton"><input type="text" id="listInput" placeholder="Type your notes here">';
 //div kuhu sisse lähevad ul väärtused
+
+//div kuhu kirjutatakse data
 var dataDiv = '<div id="dataDiv"></div>'
-//var listTitle = "<h1 id='listTitle'>Notepad</h1>";
-//------------- LISTIS OLEVAD ITEMID E-------------
 
 
 
-// ADDING STUFF TO HTML
-//document.body.innerHTML += scriptTag;
+
+// ADDING TO HTML
+
 document.body.innerHTML += notesIcon;
-
 //addin bodyle listi
 document.body.innerHTML += listDiv;
 //document.getElementById("list").innerHTML += listTitle;
 document.getElementById("list").innerHTML += closeIcon;
-//addin listile formi
-document.getElementById("list").innerHTML += listForm;
-//addin formile sisu
-document.getElementById("listForm").innerHTML += formData;
-//adding data divi
+//addin input fieldi ja submit buttoni, form elementi ei saa kasutada, sest muidu refreshib lehte iga kord, kui submitin
+document.getElementById("list").innerHTML += formData;
+//adding divi, kuhu sisse kuvatakse data
 document.getElementById("list").innerHTML += dataDiv;
 
 
 
 
-// FUNCTIONS
-var kast = document.getElementById("list");
-kast.style.visibility = "hidden";
+
+var mainList = document.getElementById("list");
+// et list oleks alguses peidetud
+mainList.style.visibility = "hidden";
 // hide/show listi
 document.getElementById("drag-1").addEventListener("dblclick", function(){
-    var kast = document.getElementById("list");
-	if(kast.style.visibility == "visible"){
-		kast.style.visibility = "hidden";
+    var mainList = document.getElementById("list");
+
+	if(mainList.style.visibility == "visible"){
+		mainList.style.visibility = "hidden";
 	} else {
-		kast.style.visibility = "visible";
+		mainList.style.visibility = "visible";
 	}
 });
-// sulge list x nupust
+// sulge list [x] nupust
 document.getElementById("closeIcon").addEventListener("click", function(){
-	kast.style.visibility = "hidden";
+	mainList.style.visibility = "hidden";
 });
 
 
 
 
+// FIREBASE START
+var config = {
+	// Kallis kursakaaslane, please keep scrolling
+    apiKey: "AIzaSyAo_hm_wJNKnUxt-U6xbjAT_TdpMLEPj7E",
+    authDomain: "note-bebd7.firebaseapp.com",
+    databaseURL: "https://note-bebd7.firebaseio.com",
+    projectId: "note-bebd7",
+    storageBucket: "note-bebd7.appspot.com",
+    messagingSenderId: "469109871476"
+	//thank you
+};
+
+firebase.initializeApp(config);
+//console.log(firebase);
+
+var database = firebase.database();
+var ref = database.ref("note");
+
+// submit data onkeypress
+window.addEventListener('keypress', function (e) {
+    if (e.keyCode == 13) {
+       var userNote = document.getElementById("listInput").value;
+	//input ei tohi tühi olla
+	if(userNote.length == 0){
+		alert("Tühi väli!");
+	} else {
+	var data = {
+	note: userNote
+	}
+	//andmebaasi saatmine
+	ref.push(data);
+	console.log(userNote);
+	}
+	//teen inputi tühjaks peale väärtuse sisestamist
+	document.getElementById("listInput").value = "";
+    }
+}, false);
+
+// submit data onclick
+document.getElementById("submitButton").addEventListener("click", function(){
+	var userNote = document.getElementById("listInput").value;
+	//input ei tohi tühi olla
+	if(userNote.length == 0){
+		alert("Tühi väli!");
+	} else {
+	var data = {
+	note: userNote
+	}
+	//andmebaasi saatmine
+	ref.push(data);
+	console.log("added element with value: " + userNote);
+	//teen inputi tühjaks peale väärtuse sisestamist
+	document.getElementById("listInput").value = "";
+	}
+});
+
+//remove elemendid class-i järgi
+function removeElementsByClass(className){
+    var elements = document.getElementsByClassName(className);
+    while(elements.length > 0){
+        elements[0].parentNode.removeChild(elements[0]);
+    }
+}
+
+//kuulab igale elemendile vajutamist ja kui className == deleteValue, siis toimetab edasi
+document.addEventListener('click', function(e) {
+	var str = e.target
+	removeElementsByClass(str.id);
+	//console.log(str);
+	//kontrollib kas clickitud elemendi className on sama ja vastavalt juhul eemaldab andmebaasist väärtuse.
+	if(str.className == "deleteValue"){
+		//console.log("deleted");
+		//console.log(str.id);
+		database.ref("note/"+str.id).remove();
+		console.log("Removed element with ID: " + str.id);
+	}
+});
+
+ref.on("value", gotData, errData);
+
+function gotData(data) {
+	var notes = data.val();
+	//consoloe.log(data.val());
+	var keys = Object.keys(notes);
+	console.log(keys);
+	
+	// removeElemtnsByClass removib ära, et peale igat uut väärtust ei kirjutataks tervet tabelit topelt üle
+	removeElementsByClass("listItem");
+	document.getElementById("dataDiv").innerHTML = "";
+	for(var i = 0; i < keys.length; i++){
+		var k = keys[i];
+		//console.log(k);
+		var oneNote = notes[k];
+		//console.log(notes[k]);
+		document.getElementById("dataDiv").innerHTML += '<ul class="'+ k +'"><li class="listItem">' + '<img id="'+k+'" class="deleteValue"src="https://cdn2.iconfinder.com/data/icons/color-svg-vector-icons-part-2/512/erase_delete_remove_wipe_out-512.png">'  + oneNote.note + '</li></ul>';
+		}
+}
+
+function errData(err) {
+	console.log("error!");
+	console.log(err);
+}
 
 
 
-
-
-
-//-----------------Ikooni liigutamine algab------------------
-
+//-----------------Ikooni liigutamine algab interact.js------------------
 interact('.draggable')
   .draggable({
     
@@ -96,7 +185,7 @@ interact('.draggable')
     }
   });
 
-  function dragMoveListener (event) {
+function dragMoveListener (event) {
     var target = event.target,
         
         x = (parseFloat(target.getAttribute('data-x')) || 0) + event.dx,
@@ -111,81 +200,28 @@ interact('.draggable')
     target.setAttribute('data-x', x);
     target.setAttribute('data-y', y);
   }
-  window.dragMoveListener = dragMoveListener;
+window.dragMoveListener = dragMoveListener;
 //-----------------Ikooni liigutamine lõppeb------------------
 
 
-//NEW FIREBASE START
 
-var config = {
-    apiKey: "AIzaSyAo_hm_wJNKnUxt-U6xbjAT_TdpMLEPj7E",
-    authDomain: "note-bebd7.firebaseapp.com",
-    databaseURL: "https://note-bebd7.firebaseio.com",
-    projectId: "note-bebd7",
-    storageBucket: "note-bebd7.appspot.com",
-    messagingSenderId: "469109871476"
-};
-firebase.initializeApp(config);
 
-console.log(firebase);
 
-var database = firebase.database();
+//var titleElement = document.getElementById("dataDiv");
+//var titleChildren = titleElement.getElementsByTagName("img");
 
-var ref = database.ref("note");
+//articles = titleElement.getElementsByTagName("img");
 
-document.getElementById("submitButton").addEventListener("click", function(){
-	var userNote = document.getElementById("listInput").value;
-	var data = {
-	note: userNote
-	}
-	ref.push(data);
-	console.log(userNote);
-});
+//console.log(articles.length);
 
-//remove ul-id
-function removeElementsByClass(className){
-    var elements = document.getElementsByClassName(className);
-    while(elements.length > 0){
-        elements[0].parentNode.removeChild(elements[0]);
-    }
-}
+//document.addEventListener('click', function(e) {
+//    alert(e.target.id);
+//});
 
-function gotData(data) {
-	//consoloe.log(data.val());
-	var notes = data.val();
-	
-	var keys = Object.keys(notes);
-	console.log(keys);
-	// removeElemtnsByClass removib ära, et peale igat uut väärtust ei kirjutataks tervet tabelit topelt üle
-	removeElementsByClass("listItem");
-	for(var i = 0; i < keys.length; i++){
-		var k = keys[i];
-		console.log(k);
-		var oneNote = notes[k];
-		//console.log(notes[k]);
-		//console.log(notes[k].note);
-		document.getElementById("dataDiv").innerHTML += '<ul class="'+ k +'"><li class="listItem">' + '<img id="'+ k +' "class="deleteValue"src="https://cdn2.iconfinder.com/data/icons/color-svg-vector-icons-part-2/512/erase_delete_remove_wipe_out-512.png">'  + oneNote.note + '</li></ul>';
-		//document.getElementsByClassName("listItem").innerHTML += '<img src="https://cdn2.iconfinder.com/data/icons/color-svg-vector-icons-part-2/512/erase_delete_remove_wipe_out-512.png">';
-	}
-}
 
-function errData(err) {
-	console.log("error!");
-	console.log(err);
-}
 
-ref.on("value", gotData, errData);
-/*
-function remove(key){
-	database.ref("note/"+key).remove()
-	.then(function(){
-		console.log("removed successfully");
-	})
-	.catch(function(error){
-		console.log(error);
-	});
-}
-*/
+
+
 //-----------------Firebase algus-----------------
 /*
 var config = {
