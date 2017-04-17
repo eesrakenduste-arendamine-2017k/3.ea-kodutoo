@@ -1,21 +1,14 @@
-# 3. kodutöö – Chrome extension
+Kodune töö 3 - Chrome Extension Mark Väljak
 
-Kodutööna peab looma Chrome extension'i selliselt, et nõuded oleksid täidetud.
+Extensioni idee seisneb selles, et ekraanil on koguaeg ikoon, 
+mida saab oma vajaduse järgi ringi liigutada,
+et ette ei jääks, ning millele peale clickides avaneb märkmik/ to-do list või 
+kuidas iganes keegi seda kasutada soovib.
 
-**Töö võib teha ka kahekesi, kuid siis peab GitHubis nägema, kes mida tegi!**
+Listi avaneb double clickimisel ning salvestab ja kustutab reaalajas andmeid.
+Kui ikooni üritada ekraanilt välja lohistada, siis bouncib see alati tagasi
 
-## Nõuded
 
-1. Kirjelda README.md failis, mida rakendus teeb
-1. Rakendus peab tegema veebilehe/veebirakenduse kas ilusamaks, mugavamaks või huvitamaks
-1. Peab oleama piisavalt keerukas (midagi enemat kui tunnis tegmine)
-1. Rakendus peab salvestama andmeid serverisse (võib lahendada praegu laisalt ilma autentimiseta, kasuta nt [firebase](https://firebase.google.com/))
-1. Ole loominguleine, näiteks põnevad asjad millele saab brauser ligi
-    - bluetooth, sh pulsivöö
-    - mikrofon [näide](https://www.talater.com/annyang/)
-    - webcam [näide](https://revealjs.herokuapp.com/#/0/1)
 
-## Täiendav abimaterjal
 
-* Chrome extension API [JavaScript APIs](https://developer.chrome.com/extensions/api_index/)
-* Chrome extension'ite näited [Sample Extensions](https://developer.chrome.com/extensions/samples/)
+
