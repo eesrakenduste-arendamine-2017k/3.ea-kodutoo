@@ -23,6 +23,7 @@ document.body.innerHTML += notesIcon;
 document.body.innerHTML += listDiv;
 //document.getElementById("list").innerHTML += listTitle;
 document.getElementById("list").innerHTML += closeIcon;
+
 //addin input fieldi ja submit buttoni, form elementi ei saa kasutada, sest muidu refreshib lehte iga kord, kui submitin
 document.getElementById("list").innerHTML += formData;
 //adding divi, kuhu sisse kuvatakse data
@@ -89,6 +90,11 @@ window.addEventListener('keypress', function (e) {
 		}
 		//teen inputi tühjaks peale väärtuse sisestamist
 		document.getElementById("listInput").value = "";
+		
+		
+		
+		
+		
     }
 }, false);
 
@@ -118,10 +124,42 @@ function removeElementsByClass(className){
     }
 }
 
+
+
+document.addEventListener("click", function(e) {
+	var click = e.target;
+	console.log("sinu click ID:  " + click.id);
+	console.log("sinu click CLASS:  " + click.className);
+	
+	//console.log(click);
+	// et hiirega mujale, kui listi clickides paneks listi kinni.
+	switch (click.id || click.className) {
+    //Case ID järgi
+		case "submitButton": break;
+		case "dataDiv": break;
+		case "drag-1": break;
+		case "list": break;
+		case "listInput": break;
+		case "closeIcon": break;
+		// Case ClassName põhjal
+		case "listItem": break;
+		case "draggable": break;
+		case "deleteValue":break;
+		default:
+			// kontrollib seda elementi eraldi, sest igal img elemendil on erinev id
+			if(click.id == document.getElementById(click.id).parentElement.parentElement.className){
+				console.log("LISTI CLICKITUD");
+			} else {
+				mainList.style.visibility = "hidden";
+			}
+		}
+});
+
 //kuulab igale elemendile vajutamist ja kui className == deleteValue, siis toimetab edasi
 document.addEventListener('click', function(e) {
 	var str = e.target
 	removeElementsByClass(str.id);
+	
 	//console.log(str);
 	//kontrollib kas clickitud elemendi className on sama ja vastavalt juhul eemaldab andmebaasist väärtuse.
 	if(str.className == "deleteValue"){
