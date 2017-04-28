@@ -317,9 +317,8 @@ var url = url;
             xmlhttp.send();
         },500);
 
-        firebase.database().ref('stack/' + date+"-"+month+'/'+hours+"-"+minutes+"-"+seconds).set({
-            url: window.location.href,
-            test: urlB4
+        firebase.database().ref('stack/' + date+"-"+(month+1)+'/'+hours+":"+minutes+":"+seconds).set({
+            url: window.location.href
         });
 
     }
