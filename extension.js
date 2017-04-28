@@ -282,6 +282,7 @@ var url = url;
                     styling.style.top=cursorY+10;
                     styling.style.left=cursorX+25;
                     styling.style.borderRadius="50%";
+                    console.log(document.getElementById("styling").style.height);
 
                     styling2.style.borderRadius="fixed";
                     styling2.style.borderRadius="20";
