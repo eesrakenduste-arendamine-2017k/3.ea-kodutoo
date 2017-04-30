@@ -1,3 +1,5 @@
+# Simple eye resting reminder for people who are working with computer all day long. One click redirection to HTML/CSS validator.
+
 # 3. kodutöö – Chrome extension
 
 Kodutööna peab looma Chrome extension'i selliselt, et nõuded oleksid täidetud.

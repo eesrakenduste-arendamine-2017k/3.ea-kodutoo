@@ -1,0 +1,47 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>TechGeek Helper</title>
+    <script src="popup.js"></script>
+    <link rel="stylesheet" href="/css/popup-style.css">
+  </head>
+  <body id="body">
+    <ul class="action-list">
+      <p class="title"><strong>Validation tools:</strong></p>
+      <li>
+        <a class="button" id="htmlValidation">HTML</a>
+      </li>
+      <li>
+        <a class="button" id="cssValidation">CSS</a>
+      </li>
+    </ul>
+    <hr>
+    <ul class="action-list">
+      <p class="title"><strong>Convert PT</strong></p>
+      <li class="conv-list-item">
+        <label for="fromPT">from</label>
+        <input type="number" name="from" id="fromPT" value="12"><span> pt</span>
+      </li>
+      <li class="conv-list-item">
+        <label for="toPX">to PX</label>
+        <input type="radio" name="to" id="toPX" class="radio-button" checked>
+        <label for="toEM">to EM</label>
+        <input type="radio" name="to" id="toEM" class="radio-button">
+        <label for="toPERCENT">to %</label>
+        <input type="radio" name="to" id="toPERCENT"  class="radio-button">
+      </li>
+      <li>
+        <a class="button" id="action">Convert</a>
+      </li>
+      <li class="conv-list-item">Answer: <span id="answer"></span></li>
+    </ul>
+    <hr>
+    <ul class="action-list">
+      <p class="title"><strong>Eye resting reminder:</strong></p>
+      <li>
+        <a class="button" href="options.html" target="_blank">OPTIONS</a>
+      </li>
+    </ul>
+  </body>
+</html>

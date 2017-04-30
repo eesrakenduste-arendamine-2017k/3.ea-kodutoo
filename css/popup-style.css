@@ -1,0 +1,48 @@
+#body{
+  position:relative;
+  height:400px;
+  width:350px;
+  margin:0;
+}
+.action-list{
+  list-style:none;
+  width:100%;
+  padding-left:0px;
+}
+.action-list li{
+  width:100%;
+  margin-bottom:5px;
+  padding:5px 5px 5px 15px;
+}
+.action-list li:hover{
+  background:#f3f3f3;
+  cursor:pointer;
+}
+.action-list li label{
+  display:inline-block;
+
+}
+.action-list li a{
+  display:block;
+  width:100%;
+  text-decoration: none;
+}
+.action-list li a:active{
+  color:black;
+}
+.action-list .title{
+    padding-left:15px;
+}
+.conv-list-item:hover{
+  background:none!important;
+  cursor:default!important;
+}
+#fromPT{
+  width:40px;
+  display: inline-block;
+}
+#answer{
+  width:100%;
+  font-size:1.2em;
+  font-weight: 500;
+}
