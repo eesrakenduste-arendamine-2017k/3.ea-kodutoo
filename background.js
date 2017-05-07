@@ -6,6 +6,7 @@ var secondsCounter = 0;
 var end;
 var totaltime = 0;
 
+
 window.onload = function (){
   console.log(localStorage.getItem("timerSec"));
   if(localStorage.getItem("timerSec") === null){
@@ -15,6 +16,7 @@ window.onload = function (){
   }
 startTimer();
   var myVar = setInterval(timedata, 1000);
+
 };
 
 function timedata(){
@@ -38,6 +40,7 @@ function timedata(){
 }
 
 function alert(){
+  saveUsage();
   console.log("Time's up!");
   totaltime = 0;
   confirm("Puhka silmi 1 minut! Seejärel vajuta OK, et jätkata.");
@@ -65,7 +68,9 @@ function checkTime() {
     secondsCounter++;
 
     if (secondsCounter >= timeOut) {
-        kokku  += totaltime - timeOut;
+        totaltime -= timeOut;
+        saveUsage();
+        kokku  += totaltime;
         console.log("User inactive -> timer reset");
         console.log("Kokku: " +kokku);
         secondsCounter = 0;
@@ -73,4 +78,28 @@ function checkTime() {
         confirm("Olid mõnda aega eemal, vajuta OK kui oled tagasi.");
         startTimer();
     }
+}
+
+function saveUsage(){
+  var allUsages = [];
+
+		        var usage = {
+			           timeSpent: totaltime,
+			           date: new Date()
+		                   };
+                       var usagesFromStorage = null;
+
+           		if(localStorage.getItem("allUsages")){
+           			usagesFromStorage = JSON.parse(localStorage.getItem("allUsages"));
+
+           			if(usagesFromStorage){
+           				allUsages = usagesFromStorage;
+           			}
+
+           		}
+
+           		allUsages.push(usage);
+
+           		localStorage.setItem("allUsages", JSON.stringify(allUsages));
+              console.log("aeg lisatud");
 }
