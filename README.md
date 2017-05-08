@@ -1,5 +1,7 @@
 Youtube Timer
 
 Laienduse salvestab Firebase andmebaasi palju kasutaja veedab aega youtubes.
-Hetkel salvestab lihtsalt andmebaasi ja ei kuva kuskil veedetud aega.
-Laiendust peaks kõvasti täiendama, aga loodetavasti sobib hetkel see harjutuse läbimiseks :)
+Laiendus läheb tööle siis, kui minnaks YOUTUBE lehele.
+Algul soovib laiendus teada kasutajanime.
+Siis salvestatakse aeg sellele kasutajanimele.
+Kokku oldud aegas aab nii vaadata, kui vajutada selle rakenduse ikoonile(popup).
