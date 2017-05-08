@@ -1,0 +1,24 @@
+
+{
+  "name": "Youtube Timer",
+  "description": "Ytimer",
+  "version": "1.0",
+  "permissions": [
+    "activeTab",
+    "webNavigation",
+    "tabs",
+    "http://*/*",
+    "https://*/*",
+    "storage"
+  ],
+  "content_scripts" : [{
+        "matches" : [ "*://*/*"],
+        "js" :  ["config.js","firebase.js","background.js"],
+        "css" : ["styles.css"]
+    }],
+  "browser_action": {
+    "default_title": "Youtube Timer", 
+    "default_popup": "popup.html"
+  },
+  "manifest_version": 2
+}
