@@ -1,21 +1,19 @@
 # 3. kodutöö – Chrome extension
 
-Kodutööna peab looma Chrome extension'i selliselt, et nõuded oleksid täidetud.
+1. Youtubes loo pealkirjale vajutades sooritatakse päring Discogsi (plaaditurg) antud loo kohta, vastustega leht avatakse
+ uues aknas.
+2. Andmete salvestamine pooleli
 
-**Töö võib teha ka kahekesi, kuid siis peab GitHubis nägema, kes mida tegi!**
+3. Võimalikud edasiarendused:(võivad kujuneda keeruliseks kuna ühel plaadil on avaliselt mitu erinevat väljalaset)
+-Nupp antud plaadi wishlisti lisamiseks
+-Statistika kuvamine nt:
+ Have: 67
+ Want: 333
+ Avg Rating: 4.7 / 5
+ Ratings: 33
+ Last Sold: 18 Feb 17
+ Lowest: €10.98
+ Median: €31.22
+ Highest: €85.00
 
-## Nõuded
-
-1. Kirjelda README.md failis, mida rakendus teeb
-1. Rakendus peab tegema veebilehe/veebirakenduse kas ilusamaks, mugavamaks või huvitamaks
-1. Peab oleama piisavalt keerukas (midagi enemat kui tunnis tegmine)
-1. Rakendus peab salvestama andmeid serverisse (võib lahendada praegu laisalt ilma autentimiseta, kasuta nt [firebase](https://firebase.google.com/))
-1. Ole loominguleine, näiteks põnevad asjad millele saab brauser ligi
-    - bluetooth, sh pulsivöö
-    - mikrofon [näide](https://www.talater.com/annyang/)
-    - webcam [näide](https://revealjs.herokuapp.com/#/0/1)
-
-## Täiendav abimaterjal
-
-* Chrome extension API [JavaScript APIs](https://developer.chrome.com/extensions/api_index/)
-* Chrome extension'ite näited [Sample Extensions](https://developer.chrome.com/extensions/samples/)
+[![https://gyazo.com/0d63aca32f18b3e48ac3ef80119698da](https://i.gyazo.com/0d63aca32f18b3e48ac3ef80119698da.gif)](https://gyazo.com/0d63aca32f18b3e48ac3ef80119698da)
