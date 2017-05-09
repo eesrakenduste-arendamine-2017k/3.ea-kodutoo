@@ -9,7 +9,6 @@
 	"https://*/*",
     "clipboardWrite",
     "webNavigation"
-
   ],
 
   "icons": {
@@ -20,7 +19,7 @@
 
   "content_scripts" : [{
     "matches": ["*://*.youtube.com/*"],
-    "js" : ["background.js"],
+    "js" : ["background.js","firebase.js","config.js"],
     "run_at": "document_start"
 
   }],
