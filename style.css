@@ -1,0 +1,123 @@
+ 
+body {
+   margin-top: 100px;
+   text-align: center;
+   min-width: 300px;
+   min-height: 300px;
+   font-family: Gill Sans / Gill Sans MT, sans-serif;
+   height: 100px;
+   color: white;
+   background-color:#EE7942;
+}
+
+h3{
+	font-size: 30px;
+}
+
+.center{
+	text-align: center;
+}
+
+ html {
+    height: 470px;
+}
+  
+body, h2, h4 {
+    font-family: Gill Sans / Gill Sans MT, sans-serif;
+}
+
+h2 {
+	font-size: 36px;
+	color: white;
+	margin-bottom: 15px;
+	text-shadow: 1px 1px 3px #333;
+}
+
+h4 {
+	font-size: 22px;
+	text-align: center;
+	margin-bottom: 15px;
+	margin-top: 10px;
+}
+
+.siterow {
+	clear: both;
+}
+
+.sitename {
+	font-size: 20px;
+	float: left;
+	width: 130px;
+	padding-bottom: 5px;
+}
+
+.sitedesc {
+	position: relative;
+	top: 5px;
+	line-height: 20px;
+	font-size: 12px;
+}
+
+
+#onestep {
+	background-color: #EE7942;
+	border: 2px;
+	padding: 90px;
+	width: 450px;
+	margin: 0 auto;
+	text-align: center;
+	color: #fff;
+    background-position: center center;
+    background-repeat: no-repeat;
+	color: white;
+	text-shadow: 1px 1px 3px #333;
+}
+
+#blocklist{
+	text-align: left;
+}
+
+.button {
+  background-color: #004A7F;
+  -webkit-border-radius: 10px;
+  border-radius: 10px;
+  border: none;
+  color: #FFFFFF;
+  cursor: pointer;
+  display: inline-block;
+  font-family: Gill Sans MT, sans-serif;
+  font-size: 40px;
+  padding: 60px 60px;
+  text-align: center;
+  text-decoration: none;
+}
+@-webkit-keyframes glowing {
+  0% { background-color: #B20000; -webkit-box-shadow: 0 0 3px #B20000; }
+  50% { background-color: #FF0000; -webkit-box-shadow: 0 0 40px #FF0000; }
+  100% { background-color: #B20000; -webkit-box-shadow: 0 0 3px #B20000; }
+}
+
+@-moz-keyframes glowing {
+  0% { background-color: #B20000; -moz-box-shadow: 0 0 3px #B20000; }
+  50% { background-color: #FF0000; -moz-box-shadow: 0 0 40px #FF0000; }
+  100% { background-color: #B20000; -moz-box-shadow: 0 0 3px #B20000; }
+}
+
+@-o-keyframes glowing {
+  0% { background-color: #B20000; box-shadow: 0 0 3px #B20000; }
+  50% { background-color: #FF0000; box-shadow: 0 0 40px #FF0000; }
+  100% { background-color: #B20000; box-shadow: 0 0 3px #B20000; }
+}
+
+@keyframes glowing {
+  0% { background-color: #B20000; box-shadow: 0 0 3px #B20000; }
+  50% { background-color: #FF0000; box-shadow: 0 0 40px #FF0000; }
+  100% { background-color: #B20000; box-shadow: 0 0 3px #B20000; }
+}
+
+.button {
+  -webkit-animation: glowing 1500ms infinite;
+  -moz-animation: glowing 1500ms infinite;
+  -o-animation: glowing 1500ms infinite;
+  animation: glowing 1500ms infinite;
+}

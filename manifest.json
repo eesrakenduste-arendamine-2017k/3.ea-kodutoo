@@ -1,0 +1,26 @@
+
+{
+    "name": "Not distracted",
+    "version": "1",
+    "manifest_version": 2,
+    "description": "Block any site if you want...",
+    "background" : {
+        "page": "background.html"
+    },
+    "options_page": "options.html",
+    "icons": {
+        "16" : "images/Close-2-icon-16.png",
+        "48" : "images/Close-2-icon-48.png",
+        "128" : "images/Close-2-icon-128.png"
+    },
+    "browser_action": {
+        "default_icon": "images/Close-2-icon-16.png",
+        "default_title": "Not distracted",
+        "default_popup": "popup.html",
+		"default_instead": "instead.html"
+    },
+    "permissions": [
+				"tabs",
+				"notifications"
+	]
+}
