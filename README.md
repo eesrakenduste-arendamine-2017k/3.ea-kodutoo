@@ -2,7 +2,7 @@
 
 1. Youtubes loo pealkirjale vajutades sooritatakse päring Discogsi (plaaditurg) antud loo kohta, vastustega leht avatakse
  uues aknas.
-2. Andmete salvestamine pooleli
+2. Logib otsingu tulemused andmebaasi
 
 3. Võimalikud edasiarendused:(võivad kujuneda keeruliseks kuna ühel plaadil on avaliselt mitu erinevat väljalaset)
 -Nupp antud plaadi wishlisti lisamiseks

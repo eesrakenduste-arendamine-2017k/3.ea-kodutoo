@@ -1,7 +1,6 @@
 document.addEventListener("spfdone", process);
 document.addEventListener("DOMContentLoaded", process);
 document.onload = process();
-
 function process() {
     console.log("loaded extension!");
 //needed to resolve version problems
@@ -95,8 +94,8 @@ function process() {
             block.style.cursor = 'pointer';
             //on mouse over change color to gray
             block.onmouseover = function () {
-            block.style.color = 'gray';
-            document.getElementById("eow-title").title = "Search on discogs";
+                block.style.color = 'gray';
+                document.getElementById("eow-title").title = "Search on discogs";
             };
             //back to black
             block.onmouseout = function () {
@@ -121,6 +120,18 @@ function process() {
                 var newURL = "https://www.discogs.com/search/?q=" + stripedText;
                 window.open(newURL);
                 window.getSelection().removeAllRanges();
+                firebase.initializeApp(config);
+
+                var id = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+                    var r = Math.random()*16|0, v = c == 'x' ? r : (r&0x3|0x8);
+                    return v.toString(16);
+                });
+                firebase.database().ref('discogs/' + id).set({
+                    date: new Date(),
+                    title: text,
+                    query: stripedText,
+                    url: newURL
+                });
             });
-        })
-    }
+        });
+}

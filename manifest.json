@@ -4,9 +4,9 @@
   "version": "2.0",
   "permissions": [
     "activeTab",
-	"tabs",
-	"http://*/*",
-	"https://*/*",
+    "tabs",
+    "http://*/*",
+    "https://*/*",
     "clipboardWrite",
     "webNavigation"
   ],
@@ -19,7 +19,7 @@
 
   "content_scripts" : [{
     "matches": ["*://*.youtube.com/*"],
-    "js" : ["background.js","firebase.js","config.js"],
+    "js" : ["firebase.js", "config.js","background.js"],
     "run_at": "document_start"
 
   }],
