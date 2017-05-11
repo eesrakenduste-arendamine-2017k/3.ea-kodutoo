@@ -1,0 +1,46 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <link href="main.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+    <link rel='stylesheet prefetch' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.0.3/css/font-awesome.min.css'>
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400" rel="stylesheet">
+    <script src="js/jquery-2.2.4.min.js"></script>
+
+
+</head>
+
+<body>
+
+
+  <div class="note-menu hidden">
+    <h1>Märkmed</h1>
+    <div class="note-list">
+    </div>
+      <button class="new-note-div" type="pink ui button" value="Loo märge">Loo märge</button><br><br>
+  </div>
+
+  <div class="note-title-div hidden">
+    <h2>Lisa märkme pealkiri</h2>
+    <input class="new-note-title" type="text" placeholder="Pealkiri" /><br><br>
+      <button class="new-note-button" type="button" value="Salvesta">Salvesta</button><br><br>
+  </div>
+
+  <div class="note-text-div hidden">
+    <p disabled class="time-p"></p>
+    <input class="note-title" type="text" />
+    <textarea class="note-textarea" rows="20" cols="70"></textarea>
+  </div>
+
+  <script src="js/display.js"></script>
+  <script src="js/noteState.js"></script>
+  <script src="js/saveAndExit.js"></script>
+  <script src="js/createNewNote.js"></script>
+  <script src="js/deleteNote.js"></script>
+  <script src="js/getNotes.js"></script>
+  <script src="js/activate.js"></script>
+
+</body>
+</html>
