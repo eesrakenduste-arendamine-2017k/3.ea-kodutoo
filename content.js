@@ -31,6 +31,102 @@ window.onload = function() {
 	var stringStart = pointsLeftString.indexOf(" points");
 	var pointsLeft = pointsLeftString.slice(0, stringStart);
 	
+	var reds, yellow, green, brown, blue, pink, black;
+	
+	
+	if(parseInt(pointsLeft) > 27) {
+		reds = (parseInt(pointsLeft) - 27) / 8;
+		yellow = 1;
+		green = 1;
+		brown = 1;
+		blue = 1;
+		pink = 1;
+		black = 1;
+	}
+	
+	if(parseInt(pointsLeft) === 27) {
+		reds = 0;
+		yellow = 1;
+		green = 1;
+		brown = 1;
+		blue = 1;
+		pink = 1;
+		black = 1;
+	}
+	
+	if(parseInt(pointsLeft) === 25) {
+		reds = 0;
+		yellow = 0;
+		green = 1;
+		brown = 1;
+		blue = 1;
+		pink = 1;
+		black = 1;
+	}
+	
+	if(parseInt(pointsLeft) === 22) {
+		reds = 0;
+		yellow = 0;
+		green = 0;
+		brown = 1;
+		blue = 1;
+		pink = 1;
+		black = 1;
+	}
+	
+	if(parseInt(pointsLeft) === 18) {
+		reds = 0;
+		yellow = 0;
+		green = 0;
+		brown = 0;
+		blue = 1;
+		pink = 1;
+		black = 1;
+	}
+	
+	if(parseInt(pointsLeft) === 13) {
+		reds = 0;
+		yellow = 0;
+		green = 0;
+		brown = 0;
+		blue = 0;
+		pink = 1;
+		black = 1;
+	}
+	
+	if(parseInt(pointsLeft) === 8) {
+		reds = 0;
+		yellow = 0;
+		green = 0;
+		brown = 0;
+		blue = 0;
+		pink = 0;
+		black = 1;
+	}
+	
+	if(parseInt(pointsLeft) === 0) {
+		reds = 0;
+		yellow = 0;
+		green = 0;
+		brown = 0;
+		blue = 0;
+		pink = 0;
+		black = 0;
+	}
+	
+	
+	
+	var player1Background = document.querySelectorAll(".text-center")[0];
+	var player2Background = document.querySelectorAll(".text-center")[1];
+	
+	
+	if(player1Break === "") {
+		player2Background.style.backgroundColor = "yellow";
+		player1Background.style.backgroundColor = "";
+	} else {
+		player1Background.style.backgroundColor = "yellow";
+		player2Background.style.backgroundColor = "";
+	}
 	
 
 	
@@ -59,6 +155,11 @@ window.onload = function() {
 	var pointsLeftNameText = document.createTextNode("Points left: " + pointsLeft);
 	pointsLeftName.appendChild(pointsLeftNameText);
 	
+	var ballsOnTable = document.createElement("p");
+	var ballsOnTableText = document.createTextNode("On table - reds: " + reds + ", yellow: " + yellow + ", green: " + green + ", brown: " + brown + ", blue: " + blue +
+		", pink: " + pink + ", black: " + black);
+	ballsOnTable.appendChild(ballsOnTableText);
+	
 	
 	
 	newElement.appendChild(tournamentName);
@@ -66,6 +167,7 @@ window.onload = function() {
 	newElement.appendChild(player1Name);
 	newElement.appendChild(player2Name);
 	newElement.appendChild(pointsLeftName);
+	newElement.appendChild(ballsOnTable);
 	
 	bodyElement.insertBefore(newElement, bodyElement.firstChild);
 	
