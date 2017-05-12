@@ -2,20 +2,14 @@
 
 Kodutööna peab looma Chrome extension'i selliselt, et nõuded oleksid täidetud.
 
-**Töö võib teha ka kahekesi, kuid siis peab GitHubis nägema, kes mida tegi!**
+Kirjeldus: Extension kontrollib, kas veebileht sisaldab sobimatuid märksõnu/teemasid. Kui sisaldab, siis annab extension kasutajale teada, et see veebileht sisaldab midagi sobimatud. Peale seda on kasutajal võimalik otsustada, kas ta ikka soovib seda lehte külastada. Lisaks kontrollitakse ka URL-i ja on võimalik ka öelda, et teatud lehtedel ei kontrollitaks sisu.
 
-## Nõuded
 
-1. Kirjelda README.md failis, mida rakendus teeb
-1. Rakendus peab tegema veebilehe/veebirakenduse kas ilusamaks, mugavamaks või huvitamaks
-1. Peab oleama piisavalt keerukas (midagi enemat kui tunnis tegmine)
-1. Rakendus peab salvestama andmeid serverisse (võib lahendada praegu laisalt ilma autentimiseta, kasuta nt [firebase](https://firebase.google.com/))
-1. Ole loominguleine, näiteks põnevad asjad millele saab brauser ligi
-    - bluetooth, sh pulsivöö
-    - mikrofon [näide](https://www.talater.com/annyang/)
-    - webcam [näide](https://revealjs.herokuapp.com/#/0/1)
-
-## Täiendav abimaterjal
-
-* Chrome extension API [JavaScript APIs](https://developer.chrome.com/extensions/api_index/)
-* Chrome extension'ite näited [Sample Extensions](https://developer.chrome.com/extensions/samples/)
+var config = {
+  apiKey: "AIzaSyDJn4Lpzww_XXXXXXXXXXXXXXXXXXXXXXXXX",
+  authDomain: "XXXXXX.firebaseapp.com",
+  databaseURL: "https://XXXXXX.firebaseio.com",
+  projectId: "my-extension-404f6",
+  storageBucket: "XXXXXX.appspot.com",
+  messagingSenderId: "XXXXXXXXXXXX"
+};
