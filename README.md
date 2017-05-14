@@ -1,6 +1,6 @@
 # 3. kodutöö – Chrome extension
 
-##Config faili sisu
+## Config faili sisu
 
 ```JS
 var config = {
@@ -15,7 +15,7 @@ var config = {
   firebase.initializeApp(config);
 ```
 
-##Kirjeldus
+## Kirjeldus
 
 1. Extension laseb kasutajal salvestada enda lemmiklehti koos tag-iga.
 1. Andmebaasi salvestatakse lehekülg, selle tag ning salvestamise aeg(kuupäev ja kellaaeg).
