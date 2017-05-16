@@ -6,9 +6,15 @@
 window.onload = function() {
 	
 	var bodyElement = document.getElementsByTagName("body")[0];
+	var contentArea = document.querySelectorAll(".live-match");
 	
 	var newElement = document.createElement("div");
-	newElement.style.cssText = "position: fixed; z-index: 999; width: 100%; background-color: lightblue; border: 2px solid;"
+	newElement.style.cssText = "position: relative; width: 1200px; background-color: white; border: 2px solid;"
+	
+	var newCanvas = document.createElement("canvas");
+	newCanvas.style.cssText = "width: 250px; height: 125px;";
+	
+	
 	
 
 	var title = document.getElementById("tournament-name").childNodes[1].innerHTML;
@@ -128,12 +134,13 @@ window.onload = function() {
 		player2Background.style.backgroundColor = "";
 	}
 	
-
 	
 	
 	
-
-
+	
+	
+	
+	
 	
 	var tournamentName = document.createElement("p");
 	var tournamentNameText = document.createTextNode("Tournament: " + title);
@@ -169,7 +176,491 @@ window.onload = function() {
 	newElement.appendChild(pointsLeftName);
 	newElement.appendChild(ballsOnTable);
 	
+	newElement.appendChild(newCanvas);
+	
 	bodyElement.insertBefore(newElement, bodyElement.firstChild);
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	var canvas = document.getElementsByTagName('canvas')[0];
+	var ctx = canvas.getContext('2d');
+
+	var x = 20;
+	var y = 15;
+	var innerRadius = 3;
+	var outerRadius = 25;
+	var radius = 15;
+	
+	
+	var reds1 = function() {
+		var offsetX = 33;
+		var offsetY = 0;
+		var oX = offsetX * 0;
+		var oY = offsetY * 0;
+		
+		var gradient = ctx.createRadialGradient(x + oX, y + oY, innerRadius, x + oX, y + oY, outerRadius);
+		gradient.addColorStop(0, '#FFA07A');
+		gradient.addColorStop(1, 'red');
+		
+		ctx.beginPath();
+		ctx.arc(x + oX, y + oY, radius, 0, 2 * Math.PI);
+		ctx.fillStyle = gradient;
+		ctx.fill();
+		ctx.closePath();
+	};
+	
+	var reds2 = function() {
+		var offsetX = 33;
+		var offsetY = 0;
+		var oX = offsetX * 1;
+		var oY = offsetY * 0;
+		
+		var gradient = ctx.createRadialGradient(x + oX, y + oY, innerRadius, x + oX, y + oY, outerRadius);
+		gradient.addColorStop(0, '#FFA07A');
+		gradient.addColorStop(1, 'red');
+		
+		ctx.beginPath();
+		ctx.arc(x + oX, y + oY, radius, 0, 2 * Math.PI);
+		ctx.fillStyle = gradient;
+		ctx.fill();
+		ctx.closePath();
+	};
+	
+	var reds3 = function() {
+		var offsetX = 33;
+		var offsetY = 0;
+		var oX = offsetX * 2;
+		var oY = offsetY * 0;
+		
+		var gradient = ctx.createRadialGradient(x + oX, y + oY, innerRadius, x + oX, y + oY, outerRadius);
+		gradient.addColorStop(0, '#FFA07A');
+		gradient.addColorStop(1, 'red');
+		
+		ctx.beginPath();
+		ctx.arc(x + oX, y + oY, radius, 0, 2 * Math.PI);
+		ctx.fillStyle = gradient;
+		ctx.fill();
+		ctx.closePath();
+	};
+	
+	var reds4 = function() {
+		var offsetX = 33;
+		var offsetY = 0;
+		var oX = offsetX * 3;
+		var oY = offsetY * 0;
+		
+		var gradient = ctx.createRadialGradient(x + oX, y + oY, innerRadius, x + oX, y + oY, outerRadius);
+		gradient.addColorStop(0, '#FFA07A');
+		gradient.addColorStop(1, 'red');
+		
+		ctx.beginPath();
+		ctx.arc(x + oX, y + oY, radius, 0, 2 * Math.PI);
+		ctx.fillStyle = gradient;
+		ctx.fill();
+		ctx.closePath();
+	};
+	
+	var reds5 = function() {
+		var offsetX = 33;
+		var offsetY = 0;
+		var oX = offsetX * 4;
+		var oY = offsetY * 0;
+		
+		var gradient = ctx.createRadialGradient(x + oX, y + oY, innerRadius, x + oX, y + oY, outerRadius);
+		gradient.addColorStop(0, '#FFA07A');
+		gradient.addColorStop(1, 'red');
+		
+		ctx.beginPath();
+		ctx.arc(x + oX, y + oY, radius, 0, 2 * Math.PI);
+		ctx.fillStyle = gradient;
+		ctx.fill();
+		ctx.closePath();
+	};
+	
+	var reds6 = function() {
+		var offsetX = 33;
+		var offsetY = 33;
+		var oX = offsetX * 0.5;
+		var oY = offsetY * 0.9;
+		
+		var gradient = ctx.createRadialGradient(x + oX, y + oY, innerRadius, x + oX, y + oY, outerRadius);
+		gradient.addColorStop(0, '#FFA07A');
+		gradient.addColorStop(1, 'red');
+		
+		ctx.beginPath();
+		ctx.arc(x + oX, y + oY, radius, 0, 2 * Math.PI);
+		ctx.fillStyle = gradient;
+		ctx.fill();
+		ctx.closePath();
+	};
+	
+	var reds7 = function() {
+		var offsetX = 33;
+		var offsetY = 33;
+		var oX = offsetX * 1.5;
+		var oY = offsetY * 0.9;
+		
+		var gradient = ctx.createRadialGradient(x + oX, y + oY, innerRadius, x + oX, y + oY, outerRadius);
+		gradient.addColorStop(0, '#FFA07A');
+		gradient.addColorStop(1, 'red');
+		
+		ctx.beginPath();
+		ctx.arc(x + oX, y + oY, radius, 0, 2 * Math.PI);
+		ctx.fillStyle = gradient;
+		ctx.fill();
+		ctx.closePath();
+	};
+	
+	var reds8 = function() {
+		var offsetX = 33;
+		var offsetY = 33;
+		var oX = offsetX * 2.5;
+		var oY = offsetY * 0.9;
+		
+		var gradient = ctx.createRadialGradient(x + oX, y + oY, innerRadius, x + oX, y + oY, outerRadius);
+		gradient.addColorStop(0, '#FFA07A');
+		gradient.addColorStop(1, 'red');
+		
+		ctx.beginPath();
+		ctx.arc(x + oX, y + oY, radius, 0, 2 * Math.PI);
+		ctx.fillStyle = gradient;
+		ctx.fill();
+		ctx.closePath();
+	};
+	
+	var reds9 = function() {
+		var offsetX = 33;
+		var offsetY = 33;
+		var oX = offsetX * 3.5;
+		var oY = offsetY * 0.9;
+		
+		var gradient = ctx.createRadialGradient(x + oX, y + oY, innerRadius, x + oX, y + oY, outerRadius);
+		gradient.addColorStop(0, '#FFA07A');
+		gradient.addColorStop(1, 'red');
+		
+		ctx.beginPath();
+		ctx.arc(x + oX, y + oY, radius, 0, 2 * Math.PI);
+		ctx.fillStyle = gradient;
+		ctx.fill();
+		ctx.closePath();
+	};
+	
+	var reds10 = function() {
+		var offsetX = 33;
+		var offsetY = 33;
+		var oX = offsetX * 1;
+		var oY = offsetY * 1.8;
+		
+		var gradient = ctx.createRadialGradient(x + oX, y + oY, innerRadius, x + oX, y + oY, outerRadius);
+		gradient.addColorStop(0, '#FFA07A');
+		gradient.addColorStop(1, 'red');
+		
+		ctx.beginPath();
+		ctx.arc(x + oX, y + oY, radius, 0, 2 * Math.PI);
+		ctx.fillStyle = gradient;
+		ctx.fill();
+		ctx.closePath();
+	};
+	
+	var reds11 = function() {
+		var offsetX = 33;
+		var offsetY = 33;
+		var oX = offsetX * 2;
+		var oY = offsetY * 1.8;
+		
+		var gradient = ctx.createRadialGradient(x + oX, y + oY, innerRadius, x + oX, y + oY, outerRadius);
+		gradient.addColorStop(0, '#FFA07A');
+		gradient.addColorStop(1, 'red');
+		
+		ctx.beginPath();
+		ctx.arc(x + oX, y + oY, radius, 0, 2 * Math.PI);
+		ctx.fillStyle = gradient;
+		ctx.fill();
+		ctx.closePath();
+	};
+	
+	var reds12 = function() {
+		var offsetX = 33;
+		var offsetY = 33;
+		var oX = offsetX * 3;
+		var oY = offsetY * 1.8;
+		
+		var gradient = ctx.createRadialGradient(x + oX, y + oY, innerRadius, x + oX, y + oY, outerRadius);
+		gradient.addColorStop(0, '#FFA07A');
+		gradient.addColorStop(1, 'red');
+		
+		ctx.beginPath();
+		ctx.arc(x + oX, y + oY, radius, 0, 2 * Math.PI);
+		ctx.fillStyle = gradient;
+		ctx.fill();
+		ctx.closePath();
+	};
+	
+	var reds13 = function() {
+		var offsetX = 33;
+		var offsetY = 33;
+		var oX = offsetX * 1.5;
+		var oY = offsetY * 2.7;
+		
+		var gradient = ctx.createRadialGradient(x + oX, y + oY, innerRadius, x + oX, y + oY, outerRadius);
+		gradient.addColorStop(0, '#FFA07A');
+		gradient.addColorStop(1, 'red');
+		
+		ctx.beginPath();
+		ctx.arc(x + oX, y + oY, radius, 0, 2 * Math.PI);
+		ctx.fillStyle = gradient;
+		ctx.fill();
+		ctx.closePath();
+	};
+	
+	var reds14 = function() {
+		var offsetX = 33;
+		var offsetY = 33;
+		var oX = offsetX * 2.5;
+		var oY = offsetY * 2.7;
+		
+		var gradient = ctx.createRadialGradient(x + oX, y + oY, innerRadius, x + oX, y + oY, outerRadius);
+		gradient.addColorStop(0, '#FFA07A');
+		gradient.addColorStop(1, 'red');
+		
+		ctx.beginPath();
+		ctx.arc(x + oX, y + oY, radius, 0, 2 * Math.PI);
+		ctx.fillStyle = gradient;
+		ctx.fill();
+		ctx.closePath();
+	};
+	
+	var reds15 = function() {
+		var offsetX = 33;
+		var offsetY = 33;
+		var oX = offsetX * 2;
+		var oY = offsetY * 3.6;
+		
+		var gradient = ctx.createRadialGradient(x + oX, y + oY, innerRadius, x + oX, y + oY, outerRadius);
+		gradient.addColorStop(0, '#FFA07A');
+		gradient.addColorStop(1, 'red');
+		
+		ctx.beginPath();
+		ctx.arc(x + oX, y + oY, radius, 0, 2 * Math.PI);
+		ctx.fillStyle = gradient;
+		ctx.fill();
+		ctx.closePath();
+	};
+	
+	
+	
+	
+	var howManyReds = function(reds) {
+		
+		switch(reds) {
+			case 1:
+				reds1();
+				break;
+			
+			case 2:
+				reds1();
+				reds2();
+				break;
+				
+			case 3:
+				reds1();
+				reds2();
+				reds3();
+				break;
+				
+			case 4:
+				reds1();
+				reds2();
+				reds3();
+				reds4();
+				break;
+				
+			case 5:
+				reds1();
+				reds2();
+				reds3();
+				reds4();
+				reds5();
+				break;
+				
+			case 6:
+				reds1();
+				reds2();
+				reds3();
+				reds4();
+				reds5();
+				reds6();
+				break;
+				
+			case 7:
+				reds1();
+				reds2();
+				reds3();
+				reds4();
+				reds5();
+				reds6();
+				reds7();
+				break;
+				
+			case 8:
+				reds1();
+				reds2();
+				reds3();
+				reds4();
+				reds5();
+				reds6();
+				reds7();
+				reds8();
+				break;
+				
+			case 9:
+				reds1();
+				reds2();
+				reds3();
+				reds4();
+				reds5();
+				reds6();
+				reds7();
+				reds8();
+				reds9();
+				break;
+				
+			case 10:
+				reds1();
+				reds2();
+				reds3();
+				reds4();
+				reds5();
+				reds6();
+				reds7();
+				reds8();
+				reds9();
+				reds10();
+				break;
+				
+			case 11:
+				reds1();
+				reds2();
+				reds3();
+				reds4();
+				reds5();
+				reds6();
+				reds7();
+				reds8();
+				reds9();
+				reds10();
+				reds11();
+				break;
+				
+			case 12:
+				reds1();
+				reds2();
+				reds3();
+				reds4();
+				reds5();
+				reds6();
+				reds7();
+				reds8();
+				reds9();
+				reds10();
+				reds11();
+				reds12();
+				break;
+				
+			case 13:
+				reds1();
+				reds2();
+				reds3();
+				reds4();
+				reds5();
+				reds6();
+				reds7();
+				reds8();
+				reds9();
+				reds10();
+				reds11();
+				reds12();
+				reds13();
+				break;
+				
+			case 14:
+				reds1();
+				reds2();
+				reds3();
+				reds4();
+				reds5();
+				reds6();
+				reds7();
+				reds8();
+				reds9();
+				reds10();
+				reds11();
+				reds12();
+				reds13();
+				reds14();
+				break;
+				
+			case 15:
+				reds1();
+				reds2();
+				reds3();
+				reds4();
+				reds5();
+				reds6();
+				reds7();
+				reds8();
+				reds9();
+				reds10();
+				reds11();
+				reds12();
+				reds13();
+				reds14();
+				reds15();
+				break;
+		}
+		
+	};
+	
+	
+	howManyReds(reds);
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
+	
+	
+	
+
+
+	
+	
 	
 	
 	
