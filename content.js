@@ -1,8 +1,4 @@
-// file:///C:/Users/Karka/Downloads/Q%20School%202017%20-%20Event%201%20Live%20Match%20_%20World%20Snooker%20Live%20Scores.htm
-
-
 window.onload = function() {
-	
 	
 	// uued elemendid
 	
@@ -52,6 +48,10 @@ window.onload = function() {
 	var stringStart = pointsLeftString.indexOf(" points");
 	var pointsLeft = pointsLeftString.slice(0, stringStart);
 	var pointsLeftNum = parseInt(pointsLeft);
+	
+	var totalFramesString = document.querySelectorAll("td")[2].innerText;
+	var stringStartPos = totalFramesString.indexOf("of ");
+	var totalFrames = parseInt(totalFramesString.slice(stringStartPos + 3));
 	
 	var reds, yellow, green, brown, blue, pink, black;
 	
@@ -908,40 +908,34 @@ window.onload = function() {
 	
 	
 	
+	// andmebaasiga ühendamine ja salvestamine
 	
+	firebase.initializeApp(config);
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-
-	
-	
-	
-
-
-	
-	
-	
-	
-	
-	
-	
-	
+	setInterval(function() {
+		
+		var date = new Date();
+		var milliSeconds = date.getTime();
+		var matchId = milliSeconds.toString();
+		
+		firebase.database().ref("playerdata/" + matchId).set({
+			tournament_name: title,
+			match_round: round,
+			total_frames: totalFrames,
+			player1: player1,
+			player2: player2,
+			player1_frames: player1Frames,
+			player2_frames: player2Frames,
+			player1_points: player1Points,
+			player2_points: player2Points,
+			player1_break: player1Break,
+			player2_break: player2Break,
+			pointsleft: pointsLeftNum,
+			date: new Date()
+		});
+		
+		console.log("salvestas");
+		
+	}, 10000);
 	
 }
