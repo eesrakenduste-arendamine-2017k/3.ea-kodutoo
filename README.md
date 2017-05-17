@@ -13,7 +13,7 @@ Lisaks sellele, salvestab rakendus iga 10 sekundi tagant mänguandmeid andmebaas
 * Näitab laual olevate snuukripallide arvu ja tüüpi graafiliselt ja tekstiliselt, ehk näiteks 10 punast, 1 kollane, 1 roheline, 1 pruun, 1 sinine, 1 roosa ja 1 must. Või näiteks 1 sinine, 1 roosa, 1 must
 * Graafilist liidest on võimalik lehe ülemisse serva ära peita, et see ei segaks linkidele vajutamist (roheline nupp "hide"), või sealt tagasi tuua nupuga "show"
 * Rakendus rõhutab graafiliselt kumma mängija käes on mängimiskord muutes selle mängija tausta kollaseks (mängu mängitakse kordamööda)
-* Rakendus salvestab jooksvalt iga 10 sekundi tagant mängu info nagu turniirinimi, raund, mitu freimi (ühe laua puhtaksmängimist) mängitakse, palju punkte laual on, mängijad ja nende punktiseisud
+* Rakendus salvestab jooksvalt iga 10 sekundi tagant mängu info andmebaasi nagu turniirinimi, raund, mitu freimi (ühe laua puhtaksmängimist) mängitakse, palju punkte laual on, mängijad ja nende punktiseisud
 
 ## Lisa
 
