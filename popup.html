@@ -1,0 +1,36 @@
+<!doctype html>
+<!--
+ Seda lehte näeb siis, kui vajutatakse extensioni ikoonile
+ -->
+<html>
+  <head>
+
+     <link rel="stylesheet" type="text/css" href="main.css">
+  </head>
+  <body>
+    <div id="container">
+      <h1>GameTime</h1><small>AFK-i muretult</small>
+      <div class="setting-section">
+        <h2>Tsykli pikkus</h2>
+        <div class="time-buttons-group" id="pomodoro-selection">
+          <button type="button">10</button>
+          <button type="button">30</button>
+          <button type="button">60</button>
+          <button type="button">300</button>
+        </div>
+      </div>
+      <div class="setting-section">
+        <h2>Pausi pikkus</h2>
+        <div class="time-buttons-group" id="break-selection">
+          <button type="button">5</button>
+          <button type="button">10</button>
+          <button type="button">15</button>
+        </div>
+      </div>
+      <p>Paus <strong id="break"></strong> sekundiks iga <strong id="pomodoro"></strong> sekundi jarel.</p>
+      <a href="timer.html"><button type="button">Start</button></a>
+    </div>
+    <script type="text/javascript" src="popup.js"></script>
+  </body>
+</html>
+

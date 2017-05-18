@@ -19,3 +19,10 @@ Kodut√∂√∂na peab looma Chrome extension'i selliselt, et n√µuded oleksid t√§idetu
 
 * Chrome extension API [JavaScript APIs](https://developer.chrome.com/extensions/api_index/)
 * Chrome extension'ite n√§ited [Sample Extensions](https://developer.chrome.com/extensions/samples/)
+
+
+
++Chrome extension on tehtud Kert Aavik ja Lauri Lainelo poolt
++Kasutab Pomodoro ajahaldamise pıhimıtet
++‹hte monitori kasutades saab panna n‰iteks m‰ngutegelase midagi tegema ja samal ajal netis muud teha, tiksuv taimer ilmub extensioni ikooni peal ja kui aeg l‰bi tuleb notification.
++Taimeri, kui ka pausi aega, (enne kui automaatselt uuesti jooksma hakkab) saab kasutaja valida.
