@@ -1,13 +1,11 @@
-$(document)
-    .ready(function() {
+$(document).ready(function() { //funktsioon setSounds() läheb tööle, kui lehekülg on laetud
         setSounds();
     });
 
 
 
 function pauseAll() {
-    $('.player')
-        .each(function(i) {
+    $('.player').each(function(i) { // funktsioon each()
             this.pause();
         });
 }
@@ -17,8 +15,7 @@ function playAll(ids) {
     pauseAll();
 
     for (var i = 0; i < ids.length; i++) {
-        document.getElementById(ids[i])
-            .play();
+        document.getElementById(ids[i]).play();
     }
 
 
@@ -43,11 +40,12 @@ function setVolume(volume) {
 
 
 function setSounds() {
-    var lines = sounds.split("\n");
-    for (var i = 0, len = lines.length; i < len; i++) {
-        var name = lines[i];
+    var allsounds = sounds.split("\n");
+    for (var i = 0, len = allsounds.length; i < len; i++) {
+        var name = allsounds[i];
         $('body')
-            .append('<audio class="player" id="' + name + '" src="./audio/' + name + '.ogg" controls loop preload="auto" autobuffer></audio>');
+            .append('<audio class="player" id="' + name + '" src="./audio/' + name +
+            '.ogg" controls loop preload="auto" autobuffer></audio>');
         $('#' + name)
             .attr('volume', '.3');
     }
