@@ -19,3 +19,7 @@ Kodutööna peab looma Chrome extension'i selliselt, et nõuded oleksid täidetu
 
 * Chrome extension API [JavaScript APIs](https://developer.chrome.com/extensions/api_index/)
 * Chrome extension'ite näited [Sample Extensions](https://developer.chrome.com/extensions/samples/)
+
+
+
++Chrome extension on tehtud Kert Aavik ja Lauri Lainelo poolt
