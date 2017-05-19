@@ -12,7 +12,7 @@ Google chrome laiendus **"Localhost beautify"** muudab localhosti inetu kujundus
 **Aitab unustada liiga 'eelmise sajandi' kujunduse.**
 
 config example:
-
+```JS
 var config = {
     apiKey: "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
     authDomain: "application_name.firebaseapp.com",
@@ -21,3 +21,4 @@ var config = {
     storageBucket: "application_name.appspot.com",
     messagingSenderId: "xxxxxxxxxxxx"
 };
+```
