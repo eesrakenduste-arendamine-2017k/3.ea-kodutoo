@@ -113,13 +113,20 @@ function setSounds() {
 	    var lines = sounds.split("\n");
 	    for (var i = 0, len = lines.length; i < len; i++) {
 	        var name = lines[i];
-	        var description = name.replace(/^(.)|\s(.)/g, function($1) {
+	        var description = name.replace(/^(.)|\s(.)/g, function($1) { //ma ei saa v2ga aru,
+						//mis replace'i taga on
 	            return $1.toUpperCase();
 	        });
-	        $('#checks')
-	            .append('<input class="sound" id="' + name + '" type="checkbox" />');
-	        $('#checks')
-	            .append('<label for="' + name + '">' + description + '</label>');
+	        var el = document.createElement('audio');
+					el.ClassName = 'sound';
+					el.id = name;
+					el.type = "checkbox";
+					document.body.appendChild(el);
+						/*$('#checks')
+	            .append('<input class="sound" id="' + name + '" type="checkbox" />');*/
+					// seda järgmist ma ei oska muuta
+	        /*$('#checks')
+	            .append('<label for="' + name + '">' + description + '</label>');*/
 	    }
 	}
 
