@@ -5,9 +5,10 @@ $(document).ready(function() { //funktsioon setSounds() läheb tööle, kui lehe
 
 
 function pauseAll() {
-    $('.player').each(function(i) { // funktsioon each()
-            this.pause();
-        });
+    var elements = document.getElementsByClassName('player');
+    for (var i = 0; i < elements.length; i++) {
+        elements[i].pause();
+    }
 }
 
 
@@ -17,8 +18,6 @@ function playAll(ids) {
     for (var i = 0; i < ids.length; i++) {
         document.getElementById(ids[i]).play();
     }
-
-
 }
 
 function playSingle(id) {
@@ -32,10 +31,10 @@ function pauseSingle(id) {
 }
 
 function setVolume(volume) {
-    $('.player')
-        .each(function(i) {
-            this.volume = volume / 100;
-        });
+    var elements = document.getElementsByClassName('player');
+    for (var i = 0; i < elements.length; i++) {
+        elements[i].volume = volume / 100;
+    }
 }
 
 
@@ -43,10 +42,17 @@ function setSounds() {
     var allsounds = sounds.split("\n");
     for (var i = 0, len = allsounds.length; i < len; i++) {
         var name = allsounds[i];
-        $('body')
-            .append('<audio class="player" id="' + name + '" src="./audio/' + name +
-            '.ogg" controls loop preload="auto" autobuffer></audio>');
-        $('#' + name)
-            .attr('volume', '.3');
+
+        var el = document.createElement('audio');
+        el.className = 'player';
+        el.id = name;
+        el.src = './audio/' + name +'.ogg';
+        el.controls = true;
+        el.loop = true;
+        el.preload = 'auto';
+        el.autobuffer = true;
+        document.body.appendChild(el);
+
+        el.volume = '.3';
     }
 }
