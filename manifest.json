@@ -1,8 +1,15 @@
 {
-  "name": "Relaxing music",
-  "description": "Browse the Web or get to work on your
-  blog while chirping birds, soft rain, or gentle ocean waves play in the background. ",
+  "name": "Sounds for relaxing",
   "version": "1.0",
+  "manifest_version": 2,
+  "description": "Relax to get assignements done or browse the web while
+   listening soothing music and sounds. ",
+
+   "browser_action": {
+     "default_title": "Play music",
+     "default_icon": ".png"
+     },
+
   "permissions": [
     "activeTab",
 	"tabs",
@@ -13,10 +20,8 @@
         "matches" : [ "*://*/*"],
         "js" : ["config.js","firebase.js","background.js"],
         "css" : ["styles.css"]
-    }],
+    }]
 
-  "browser_action": {
-    "default_title": "Play music"
-    },
-  "manifest_version": 1
+
+
 }
