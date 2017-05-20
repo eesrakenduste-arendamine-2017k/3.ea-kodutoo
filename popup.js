@@ -1,7 +1,7 @@
 var unencodedURLExtension = 'http://goo.gl/b7bnU';
 	var likeURLExtension = encodeURIComponent(unencodedURLExtension);
 
-	Array.prototype.remove = function() {
+	Array.prototype.remove = function() {  // teeb massiivi selle funktsiooniga
 	    var what, a = arguments,
 	        L = a.length,
 	        ax;
@@ -17,23 +17,16 @@ var unencodedURLExtension = 'http://goo.gl/b7bnU';
 
 	var soundsToPlay;
 
-// window.onload = function(){
+window.onload = function(){
+			setSounds();
 
-//};
-	$(document)
-	    .ready(function() {
+			checkPlayedSounds();
 
-	        setSounds();
+			addChangeListener();
+			addClickListener();
 
-	        checkPlayedSounds();
-
-	        addChangeListener();
-	        addClickListener();
-
-	        playAll();
-	    });
-
-
+			playAll();
+};
 	function addChangeListener() {
 	    soundsToPlay = new Array();
       var volume = document.getElementById('volume');
