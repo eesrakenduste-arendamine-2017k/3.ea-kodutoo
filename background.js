@@ -46,7 +46,7 @@ function setSounds() {
         var el = document.createElement('audio');
         el.className = 'player';
         el.id = name;
-        el.src = './audio/' + name +'.ogg';
+        el.src = './music/' + name +'.mp3';
         el.controls = true;
         el.loop = true;
         el.preload = 'auto';
