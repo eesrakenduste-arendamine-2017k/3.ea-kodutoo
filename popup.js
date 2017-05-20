@@ -1,7 +1,7 @@
 var unencodedURLExtension = 'http://goo.gl/b7bnU';
 	var likeURLExtension = encodeURIComponent(unencodedURLExtension);
 
-	Array.prototype.remove = function() {
+	Array.prototype.remove = function() {  // teeb massiivi selle funktsiooniga
 	    var what, a = arguments,
 	        L = a.length,
 	        ax;
@@ -17,28 +17,21 @@ var unencodedURLExtension = 'http://goo.gl/b7bnU';
 
 	var soundsToPlay;
 
-// window.onload = function(){
+window.onload = function(){ // lehe laadimisel paneb need funktsioonid t88le
+			setSounds();
 
-//};
-	$(document)
-	    .ready(function() {
+			checkPlayedSounds();
 
-	        setSounds();
+			addChangeListener();
+			addClickListener();
 
-	        checkPlayedSounds();
-
-	        addChangeListener();
-	        addClickListener();
-
-	        playAll();
-	    });
-
-
+			playAll();
+};
 	function addChangeListener() {
 	    soundsToPlay = new Array();
       var volume = document.getElementById('volume');
       volume.addEventListener("change", function(){
-        setVolume(volume.value);
+        setVolume(volume.value); // m22rad volyymi
         localStorage["soundsVolume"] = volume.value;
       });
 
@@ -65,14 +58,22 @@ var unencodedURLExtension = 'http://goo.gl/b7bnU';
 	}
 
 	function addClickListener() {
-	    $('#btnPlay')
+		var play = document.getElementById('btnPlay')
+		play.addEventListener("click", function(){
+			 playAll();
+		 });
+		var pause = document.getElementById('btnPause')
+ 		pause.addEventListener("click", function(){
+ 			 pauseAll();
+		 });
+	    /*$('#btnPlay')
 	        .on("click", function() {
 	            playAll();
 	        });
 	    $('#btnPause')
 	        .on("click", function() {
 	            pauseAll()
-	        });
+	        });*/
 	}
 
 
@@ -80,11 +81,15 @@ var unencodedURLExtension = 'http://goo.gl/b7bnU';
 
 	function getSoundsToPlay() {
 	    soundsToPlay = new Array();
-	    $('.sound')
+			var sounds = document.getElementsByClassName('sound');
+	    for (var i = 0; i < sounds.length; i++) {
+				if (sounds.checked) {
+						soundsToPlay.push(sounds.id);
+	    /*$('.sound')
 	        .each(function(i) {
 	            if (this.checked) {
 	                soundsToPlay.push(this.id);
-	            }
+	            }*/
 
 	        });
 	    return soundsToPlay;
@@ -104,61 +109,7 @@ var unencodedURLExtension = 'http://goo.gl/b7bnU';
 	        .playAll(soundsToPlay);
 	    return true;
 	}
-
-	function playPauseSingle(name, checked) {
-	    if (!soundsToPlay) {
-	        soundsToPlay = getSoundsToPlay();
-	    }
-
-	    if (checked) {
-	        chrome.extension.getBackgroundPage()
-	            .playSingle(name);
-	        soundsToPlay.push(name);
-	    } else {
-	        chrome.extension.getBackgroundPage()
-	            .pauseSingle(name);
-
-              // leia ja kustuta massiivist soundsToPlay
-	        soundsToPlay.remove(name);
-	    }
-	    saveOnLocalStorage(soundsToPlay);
-
-	}
-
-	function saveOnLocalStorage(soundsToPlay) {
-	    localStorage["playedSounds"] = JSON.stringify(soundsToPlay);
-	}
-
-
-	function ctrl() {
-	    soundsToPlay = getSoundsToPlay();
-	    if (soundsToPlay.length > 5) {
-	        return false;
-	    } else {
-	        return true;
-	    }
-	}
-
-	function uncheck(name) {
-	    $('#' + name)
-	        .attr('checked', false);
-	}
-
-	function ctrlAndPlay(name) {
-	    var checked = $('#' + name)
-	        .attr('checked');
-	    if (checked) {
-	        if (ctrl()) {
-	            playPauseSingle(name, checked);
-	        } else {
-	            uncheck(name);
-	        }
-	    } else {
-	        playPauseSingle(name, checked);
-	    }
-	}
-
-	function setSounds() {
+function setSounds() {
 	    var lines = sounds.split("\n");
 	    for (var i = 0, len = lines.length; i < len; i++) {
 	        var name = lines[i];
@@ -198,3 +149,58 @@ var unencodedURLExtension = 'http://goo.gl/b7bnU';
 	    $('input')
 	        .customInput();
 	}
+
+
+
+	/*function playPauseSingle(name, checked) {
+			if (!soundsToPlay) {
+					soundsToPlay = getSoundsToPlay();
+			}
+
+			if (checked) {
+					chrome.extension.getBackgroundPage()
+							.playSingle(name);
+					soundsToPlay.push(name);
+			} else {
+					chrome.extension.getBackgroundPage()
+							.pauseSingle(name);
+
+							// leia ja kustuta massiivist soundsToPlay
+					soundsToPlay.remove(name);
+			}
+			saveOnLocalStorage(soundsToPlay);
+
+	}
+
+	function saveOnLocalStorage(soundsToPlay) {
+			localStorage["playedSounds"] = JSON.stringify(soundsToPlay);
+	}*/
+
+
+	/*function ctrl() {
+			soundsToPlay = getSoundsToPlay();
+			if (soundsToPlay.length > 5) {
+					return false;
+			} else {
+					return true;
+			}
+	}*/
+
+	/*function uncheck(name) {
+			$('#' + name)
+					.attr('checked', false);
+	}
+
+	function ctrlAndPlay(name) {
+			var checked = $('#' + name)
+					.attr('checked');
+			if (checked) {
+					if (ctrl()) {
+							playPauseSingle(name, checked);
+					} else {
+							uncheck(name);
+					}
+			} else {
+					playPauseSingle(name, checked);
+			}
+	}*/
