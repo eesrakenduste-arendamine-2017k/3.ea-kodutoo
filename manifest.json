@@ -1,5 +1,5 @@
 {
-  "name": "Sounds for relaxing",
+  "name": "Music for concentration",
   "version": "1.0",
   "manifest_version": 2,
   "description": "Relax to get assignements done or browse the web while
@@ -7,6 +7,7 @@
 
    "browser_action": {
      "default_title": "Play music",
+     "default_popup":"popup.html",
      "default_icon": ".png"
      },
 
@@ -18,7 +19,7 @@
   ],
   "content_scripts" : [{
         "matches" : [ "*://*/*"],
-        "js" : ["config.js","firebase.js","background.js"],
+        "js" : ["firebase.js","background.js"],
         "css" : ["styles.css"]
     }]
 
