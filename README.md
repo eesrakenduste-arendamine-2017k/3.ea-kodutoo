@@ -20,3 +20,10 @@ Lisaks sellele, salvestab rakendus iga 10 sekundi tagant mänguandmeid andmebaas
 Kuna ei saa tagada, et extensioni kontrollimisel ühtegi live mängu käimas on, downloadisin ühe näidislehe, mis asub greeny-s:
 * http://localhost:5555/~karlbork/eesrakenduste_arendamine/snooker/Q%20School%202017%20-%20Event%201%20Live%20Match%20_%20World%20Snooker%20Live%20Scores.htm
 * http://greeny.cs.tlu.ee/~karlbork/eesrakenduste_arendamine/snooker/Q%20School%202017%20-%20Event%201%20Live%20Match%20_%20World%20Snooker%20Live%20Scores.htm
+
+Lisan kindluse mõttes ka valemi kirjelduse kuidas laual olevaid palle arvutatakse:
+* Iga laud alustab maksimaalselt 147 punktiga (15 punast ja 6 värvilist palli)
+* Iga kord kui lüüakse sisse punane, kaob laualt 8 punkti (147 - 8 = 139; 139 - 8 = 131 jne)
+* Kui kõik punased on sisse löödud, on laual 27 punkti
+* Edasi lüüakse värvilisi palle sisse, värviliste pallide väärtus kasvab ühe võrra, ehk
+* 27 - 2 (kollane pall) = 25; 25 - 3 (roheline) = 22; 22 - 4 (pruun) = 18; 18 - 5 (sinine) = 13; 13 - 6 (roosa) = 7; 7 - 7 (must)
