@@ -1,0 +1,26 @@
+{
+  "name": "Sourcescraper",
+  "description": "Saves source images into a database on tab open.",
+  "version": "1.0",
+  "manifest_version": 2,
+
+  "permissions": [
+	"activeTab",
+	"tabs",
+	"downloads",
+	"http://*/*",
+	"https://*/*"
+  ],
+
+  "content_scripts": [
+	{
+	  "matches": ["*://9gag.com/gag/*"],
+	  "js": ["background.js"],
+	  "css": ["styles.css"]
+	}
+  ],
+
+  "browser_action": {
+	"default_title": "Save img source."
+  }
+}
