@@ -21,6 +21,7 @@
   ],
 
   "browser_action": {
-	"default_title": "Save img source."
+	"default_title": "Save img source.",
+	"default_popup": "popup.html"
   }
 }
