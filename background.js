@@ -43,7 +43,7 @@ function setSounds() {
     for (var i = 0, len = allsounds.length; i < len; i++) {
         var name = allsounds[i];
 
-        var el = document.createElement('audio');
+        var el = document.createElement('music');
         el.className = 'player';
         el.id = name;
         el.src = './music/' + name +'.mp3';
