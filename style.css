@@ -1,0 +1,15 @@
+.popup {
+  background-color: lightgray;
+}
+.button {
+    background-color: white;
+    display: block;
+    width: 100px;
+    height: 15px;
+    background: white;
+    padding: 5px;
+    text-align: center;
+    border-radius: 5px;
+    color: black;
+    font-weight: bold;
+}
