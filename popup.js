@@ -12,7 +12,8 @@ var unencodedURLExtension = 'http://goo.gl/b7bnU';
 	        }
 	    }
 	    return this;
-	}
+	};
+
 
 
 	var soundsToPlay;
@@ -28,14 +29,13 @@ window.onload = function(){ // lehe laadimisel paneb need funktsioonid t88le
 			playAll();
 };
 	function addChangeListener() {
-	    soundsToPlay = new Array();
+	    soundsToPlay = [];
       var volume = document.getElementById('volume');
       volume.addEventListener("change", function(){
         setVolume(volume.value); // m22rad volyymi
-        localStorage["soundsVolume"] = volume.value;
+        localStorage.set("soundsVolume",volume.value);
       });
 
-   });
 
     var sounds = document.getElementsByClassName('sound');
     for (var i = 0; i < sounds.length; i++) {
@@ -58,11 +58,11 @@ window.onload = function(){ // lehe laadimisel paneb need funktsioonid t88le
 	}
 
 	function addClickListener() {
-		var play = document.getElementById('btnPlay')
+		var play = document.getElementById('btnPlay');
 		play.addEventListener("click", function(){
 			 playAll();
 		 });
-		var pause = document.getElementById('btnPause')
+		var pause = document.getElementById('btnPause');
  		pause.addEventListener("click", function(){
  			 pauseAll();
 		 });
@@ -80,7 +80,7 @@ window.onload = function(){ // lehe laadimisel paneb need funktsioonid t88le
 
 
 	function getSoundsToPlay() {
-	    soundsToPlay = new Array();
+	    soundsToPlay = [];
 			var sounds = document.getElementsByClassName('sound');
 	    for (var i = 0; i < sounds.length; i++) {
 				if (sounds.checked) {
@@ -90,8 +90,8 @@ window.onload = function(){ // lehe laadimisel paneb need funktsioonid t88le
 	            if (this.checked) {
 	                soundsToPlay.push(this.id);
 	            }*/
-
-	        });
+            }
+	        }
 	    return soundsToPlay;
 	}
 
@@ -111,7 +111,7 @@ window.onload = function(){ // lehe laadimisel paneb need funktsioonid t88le
 	}
 function setSounds() {
 	    var lines = sounds.split("\n");
-	    for (var i = 0, len = lines.length; i < len; i++) {
+	    for (var i = 0; i < lines.length; i++) {
 	        var name = lines[i];
 	        var description = name.replace(/^(.)|\s(.)/g, function($1) { //ma ei saa v2ga aru,
 						//mis replace'i taga on
@@ -131,7 +131,7 @@ function setSounds() {
 	}
 
 	function checkPlayedSounds() {
-	    var storedPlayedSounds = localStorage["playedSounds"];
+	    var storedPlayedSounds = ["playedSounds"].localStorage;
 	    if (storedPlayedSounds) {
 
 	        var playedSounds = JSON.parse(storedPlayedSounds);
@@ -139,18 +139,17 @@ function setSounds() {
 	        // valid colors are red, blue, green and yellow
 	        if (playedSounds) {
 	            for (var i = 0; i < playedSounds.length; i++) {
-	                $('#' + playedSounds[i])
-	                    .attr('checked', true);
+	                document.getElementById(playedSounds[i]).checked = true;
 	            }
 	        }
+
 	    }
 
-	    var storedVolume = localStorage["soundsVolume"];
+	    var storedVolume = ["soundsVolume"].localStorage;
 	    if (!storedVolume) {
 	        storedVolume = 50;
 	    }
-	    $('#volume')
-	        .attr("value", storedVolume);
+	    document.getElementById('volume').value = storedVolume;
 	    setVolume(storedVolume);
 
 	    $('input')
