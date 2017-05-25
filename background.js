@@ -19,36 +19,67 @@ function process() {
     element.onmouseout = function () {
         element.style.color = 'black';
     };
-    //let stripedTitle = elementTitle.replace(/ *\([^)]*\) */g, "");
-    //let stripedTitle = elementTitle.substring(0, elementTitle.indexOf('('));
 
     //Discogs search
-
     fetch('https://api.discogs.com/database/search?q=' + elementTitle + '&token=MgXEXtEsiKFHKaOPPQtzPraAOhHDxMHWXHxBgQrb')
         .then(res => res.json())
         .then(function(data) {
             let query = (data)
-            let id = query.results[0].id
-            let uri = query.results[0].uri
-            //console.log(query.results[0])
-            let URL = "https://www.discogs.com"+uri
-            element.addEventListener("click", function(){
-                window.open(URL);
-            });
-            fetch('https://api.discogs.com/releases/'+id+'?eur')
-                .then(res => res.json())
-                .then(function(data) {
-                    console.log(id)
-                    let masterQuery = (data)
-                    let lowestPrice = masterQuery.lowest_price
-                    let style = masterQuery.styles[0]
-                    let year = masterQuery.year
-                    let have = masterQuery.community.have
-                    let want = masterQuery.community.want
-                    let country = masterQuery.country
-                    div.innerHTML = "<ul><li>Want : "+want+"</li><li>Have: "+have+"</li><li>Lowest price: "+lowestPrice+"€"+
-                        "</li><li>Country: "+country+"</li><li>Style: "+style+"</li><li> Year: "+year+"</li></ul>"
-                })
+            let id
+            if (query.results.length>0) {
+                 let id = query.results[0].id
+                let uri = query.results[0].uri
+                let URL = "https://www.discogs.com"+uri
+                element.addEventListener("click", function(){
+                    window.open(URL);
+                });
+                fetch('https://api.discogs.com/releases/'+id+'?eur')
+                    .then(res => res.json())
+                    .then(function(data) {
+                        let want
+                        let have
+                        let country
+                        let style
+                        let year
+                        let lowestPrice
+                        let masterQuery = data
+                        if (typeof masterQuery.lowest_price !== 'undefined' && masterQuery.lowest_price !== null ) {
+                            lowestPrice = masterQuery.lowest_price
+                        }else{
+                            lowestPrice = "-"
+                        }
+
+                        if (typeof masterQuery.styles !== 'undefined' && masterQuery.styles !== null ) {
+                            style = masterQuery.styles[0]
+                        }else{
+                            style = "-"
+                        }
+                        if (typeof masterQuery.year !== 'undefined' && masterQuery.year !== null ) {
+                            year = masterQuery.year
+                        }else{
+                            year = "-"
+                        }
+                        if (typeof masterQuery.community.have !== 'undefined' && masterQuery.community.have !== null ) {
+                            have =  masterQuery.community.have
+                        }else{
+                            have = "-"
+                        }
+                        if (typeof masterQuery.community.want !== 'undefined' && masterQuery.community.want !== null ) {
+                            want =  masterQuery.community.want
+                        }else{
+                            want = "-"
+                        }
+                        if (typeof masterQuery.country !== 'undefined' && masterQuery.country !== null ) {
+                            country =  masterQuery.country
+                        }else{
+                            country = "-"
+                        }
+                        div.innerHTML = "<ul><li>Want : "+want+"</li><li>Have: "+have+"</li><li>Lowest price: "+lowestPrice+"€"+
+                            "</li><li>Country: "+country+"</li><li>Style: "+style+"</li><li> Year: "+year+"</li></ul>"
+                    })
+            }else{
+                console.log("not found on discogs")
+            }
         });
     firebase.initializeApp(config);
     let id = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
