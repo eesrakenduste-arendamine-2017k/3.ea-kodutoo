@@ -48,6 +48,11 @@ function dataCheck(data){
 	rootRef.on('value', function(snapshot){
 
 		var Urls = snapshot.val();
+		
+		if(Urls === null){
+			return;
+		}
+		
 		var keys = Object.keys(Urls);
 
 		for(i = 0; i < keys.length; i++){

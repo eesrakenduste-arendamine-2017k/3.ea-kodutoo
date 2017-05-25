@@ -17,7 +17,7 @@ var config = {
 
 ## Kirjeldus
 
-1. Extension laseb kasutajal salvestada enda lemmiklehti koos tag-iga.
+1. Extension laseb kasutajal salvestada enda lemmiklehti koos tag-iga (lisamiseks kasutada klahvide kombinatsiooni - Ctrl + c).
 1. Andmebaasi salvestatakse lehekülg, selle tag ning salvestamise aeg(kuupäev ja kellaaeg).
 1. Vajutades extensioni ikoonile, avab see eraldi lehe, kus saab kasutaja enda lemmiklehti külastada
 või kustutada.
