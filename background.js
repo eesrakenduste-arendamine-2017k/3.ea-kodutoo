@@ -76,18 +76,20 @@ function process() {
                         }
                         div.innerHTML = "<ul><li>Want : "+want+"</li><li>Have: "+have+"</li><li>Lowest price: "+lowestPrice+"€"+
                             "</li><li>Country: "+country+"</li><li>Style: "+style+"</li><li> Year: "+year+"</li></ul>"
+                        firebase.initializeApp(config);
+                        let id = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+                            let r = Math.random()*16|0, v = c == 'x' ? r : (r&0x3|0x8);
+                            return v.toString(16);
+                        });
+                        firebase.database().ref('discogs/' + id).set({
+                            date: new Date(),
+                            title: elementTitle
+                        });
                     })
+
             }else{
                 console.log("not found on discogs")
             }
         });
-    firebase.initializeApp(config);
-    let id = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
-        let r = Math.random()*16|0, v = c == 'x' ? r : (r&0x3|0x8);
-        return v.toString(16);
-    });
-    firebase.database().ref('discogs/' + id).set({
-        date: new Date(),
-        title: elementTitle
-    });
+
 }
