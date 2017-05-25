@@ -14,7 +14,7 @@ function GetData(data){
 
     var Urls = data.val();
     if(data.val() === null){
-      console.log("Databse is empty");
+      console.log("Looks like you have no favourite websites");
       return;
     }
     var keys = Object.keys(Urls);
@@ -76,6 +76,11 @@ var rootRef = firebase.database().ref('Favourites');
 rootRef.on('value', function(snapshot){
 
   var data = snapshot.val();
+  
+  if(data === null){
+	  return;
+  }
+
   var keys = Object.keys(data);
 
   for(i = 0; i < keys.length; i++){
