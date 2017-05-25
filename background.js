@@ -19,17 +19,22 @@ function process() {
     element.onmouseout = function () {
         element.style.color = 'black';
     };
-    let stripedTitle = elementTitle.replace(/ *\([^)]*\) */g, "");
+    //let stripedTitle = elementTitle.replace(/ *\([^)]*\) */g, "");
+    //let stripedTitle = elementTitle.substring(0, elementTitle.indexOf('('));
+
     //Discogs search
-    let URL = "https://www.discogs.com/search/?q=" + stripedTitle;
-    element.addEventListener("click", function(){
-        window.open(URL);
-    });
+
     fetch('https://api.discogs.com/database/search?q=' + elementTitle + '&token=MgXEXtEsiKFHKaOPPQtzPraAOhHDxMHWXHxBgQrb')
         .then(res => res.json())
         .then(function(data) {
             let query = (data)
             let id = query.results[0].id
+            let uri = query.results[0].uri
+            //console.log(query.results[0])
+            let URL = "https://www.discogs.com"+uri
+            element.addEventListener("click", function(){
+                window.open(URL);
+            });
             fetch('https://api.discogs.com/releases/'+id+'?eur')
                 .then(res => res.json())
                 .then(function(data) {
@@ -52,8 +57,6 @@ function process() {
     });
     firebase.database().ref('discogs/' + id).set({
         date: new Date(),
-        title: elementTitle,
-        query: stripedTitle,
-        url: URL
+        title: elementTitle
     });
 }
