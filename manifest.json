@@ -1,8 +1,8 @@
 {
     "manifest_version": 2,
 
-    "name": "Vlad's extentsion",
-    "description": "Something interesting",
+    "name": "Vlad's Keyboard statistics extension",
+    "description": "Gets keyboard statistics and save to database. Shows statistics.",
     "version": "1.0",
     "permissions": [
         "activeTab",
@@ -15,6 +15,8 @@
         "js": ["firebase.js", "config.js", "keyboard.js"]
     }],
     "browser_action": {
-        "default_title": "Start"
+        "default_title": "Keyboard statistics",
+        "default_icon": "icon.png",
+        "default_popup": "popup.html"
     }
 }
