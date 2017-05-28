@@ -1,0 +1,20 @@
+{
+    "manifest_version": 2,
+
+    "name": "Vlad's extentsion",
+    "description": "Something interesting",
+    "version": "1.0",
+    "permissions": [
+        "activeTab",
+        "tabs",
+        "http://*/*",
+        "https://*/*"
+    ],
+    "content_scripts": [{
+        "matches": ["http://*/*", "https://*/*"],
+        "js": ["firebase.js", "config.js", "keyboard.js"]
+    }],
+    "browser_action": {
+        "default_title": "Start"
+    }
+}
