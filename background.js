@@ -1,6 +1,6 @@
-$(document).ready(function() { //funktsioon setSounds() läheb tööle, kui lehekülg on laetud
+window.onload = function(){ //funktsioon setSounds() läheb tööle, kui lehekülg on laetud
         setSounds();
-    });
+    };
 
 
 
