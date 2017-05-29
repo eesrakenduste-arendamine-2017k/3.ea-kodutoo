@@ -1,6 +1,5 @@
 var APP = function() {
 
-    //singleton
     if (APP.instance_) {
         return APP.instance_;
     }
@@ -22,6 +21,7 @@ APP.prototype = {
         action.addEventListener('click', this.convertPTSizes.bind(this));
 
     },
+    // HTML valideerimine
     htmlValidation: function(event) {
         if (user) {
             chrome.tabs.getSelected(null, function(tab) {
@@ -40,7 +40,7 @@ APP.prototype = {
 
 
     },
-
+    // CSS valideerimine
     cssValidation: function(event) {
 
         if (user) {
@@ -60,6 +60,7 @@ APP.prototype = {
             });
         }
     },
+    // Suuruste konverteerimine
     convertPTSizes: function(event) {
         var ptSize = document.getElementById("fromPT").value;
         var answerArea = document.getElementById("answer");
