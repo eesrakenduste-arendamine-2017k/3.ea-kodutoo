@@ -9,31 +9,36 @@
 -->
 <!doctype html>
 <html>
-  <head>
+
+<head>
     <title>TechGeek Helper</title>
     <link href="css/options-style.css" rel="stylesheet" type="text/css">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <script src="options.js"></script>
-  </head>
-  <body>
-    <div class="header">
-      <img src="eye.png" alt="Toast">
-      <h1>TechGeek Helper</h1>
-    </div>
-    <div class="main-content">
-      <h2>Eye resting options</h2>
-      <form id="options">
-        <input type="checkbox" name="isActivated" checked>
-        Display a notification every
-        <select name="frequency">
+</head>
+
+<body>
+    <div class="container">
+        <div class="col-md-8 col-md-offset-2 header text-center">
+            <img src="eye.png" alt="Toast">
+            <h1>TechGeek Helper</h1>
+        </div>
+        <div class="col-md-8 col-md-offset-2 main-content">
+            <h2>Eye resting options</h2>
+            <form id="options">
+                <input type="checkbox" name="isActivated"> Display a notification every
+                <select name="frequency">
           <option>10</option>
           <option>20</option>
           <option>30</option>
           <option>40</option>
           <option>50</option>
           <option>60</option>
-        </select>
-        minute(s).
-      </form>
+        </select> minute(s).
+            </form>
+        </div>
     </div>
-  </body>
+
+</body>
+
 </html>

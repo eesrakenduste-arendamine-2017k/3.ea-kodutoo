@@ -1,23 +1,25 @@
 {
-  "manifest_version": 2,
+    "manifest_version": 2,
 
-  "name": "TechGeek Helper",
-  "description": "Simple eye resting reminder for people who are working with computer all day long. One click redirection to HTML/CSS validator.",
-  "version": "1.0",
 
-  "browser_action": {
-    "default_icon": "eye.png",
-    "default_popup": "popup.html"
-  },
-  "options_page": "options.html",
-  "background": { "scripts": ["background.js"] },
-  "manifest_version": 2,
-  "permissions": [
-   "activeTab",
-   "notifications",
-   "desktopCapture" 
- ],
- "web_accessible_resources": [
-   "icon.png"
- ]
+    "name": "TechGeek Helper",
+    "description": "Simple eye resting reminder for people who are working with computer all day long. One click redirection to HTML/CSS validator.",
+    "version": "1.0",
+
+    "browser_action": {
+        "default_icon": "eye.png",
+        "default_popup": "popup.html"
+    },
+    "options_page": "options.html",
+    "background": { "scripts": ["background.js"] },
+    "permissions": [
+        "activeTab",
+        "notifications",
+        "desktopCapture"
+
+    ],
+    "web_accessible_resources": [
+        "icon.png"
+    ],
+    "content_security_policy": "script-src 'self' https://www.gstatic.com/ https://*.firebaseio.com https://www.googleapis.com; object-src 'self'"
 }
