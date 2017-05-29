@@ -117,14 +117,20 @@ function setSounds() {
 						//mis replace'i taga on
 	            return $1.toUpperCase();
 	        });
-	        var el = document.createElement('audio');
-					el.ClassName = 'sound';
-					el.id = name;
-					el.type = "checkbox";
-					document.body.appendChild(el);
-						/*$('#checks')
+
+				var inputElement = document.createElement('input');
+				inputElement.className = 'sound';
+				inputElement.id = name;
+				inputElement.type = 'checkbox';
+
+				document.getElementById('checks').appendChild(inputElement);
+
+				var labelFor = document.createElement('label');
+				labelFor.className = name;
+				labelFor.description = description;
+				document.getElementById('checks').appendChild(labelFor);
+				/*$('#checks')
 	            .append('<input class="sound" id="' + name + '" type="checkbox" />');*/
-					// seda järgmist ma ei oska muuta
 	        /*$('#checks')
 	            .append('<label for="' + name + '">' + description + '</label>');*/
 	    }
@@ -155,58 +161,3 @@ function setSounds() {
 	    $('input')
 	        .customInput();
 	}
-
-
-
-	/*function playPauseSingle(name, checked) {
-			if (!soundsToPlay) {
-					soundsToPlay = getSoundsToPlay();
-			}
-
-			if (checked) {
-					chrome.extension.getBackgroundPage()
-							.playSingle(name);
-					soundsToPlay.push(name);
-			} else {
-					chrome.extension.getBackgroundPage()
-							.pauseSingle(name);
-
-							// leia ja kustuta massiivist soundsToPlay
-					soundsToPlay.remove(name);
-			}
-			saveOnLocalStorage(soundsToPlay);
-
-	}
-
-	function saveOnLocalStorage(soundsToPlay) {
-			localStorage["playedSounds"] = JSON.stringify(soundsToPlay);
-	}*/
-
-
-	/*function ctrl() {
-			soundsToPlay = getSoundsToPlay();
-			if (soundsToPlay.length > 5) {
-					return false;
-			} else {
-					return true;
-			}
-	}*/
-
-	/*function uncheck(name) {
-			$('#' + name)
-					.attr('checked', false);
-	}
-
-	function ctrlAndPlay(name) {
-			var checked = $('#' + name)
-					.attr('checked');
-			if (checked) {
-					if (ctrl()) {
-							playPauseSingle(name, checked);
-					} else {
-							uncheck(name);
-					}
-			} else {
-					playPauseSingle(name, checked);
-			}
-	}*/
