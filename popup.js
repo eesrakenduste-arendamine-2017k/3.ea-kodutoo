@@ -1,6 +1,3 @@
-var unencodedURLExtension = 'http://goo.gl/b7bnU';
-var likeURLExtension = encodeURIComponent(unencodedURLExtension);
-
 Array.prototype.remove = function() { // teeb massiivi selle funktsiooniga
     var what, a = arguments,
         L = a.length,
@@ -21,7 +18,6 @@ var soundsToPlay;
 window.onload = function() { // lehe laadimisel paneb need funktsioonid t88le
     setSounds();
 
-    checkPlayedSounds();
 
     addChangeListener();
     addClickListener();
@@ -110,6 +106,9 @@ function playAll() {
         .playAll(soundsToPlay);
     return true;
 }
+function saveOnLocalStorage(soundsToPlay) {
+	    localStorage.playedSounds = JSON.stringify(soundsToPlay);
+	}
 
 function setSounds() {
     var lines = sounds.split("\n");
