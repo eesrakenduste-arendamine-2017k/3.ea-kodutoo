@@ -122,12 +122,10 @@ function setSounds() {
 				inputElement.className = 'sound';
 				inputElement.id = name;
 				inputElement.type = 'checkbox';
-
+				inputElement2.labelFor = name + description + '</label>';
 				document.getElementById('checks').appendChild(inputElement);
 
-				var inputElement2 = document.createElement('input');
-				inputElement2.labelFor = name + description + '</label>';
-				document.getElementById('checks').appendChild(inputElement2);
+			
 				/*$('#checks')
 	            .append('<input class="sound" id="' + name + '" type="checkbox" />');*/
 	        /*$('#checks')
@@ -157,6 +155,5 @@ function setSounds() {
 	    document.getElementById('volume').value = storedVolume;
 	    setVolume(storedVolume);
 
-	    $('input')
-	        .customInput();
+
 	}
