@@ -1,9 +1,17 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-  <script src='keyboard.js'></script>
+    <!-- <script src='keyboard.js'></script> -->
 </head>
+
 <body>
-  <button onClick='getStatistics' value='getStatistics'></button>
+    <script>
+      var table = firebase.database().ref('staticstics');
+        info.on('value', function(datasnapshot) {
+            console.log(datasnapshot.val());
+        });
+    </script>
 </body>
+
 </html>
