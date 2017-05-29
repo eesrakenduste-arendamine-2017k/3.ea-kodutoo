@@ -1,0 +1,16 @@
+{
+  "name": "Customizer",
+  "description": "Enables to customize fonts, colors of a webpage",
+  "version": "2.0",
+  "permissions": [
+    "activeTab"
+  ],
+  "content_scripts" : [{
+      "js" : ["action.js", "firebase.js", "config.js"],
+      "css" : ["styles.css"]
+  }],
+  "browser_action": {
+    "default_title": "Customize layout"
+  },
+  "manifest_version": 2
+}
