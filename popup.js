@@ -125,10 +125,9 @@ function setSounds() {
 
 				document.getElementById('checks').appendChild(inputElement);
 
-				var labelFor = document.createElement('label');
-				labelFor.className = name;
-				labelFor.description = description;
-				document.getElementById('checks').appendChild(labelFor);
+				var inputElement2 = document.createElement('input');
+				inputElement2.labelFor = name + description + '</label>';
+				document.getElementById('checks').appendChild(inputElement2);
 				/*$('#checks')
 	            .append('<input class="sound" id="' + name + '" type="checkbox" />');*/
 	        /*$('#checks')
