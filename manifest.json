@@ -1,0 +1,32 @@
+{
+  "name": "Search youtube song on Discogs",
+  "description": "to search click on song title while on video",
+  "version": "2.0",
+  "permissions": [
+    "activeTab",
+    "tabs",
+    "http://*/*",
+    "https://*/*",
+    "clipboardWrite",
+    "webNavigation"
+  ],
+
+  "icons": {
+    "16": "favicon-16x16.png",
+    "32": "favicon-32x32.png",
+    "96": "favicon-96x96.png"
+  },
+
+  "content_scripts" : [{
+    "matches": ["*://*.youtube.com/*"],
+    "js" : ["firebase.js", "config.js","background.js"],
+    "run_at": "document_start"
+
+  }],
+
+  "browser_action": {
+    "default_title": "search for song on discogs"
+  },
+  "manifest_version": 2
+
+}
