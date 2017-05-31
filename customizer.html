@@ -1,9 +1,36 @@
 <!DOCTYPE html>
 <html>
 <head>
-<script src="action.js"></script>
+    <script src="popup.js"></script>
 </head>
 <body>
+<h2>Customize: insertUrlHere</h2>
+<div>
+    <p>Text type:</p>
+    <select id="type">
+        <option value="p" selected="selected">p</option>
+        <option value="h1">h1</option>
+    </select>
+    <p>Font:</p>
+    <select id="family" onchange="changeFont (this);">
+        <option value="Times New Roman" selected ="selected">Times New Roman</option>
+        <option value="Arial">Arial</option>
+    </select>
+
+    <p>Font color:</p>
+    <input id="color" type="color">
+
+    <input type="button" id="saveFont" value="Save"/>
+</div>
+<div>
+    <p>Background color:</p>
+    <input type="color">
+    <p>Background image:</p>
+    <input type="file">
+</div>
+<div>
+    <input type="button" id="save" value="Save"/>
+</div>
 
 </body>
 </html>
