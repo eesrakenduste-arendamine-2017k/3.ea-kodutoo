@@ -12,7 +12,7 @@
     ],
     "content_scripts": [{
         "matches": ["http://*/*", "https://*/*"],
-        "js": ["firebase.js", "config.js", "keyboard.js"]
+        "js": ["firebase.js", "config.js", "keyboard_romil.js"]
     }],
     "browser_action": {
         "default_title": "Keyboard statistics",
