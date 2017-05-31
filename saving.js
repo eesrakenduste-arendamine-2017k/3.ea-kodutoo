@@ -72,9 +72,9 @@ function remove(id) {
 
 function data() {
     var divContents = "";
-    var articlesTD = firebase.database().ref('news/');
+    var articles = firebase.database().ref('news/');//Won't allow this in, because apparently it violates Content Security Policy
     divContents = "<table style='width:100%;'><tr><th>Uudis</th><th>Link</th><th></th></tr>";
-    $.when(articlesTD.once('value', function(snapshot) {
+    $.when(articles.once('value', function(snapshot) {
         for (var i in snapshot.val()) {
             divContents += "<tr><td>"+snapshot.val()[i]["title"]+"</td><td><a href='"+snapshot.val()[i]["url"]+"'>"+snapshot.val()[i]["url"]+"</a></td><td><button id='del-"+i.replace(/[" "]/g, "_")+"'>Kustuta</button></td></tr>";
         }
@@ -84,7 +84,6 @@ function data() {
 
 function addDelButtons() {
 	var articlesTD = firebase.database().ref('news/');
-    divContents = "<table style='width:100%;'><tr><th>Uudis</th><th>Link</th><th></th></tr>";
     articlesTD.once('value', function(snapshot) {
         for (var i in snapshot.val()) {
             //$("del"+i.replace(/[" "]/g, "_"));
