@@ -63,7 +63,8 @@ $(document).keyup(function(pressed) {
 })
 
 function remove(id) {
-    id = id.replace(/["_"]/g, " ");
+    //id = id.replace(/["_"]/g, " ");
+    console.log(id);
     var articleToDelete = firebase.database().ref('news/'+id);
     articleToDelete.remove()
     data();
@@ -73,12 +74,23 @@ function data() {
     var divContents = "";
     var articlesTD = firebase.database().ref('news/');
     divContents = "<table style='width:100%;'><tr><th>Uudis</th><th>Link</th><th></th></tr>";
-    articlesTD.once('value', function(snapshot) {
+    $.when(articlesTD.once('value', function(snapshot) {
         for (var i in snapshot.val()) {
-            divContents += "<tr><td>"+snapshot.val()[i]["title"]+"</td><td><a href='"+snapshot.val()[i]["url"]+"'>"+snapshot.val()[i]["url"]+"</a></td><td><button onclick='remove(id)' id='"+i.replace(/[" "]/g, "_")+"'>Kustuta</button></td></tr>";
+            divContents += "<tr><td>"+snapshot.val()[i]["title"]+"</td><td><a href='"+snapshot.val()[i]["url"]+"'>"+snapshot.val()[i]["url"]+"</a></td><td><button id='del-"+i.replace(/[" "]/g, "_")+"'>Kustuta</button></td></tr>";
         }
         $("#tblContents").html(divContents);
-    });         
+    })).then(function() {addDelButtons();});
+}
+
+function addDelButtons() {
+	var articlesTD = firebase.database().ref('news/');
+    divContents = "<table style='width:100%;'><tr><th>Uudis</th><th>Link</th><th></th></tr>";
+    articlesTD.once('value', function(snapshot) {
+        for (var i in snapshot.val()) {
+            //$("del"+i.replace(/[" "]/g, "_"));
+            document.getElementById("del-"+i.replace(/[" "]/g, "_")).addEventListener("click", function() {remove(i);});
+        }
+    });
 }
 
 data();
