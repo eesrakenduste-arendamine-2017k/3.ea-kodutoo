@@ -21,23 +21,6 @@ $("a").hover(
 				    	url: hovered.currentTarget.href,
 				    	date: new Date()
 				    });
-					
-					/*
-					var exists = true;
-					var articles = firebase.database().ref('news/' + id);
-					articles.on('value', function(snapshot) {
-						if (snapshot.val() == null) {
-							exists = false;
-						}
-					});
-					if(!exists) {
-					    firebase.database().ref('news/' + id).set({
-					    	title: hovered.currentTarget.innerText,
-					    	url: hovered.currentTarget.href,
-					    	date: new Date()
-					    });
-					}
-					*/
 				}
 			}
 		}, 10);
@@ -63,8 +46,6 @@ $(document).keyup(function(pressed) {
 })
 
 function remove(id) {
-    //id = id.replace(/["_"]/g, " ");
-    console.log(id);
     var articleToDelete = firebase.database().ref('news/'+id);
     articleToDelete.remove()
     data();
@@ -76,19 +57,33 @@ function data() {
     divContents = "<table style='width:100%;'><tr><th>Uudis</th><th>Link</th><th></th></tr>";
     $.when(articles.once('value', function(snapshot) {
         for (var i in snapshot.val()) {
-            divContents += "<tr><td>"+snapshot.val()[i]["title"]+"</td><td><a href='"+snapshot.val()[i]["url"]+"'>"+snapshot.val()[i]["url"]+"</a></td><td><button id='del-"+i.replace(/[" "]/g, "_")+"'>Kustuta</button></td></tr>";
+            divContents += "<tr><td>"+snapshot.val()[i]["title"]+"</td><td><a href='"+snapshot.val()[i]["url"]+"'>"+snapshot.val()[i]["url"]+"</a></td><td><button id='deleteEntry'>Kustuta</button></td></tr>";
         }
         $("#tblContents").html(divContents);
     })).then(function() {addDelButtons();});
 }
 
 function addDelButtons() {
+	var data;
+	var keys;
 	var articlesTD = firebase.database().ref('news/');
     articlesTD.once('value', function(snapshot) {
-        for (var i in snapshot.val()) {
-            //$("del"+i.replace(/[" "]/g, "_"));
-            document.getElementById("del-"+i.replace(/[" "]/g, "_")).addEventListener("click", function() {remove(i);});
+    	/*
+		Author: Kristjan Liiva
+		@ https://github.com/kliiva5/3.ea-kodutoo/blob/master/webmanager.js lines:75-93
+		2017.05.31
+    	*/
+        data = snapshot.val();
+        if (data == null) {
+        	return
         }
+        keys = Object.keys(data);
+        for(i = 0; i < keys.length; i++){
+		    var deleteButtons = document.querySelectorAll('#deleteEntry');
+		    for(i = 0; i < deleteButtons.length; i++){
+		      deleteButtons[i].addEventListener('click', remove.bind(null,  keys[i]), false);
+		    }
+		}
     });
 }
 
