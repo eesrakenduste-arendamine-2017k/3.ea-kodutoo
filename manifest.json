@@ -7,12 +7,17 @@
 		"http://*/*",
 		"https://*/*"
 	],
+	"content_security_policy": "script-src 'self' https://cdn.firebase.com https://*.firebaseio.com https://*.firebaseio-demo.com; object-src 'self'",
 	"content_scripts": [{
 		"matches": ["https://*/*", "http://*/*", "*://*/*"],
-		"js": ["jquery-3.2.1.min.js", "config.js", "firebase.js", "background.js"]
+		"js": ["jquery-3.2.1.min.js", "config.js", "firebase.js", "saving.js"]
 	}],
 	"browser_action": {
 		"default_title": "Save link of article to db"
+	},
+	"background": {
+	    "scripts": ["background.js"],
+	    "persistent": false
 	},
 	"manifest_version": 2
 }
