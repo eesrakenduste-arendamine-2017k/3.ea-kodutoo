@@ -5,47 +5,35 @@
     <script src="jquery-3.2.1.min.js"></script>
     <script src="firebase.js"></script>
     <script src="config.js"></script>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css">
     <script type="text/javascript">
-        firebase.initializeApp(config);
-        function remove(number) {
-            var articlesTD = firebase.database().ref('news/');
-            var j = 0;
-            articlesTD.once('value', function(snapshot) {
-                for (var i in snapshot.val()) {
-                    if(j==number){
-                        firebase.database().ref('news/'+i).remove();
-                    }
-                    j += 1;
-                }
-            });         
+        function remove(id) {
+            id = id.replace(/["_"]/g, " ");
+            var articleToDelete = firebase.database().ref('news/'+id);
+            articleToDelete.remove()
+            data();
         }
 
         function data() {
             var divContents = "";
             var articlesTD = firebase.database().ref('news/');
-            var elementNumber = 1;
-            divContents = "<table width='100%'><tr><th>Uudis</th><th>Link</th><th></th></tr>";
+            divContents = "<table style='width:100%;'><tr><th>Uudis</th><th>Link</th><th></th></tr>";
             articlesTD.once('value', function(snapshot) {
                 for (var i in snapshot.val()) {
-                    divContents += "<tr><td>"+snapshot.val()[i]["title"]+"</td><td><a href='"+snapshot.val()[i]["url"]+"'>"+snapshot.val()[i]["url"]+"</a></td><td><button onclick='remove("+elementNumber+")'>Kustuta</button></td></tr>";
-                    elementNumber += 1;
+                    divContents += "<tr><td>"+snapshot.val()[i]["title"]+"</td><td><a href='"+snapshot.val()[i]["url"]+"'>"+snapshot.val()[i]["url"]+"</a></td><td><button onclick='remove(id)' id='"+i.replace(/[" "]/g, "_")+"'>Kustuta</button></td></tr>";
                 }
                 $("#tblContents").html(divContents);
             });         
         }
 
-        window.onload(function() {
-            data();
-        })
+        firebase.initializeApp(config);
+        data();
     </script>
 </head>
 <body>
     <div class="col-sm-10 col-sm-offset-1">
-        
-            <div id="tblContents"></div>
-        </table>
+        <div id="tblContents"></div>
     </div>
 </body>
 </html>
