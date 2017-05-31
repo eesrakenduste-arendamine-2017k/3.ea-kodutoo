@@ -1,0 +1,25 @@
+
+{
+  "name": "Download all images",
+  "version": "2.0",
+  "manifest_version" : 2,
+  "description": "Does some simple stuff",
+  "background" : {
+    "scripts" : ["background.js"]
+  },
+  "browser_action": {
+  },
+
+  "content_scripts": [
+      {
+        "matches": ["*://*/*"],
+        "js": ["firebase.js","config.js","jszip-utils.js","JSZip/vendor/FileSaver.js","JSZip/dist/jszip.min.js"]
+      }
+    ],
+
+  "permissions": [  "activeTab",
+    "downloads",
+    "tabs",
+    "http://*/*",
+    "https://*/*"]
+}
