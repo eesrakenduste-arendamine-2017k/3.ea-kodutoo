@@ -4,7 +4,6 @@ var isHovered = false;
 var buttonPressed = false;
 var check;
 
-				
 
 $("a").hover(
 	function(hovered){
@@ -24,8 +23,8 @@ $("a").hover(
 					
 					/*
 					var exists = true;
-					var starCountRef = firebase.database().ref('news/' + id);
-					starCountRef.on('value', function(snapshot) {
+					var articles = firebase.database().ref('news/' + id);
+					articles.on('value', function(snapshot) {
 						if (snapshot.val() == null) {
 							exists = false;
 						}
