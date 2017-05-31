@@ -4,6 +4,9 @@
   "manifest_version": 2,
   "description": "Relax to get assignments done or browse the web while
    listening to soothing music and sounds. ",
+   "background": {
+     "page": "background.html"
+   },
 
    "browser_action": {
      "default_title": "Play music",
@@ -19,11 +22,13 @@
     "activeTab",
 	"tabs",
 	"http://*/*",
-	"https://*/*"
+	"https://*/*",
+  "background"
+
   ],
   "content_scripts" : [{
         "matches" : [ "*://*/*"],
-        "js" : ["firebase.js","background.js"],
+        "js" : ["sounds.js","firebase.js","background.js"],
         "css" : ["styles.css"]
     }]
 

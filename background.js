@@ -1,11 +1,17 @@
 window.onload = function(){ //funktsioon setSounds() läheb tööle, kui lehekülg on laetud
         setSounds();
     };
-
+var sounds = "birds_in_rain\n" +
+    "jungle\n" +
+    "Light_rain_and_cricets\n" +
+    "seawaves\n" +
+    "shorebirds\n" +
+    "sunday_church";
 
 
 function pauseAll() {
     var elements = document.getElementsByClassName('player');
+    console.log(elements);
     for (var i = 0; i < elements.length; i++) {
         elements[i].pause();
     }
@@ -14,6 +20,7 @@ function pauseAll() {
 
 function playAll(ids) {
     pauseAll();
+    console.log(ids);
 
     for (var i = 0; i < ids.length; i++) {
         document.getElementById(ids[i]).play();
@@ -43,7 +50,7 @@ function setSounds() {
     for (var i = 0, len = allsounds.length; i < len; i++) {
         var name = allsounds[i];
 
-        var el = document.createElement('music');
+        var el = document.createElement('audio');
         el.className = 'player';
         el.id = name;
         el.src = './music/' + name +'.mp3';

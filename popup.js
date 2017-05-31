@@ -17,11 +17,8 @@ var soundsToPlay;
 
 window.onload = function() { // lehe laadimisel paneb need funktsioonid t88le
     setSounds();
-
-
     addChangeListener();
     addClickListener();
-
     playAll();
 };
 
@@ -30,7 +27,7 @@ function addChangeListener() {
     var volume = document.getElementById('volume');
     volume.addEventListener("change", function() {
         setVolume(volume.value); // m22rad volyymi
-        localStorage.set("soundsVolume", volume.value);
+        //localStorage.set("soundsVolume", volume.value);
     });
 
 
@@ -42,9 +39,9 @@ function addChangeListener() {
 }
 
 function addListenerToSound(el) {
-    el.addEventListener("change", function() {
-        ctrlAndPlay(el.id);
-    });
+    //el.addEventListener("change", function() {
+    //    ctrlAndPlay(el.id);
+    //});
 }
 
 
@@ -80,8 +77,8 @@ function getSoundsToPlay() {
     soundsToPlay = [];
     var sounds = document.getElementsByClassName('sound');
     for (var i = 0; i < sounds.length; i++) {
-        if (sounds.checked) {
-            soundsToPlay.push(sounds.id);
+        if (sounds[i].checked) {
+            soundsToPlay.push(sounds[i].id);
             /*$('.sound')
                 .each(function(i) {
                     if (this.checked) {
@@ -114,9 +111,8 @@ function setSounds() {
     var lines = sounds.split("\n");
     for (var i = 0; i < lines.length; i++) {
         var name = lines[i];
-        var description = name.replace(/^(.)|\s(.)/g, function($1) { //ma ei saa v2ga aru,
-            //mis replace'i taga on
-            return $1.toUpperCase();
+        var description = name.replace(/^(.)|\s(.)/g, function(name) {
+            return name.toUpperCase();
         });
 
 
