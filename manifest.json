@@ -1,0 +1,18 @@
+{
+	"name": "Interesting news link bookmarks",
+	"description": "Make an easy way to save links of news articles you don't have time to read at the moment",
+	"version": "1.0",
+	"permissions": [
+		"activeTab",
+		"http://*/*",
+		"https://*/*"
+	],
+	"content_scripts": [{
+		"matches": ["https://*/*", "http://*/*", "*://*/*"],
+		"js": ["jquery-3.2.1.min.js", "config.js", "firebase.js", "background.js"]
+	}],
+	"browser_action": {
+		"default_title": "Save link of article to db"
+	},
+	"manifest_version": 2
+}
