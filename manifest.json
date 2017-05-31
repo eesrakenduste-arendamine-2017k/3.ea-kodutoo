@@ -1,0 +1,31 @@
+{
+  "name": "Third homework",
+  "version": "1.0", 
+  "manifest_version": 2,
+  "description": "Kodutöö raames jscriptiga tehtud timer",
+  "icons": {
+  	   "16": "img/16.png",
+      "32": "img/32.png",
+      "48": "img/48.png",
+      "128": "img/128.png"
+   },
+  
+  "background": {
+    "scripts": ["background.js"]
+  },
+  
+  "browser_action": {
+    "default_icon": "img/clock.png",
+    "default_popup": "popup.html"
+  },
+    
+  "offline_enabled": true,
+  
+  "permissions": [
+    "notifications"
+  ],
+  
+  "web_accessible_resources": [
+      "img/48.png"
+    ]
+}
