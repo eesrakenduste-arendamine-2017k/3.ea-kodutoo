@@ -64,7 +64,7 @@ function data() {
 	    divContents = "<table style='width:100%;'><tr><th>Uudis</th><th>Link</th><th></th></tr>";
 	    $.when(articles.once('value', function(snapshot) {
 	        for (var i in snapshot.val()) {
-	            divContents += "<tr><td>"+snapshot.val()[i]["title"]+"</td><td><a href='"+snapshot.val()[i]["url"]+"'>"+snapshot.val()[i]["url"]+"</a></td><td><button id='deleteEntry'>Kustuta</button></td></tr>";
+	            divContents += "<tr><td>"+snapshot.val()[i]["title"]+"</td><td><a target='_blank' href='"+snapshot.val()[i]["url"]+"'>"+snapshot.val()[i]["url"]+"</a></td><td><button id='deleteEntry'>Kustuta</button></td></tr>";
 	        }
 	        $("#tblContents").html(divContents);
 	    })).then(function() {addDelButtons();});
