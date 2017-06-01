@@ -20,7 +20,7 @@ firebase.database().ref('webpages/' + id).set({
 var pageref = firebase.database().ref('webpages/').limitToLast(1);
 pageref.orderByChild("type").equalTo("p").on("child_added", function(data){
     console.log(data.val());
-})
+});
 
 
 
