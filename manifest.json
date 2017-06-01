@@ -1,7 +1,7 @@
 {
   "name": "Customizer",
   "description": "Enables to customize fonts, colors of a webpage",
-  "version": "2.0",
+  "version": "1.0",
   "permissions": [
     "activeTab",
     "tabs",
