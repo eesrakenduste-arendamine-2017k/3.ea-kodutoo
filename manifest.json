@@ -4,9 +4,7 @@
   "version": "1.0",
   "permissions": [
     "activeTab",
-    "tabs",
-    "http://*/*",
-    "https://*/*"
+    "tabs"
   ],
   "content_scripts" : [{
       "matches": ["http://*/*"],
@@ -17,4 +15,5 @@
     "default_popup": "customizer.html"
   },
   "manifest_version": 2
+
 }

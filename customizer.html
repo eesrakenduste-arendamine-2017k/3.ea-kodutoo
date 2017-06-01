@@ -1,12 +1,13 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <script src="firebase.js"></script>
     <script src="config.js"></script>
+    <script src="firebase.js"></script>
+
     <script src="popup.js"></script>
 </head>
 <body>
-<h2>Customize: insertUrlHere</h2>
+<h2>Customize</h2>
 <div>
     <p>Text type:</p>
     <select id="type">
@@ -14,7 +15,7 @@
         <option value="h1">h1</option>
     </select>
     <p>Font:</p>
-    <select id="family" onchange="changeFont (this);">
+    <select id="family">
         <option value="Times New Roman" selected ="selected">Times New Roman</option>
         <option value="Arial">Arial</option>
     </select>
@@ -32,6 +33,10 @@
 </div>
 <div>
     <input type="button" id="save" value="Save"/>
+</div>
+
+<div>
+    <input type="button" id="apply" value="Apply"/>
 </div>
 
 </body>
