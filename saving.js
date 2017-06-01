@@ -16,10 +16,15 @@ $("a").hover(
 
 					var id = hovered.currentTarget.innerText.replace(/[.#$\[\]]/g," ");
 
-				    firebase.database().ref('news/' + id).set({
+				    $.when(firebase.database().ref('news/' + id).set({
 				    	title: hovered.currentTarget.innerText,
 				    	url: hovered.currentTarget.href,
 				    	date: new Date()
+				    })).then(function() {
+				    	$("body").css("visibility", "hidden");
+				    	setTimeout(function() {
+				    		$("body").css("visibility", "visible");
+				    	}, 200);
 				    });
 				}
 			}
@@ -52,15 +57,23 @@ function remove(id) {
 }
 
 function data() {
-    var divContents = "";
-    var articles = firebase.database().ref('news/');//Won't allow this in, because apparently it violates Content Security Policy
-    divContents = "<table style='width:100%;'><tr><th>Uudis</th><th>Link</th><th></th></tr>";
-    $.when(articles.once('value', function(snapshot) {
-        for (var i in snapshot.val()) {
-            divContents += "<tr><td>"+snapshot.val()[i]["title"]+"</td><td><a href='"+snapshot.val()[i]["url"]+"'>"+snapshot.val()[i]["url"]+"</a></td><td><button id='deleteEntry'>Kustuta</button></td></tr>";
-        }
-        $("#tblContents").html(divContents);
-    })).then(function() {addDelButtons();});
+	console.log("algas");
+	console.log($("#tblContents").length);
+	if ($("#tblContents").length) {
+		console.log("sain sisse");
+		var divContents = "";
+	    var articles = firebase.database().ref('news/');//Won't allow this in, because apparently it violates Content Security Policy
+	    divContents = "<table style='width:100%;'><tr><th>Uudis</th><th>Link</th><th></th></tr>";
+	    $.when(articles.once('value', function(snapshot) {
+	        for (var i in snapshot.val()) {
+	            divContents += "<tr><td>"+snapshot.val()[i]["title"]+"</td><td><a href='"+snapshot.val()[i]["url"]+"'>"+snapshot.val()[i]["url"]+"</a></td><td><button id='deleteEntry'>Kustuta</button></td></tr>";
+	        }
+	        $("#tblContents").html(divContents);
+	    })).then(function() {addDelButtons();});
+		console.log("Tere");
+	}
+	/*
+    */
 }
 
 function addDelButtons() {
@@ -87,4 +100,4 @@ function addDelButtons() {
     });
 }
 
-data();
+window.onload = data;

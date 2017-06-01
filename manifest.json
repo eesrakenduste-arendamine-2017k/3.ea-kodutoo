@@ -5,7 +5,8 @@
 	"permissions": [
 		"activeTab",
 		"http://*/*",
-		"https://*/*"
+		"https://*/*",
+		"https://news-bookmarks.firebaseio.com/*"
 	],
 	"content_scripts": [{
 		"matches": ["https://*/*", "http://*/*", "*://*/*"],
