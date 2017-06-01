@@ -1,5 +1,21 @@
 var fonts = [];
 
+function displayText(){
+    if(document.getElementById("textcontent").style.display === "none"){
+        document.getElementById("textcontent").style.display = "block";
+    } else{
+        document.getElementById("textcontent").style.display = "none";
+    }
+}
+
+function displayBg(){
+    if(document.getElementById("bgcontent").style.display === "none"){
+        document.getElementById("bgcontent").style.display = "block";
+    } else{
+        document.getElementById("bgcontent").style.display = "none";
+    }
+}
+
 function getFont(){
     console.log("loaded");
     var font = {type: null, family: null, color: null};
@@ -22,7 +38,10 @@ function getFont(){
 window.onload = function(){
     console.log("loaded2");
     firebase.initializeApp(config);
+    document.getElementById("text").addEventListener("click", displayText);
+    document.getElementById("background").addEventListener("click", displayBg);
     document.getElementById("saveFont").addEventListener("click", getFont);
+
 };
 
 
