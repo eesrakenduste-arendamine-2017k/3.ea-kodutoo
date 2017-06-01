@@ -1,0 +1,24 @@
+{
+	"name": "Interesting news link bookmarks",
+	"description": "Make an easy way to save links of news articles you don't have time to read at the moment",
+	"version": "1.0",
+	"permissions": [
+		"activeTab",
+		"http://*/*",
+		"https://*/*",
+		"https://news-bookmarks.firebaseio.com/*"
+	],
+	"content_security_policy": "script-src 'self' https://cdn.firebase.com https://*.firebaseio.com https://*.firebaseio-demo.com; object-src 'self'",
+	"content_scripts": [{
+		"matches": ["https://*/*", "http://*/*", "*://*/*"],
+		"js": ["jquery-3.2.1.min.js", "config.js", "firebase.js", "saving.js"]
+	}],
+	"browser_action": {
+		"default_title": "Save link of article to db"
+	},
+	"background": {
+	    "scripts": ["background.js"],
+	    "persistent": false
+	},
+	"manifest_version": 2
+}
