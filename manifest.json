@@ -8,6 +8,7 @@
 		"https://*/*",
 		"https://news-bookmarks.firebaseio.com/*"
 	],
+	"content_security_policy": "script-src 'self' https://cdn.firebase.com https://*.firebaseio.com https://*.firebaseio-demo.com; object-src 'self'",
 	"content_scripts": [{
 		"matches": ["https://*/*", "http://*/*", "*://*/*"],
 		"js": ["jquery-3.2.1.min.js", "config.js", "firebase.js", "saving.js"]

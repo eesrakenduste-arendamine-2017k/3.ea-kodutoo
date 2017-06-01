@@ -57,10 +57,8 @@ function remove(id) {
 }
 
 function data() {
-	console.log("algas");
 	console.log($("#tblContents").length);
 	if ($("#tblContents").length) {
-		console.log("sain sisse");
 		var divContents = "";
 	    var articles = firebase.database().ref('news/');//Won't allow this in, because apparently it violates Content Security Policy
 	    divContents = "<table style='width:100%;'><tr><th>Uudis</th><th>Link</th><th></th></tr>";
@@ -70,10 +68,7 @@ function data() {
 	        }
 	        $("#tblContents").html(divContents);
 	    })).then(function() {addDelButtons();});
-		console.log("Tere");
 	}
-	/*
-    */
 }
 
 function addDelButtons() {
