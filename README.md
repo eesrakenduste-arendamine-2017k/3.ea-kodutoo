@@ -1,21 +1,22 @@
 # 3. kodutöö – Chrome extension
 
-Kodutööna peab looma Chrome extension'i selliselt, et nõuded oleksid täidetud.
+## Config faili sisu
 
-**Töö võib teha ka kahekesi, kuid siis peab GitHubis nägema, kes mida tegi!**
+```JS
+var config = {
+    apiKey: "AIzaSyDGmQcgKaVbrM8-XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
+    authDomain: "XXXXXXXX.firebaseapp.com",
+    databaseURL: "XXXXXXXXXfirebaseio.com",
+    projectId: "XXXXXXXX-XXX",
+    storageBucket: "XXXXXXXXX.appspot.com",
+    messagingSenderId: "XXXXXXXXXXXXXX"
+  };
 
-## Nõuded
+  firebase.initializeApp(config);
+```
 
-1. Kirjelda README.md failis, mida rakendus teeb
-1. Rakendus peab tegema veebilehe/veebirakenduse kas ilusamaks, mugavamaks või huvitamaks
-1. Peab oleama piisavalt keerukas (midagi enemat kui tunnis tegmine)
-1. Rakendus peab salvestama andmeid serverisse (võib lahendada praegu laisalt ilma autentimiseta, kasuta nt [firebase](https://firebase.google.com/))
-1. Ole loominguleine, näiteks põnevad asjad millele saab brauser ligi
-    - bluetooth, sh pulsivöö
-    - mikrofon [näide](https://www.talater.com/annyang/)
-    - webcam [näide](https://revealjs.herokuapp.com/#/0/1)
+## Kirjeldus
 
-## Täiendav abimaterjal
-
-* Chrome extension API [JavaScript APIs](https://developer.chrome.com/extensions/api_index/)
-* Chrome extension'ite näited [Sample Extensions](https://developer.chrome.com/extensions/samples/)
+1. Extension laseb kasutajal salvestada uudiste artikleid hilisemaks lugemiseks (vajutades klahvi "y", samal ajal kui lingi peal on kursor).
+1. Andmebaasi salvestatakse artiklinimi ja url
+1. Ikoon avab lehe, kus on salvestatud lehtede nimekiri, võimalus linke avada ja kirjeid kustutada.
