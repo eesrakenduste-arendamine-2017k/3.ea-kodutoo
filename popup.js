@@ -1,6 +1,5 @@
 var font = {type: null, family: null, color: null};
-window.bgcolor = null;
-window.bgfile = null;
+var bg = {color: null, file: null};
 
 function displayText(){
     if(document.getElementById("textcontent").style.display === "none"){
@@ -37,8 +36,8 @@ function save_to_db(){
         type: font.type,
         family: font.family,
         color: font.color,
-        bgcolor: window.bgcolor,
-        bgfile: window.bgfile
+        bgcolor: bg.color,
+        bgfile: bg.file
     });
 
 }
