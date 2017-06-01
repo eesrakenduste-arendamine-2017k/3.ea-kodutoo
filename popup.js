@@ -1,4 +1,6 @@
-var font = {};
+var font = {type: null, family: null, color: null};
+window.bgcolor = null;
+window.bgfile = null;
 
 function displayText(){
     if(document.getElementById("textcontent").style.display === "none"){
@@ -18,14 +20,13 @@ function displayBg(){
 
 function getFont(){
     console.log("loaded");
-    font = {type: null, family: null, color: null};
     font.type = document.getElementById("type").value;
     font.family = document.getElementById("family").value;
     font.color = document.getElementById("color").value;
 }
 function getBackground(){
-    window.bgcolor = document.getElementById("bgcolor").value();
-    window.bgfile = document.getElementById("bgfile").value();
+    window.bgcolor = document.getElementById("bgcolor").value;
+    window.bgfile = document.getElementById("bgfile").value;
 }
 function save_to_db(){
     var id = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
@@ -36,8 +37,8 @@ function save_to_db(){
         type: font.type,
         family: font.family,
         color: font.color,
-        bgcolor: bgcolor,
-        bgfile: bgfile
+        bgcolor: window.bgcolor,
+        bgfile: window.bgfile
     });
 
 }

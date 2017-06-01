@@ -10,12 +10,11 @@ var id = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
 });
 var id = 1;
 firebase.database().ref('webpages/' + id).set({
-    url: window.location.href,
     type: "k",
     family: "k",
     color: "k",
     background: "k"
-})
+});
 
 var pageref = firebase.database().ref('webpages/').limitToLast(1);
 pageref.orderByChild("type").equalTo("p").on("child_added", function(data){
