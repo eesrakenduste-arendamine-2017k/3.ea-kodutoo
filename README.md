@@ -1,3 +1,12 @@
+Autor: Anu Sadam
+
+Google laiendus Tabsy teeb veebilehtedega majandamise lihtsamaks.
+Laiendus võimaldab sisestada ja jätta meelde erinevaid veebilehti ning neid ka korraga avada.
+Laiendust saab ise teatud piirides kujundada.
+Nii veebilehtede lingid kui ka laienduse kujundus salvestatakse local storagesse, tänu millele neid säilitatakse ka lehe uuesti laadimisel.
+
+----
+
 # 3. kodutöö – Chrome extension
 
 Kodutööna peab looma Chrome extension'i selliselt, et nõuded oleksid täidetud.
@@ -19,3 +28,4 @@ Kodutööna peab looma Chrome extension'i selliselt, et nõuded oleksid täidetu
 
 * Chrome extension API [JavaScript APIs](https://developer.chrome.com/extensions/api_index/)
 * Chrome extension'ite näited [Sample Extensions](https://developer.chrome.com/extensions/samples/)
+

@@ -1,0 +1,26 @@
+{
+	"manifest_version": 2,
+	"name": "Tabsy",
+	"description": "This extension enables to open multible pages at once",
+	"version": "1.0",
+  
+	"content_scripts" : [{
+		"matches": ["*://*/*"],
+		"js": ["popup.js"],
+		"css": ["style.css"]
+	}],
+
+	"browser_action": {
+		"default_icon": "icon.png",
+		"default_popup": "popup.html"
+	},
+
+	"permissions": [
+		"activeTab",
+		"tabs",
+		"http://*/*",
+		"https://*/*",
+		"https://ajax.googleapis.com/"
+	]
+	
+}
