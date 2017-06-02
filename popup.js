@@ -2,15 +2,15 @@ var font = {type: null, family: null, color: null};
 var bg = {color: null, file: null};
 
 function displayText(){
-    if(document.getElementById("textcontent").style.display === "none"){
+    if(document.getElementById("textcontent").style.display === "none" || document.getElementById("textcontent").style.display === ""){
         document.getElementById("textcontent").style.display = "block";
     } else{
         document.getElementById("textcontent").style.display = "none";
     }
 }
 
-function displayBg() {
-    if (document.getElementById("bgcontent").style.display === "none") {
+function displayBg(){
+    if(document.getElementById("bgcontent").style.display === "none" || document.getElementById("bgcontent").style.display === ""){
         document.getElementById("bgcontent").style.display = "block";
     } else {
         document.getElementById("bgcontent").style.display = "none";
