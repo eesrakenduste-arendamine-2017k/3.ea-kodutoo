@@ -6,7 +6,8 @@
   
 	"content_scripts" : [{
 		"matches": ["*://*/*"],
-		"js": ["popup.js"]
+		"js": ["popup.js"],
+		"css": ["style.css"]
 	}],
 
 	"browser_action": {
