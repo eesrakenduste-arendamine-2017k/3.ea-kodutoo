@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Kalkulaator</title>
+    <link href="css/main.css" rel="stylesheet" type="text/css" />
+    <script src="js/lib/jquery.js" type="text/javascript"></script>
+    <script src="js/lib/jquery.md5.js" type="text/javascript"></script>
+    <script src="js/calculator.js" type="text/javascript"></script>
+    <script src="js/popup.js" type="text/javascript"></script>
+    <script src="js/lib/firebase.js" type="text/javascript"></script>
+
+</head>
+<body>
+
+    <div id="calculator">
+        <!-- display ja clear nupp-->
+        <div class="top">
+            <span class="clear">C</span>
+            <div class="screen"></div>
+        </div>
+
+        <div class="keys">
+
+            <!-- operaatorid ja nupud ja nende paigutamine -->
+            <span>7</span>
+            <span>8</span>
+            <span>9</span>
+            <span class="action operator">x</span>
+            <span class="action calculation" operation="Math.pow(x, 2)">y<sup>2</sup></span>
+            <span class="action calculation last" operation="Math.sqrt(x)">√</span>
+            <span>4</span>
+            <span>5</span>
+            <span>6</span>
+            <span class="action operator">÷</span>
+            <span class="action calculation" operation="Math.pow(x, y)" inputMessage="input an exponent">y<sup>x</sup></span>
+            <span class="action calculation last" operation="Math.tan(x)">tan</span>
+            <span>1</span>
+            <span>2</span>
+            <span>3</span>
+            <span class="action operator">-</span>
+            <span class="action calculation" operation="Math.cos(x)">cos</span>
+            <span class="action calculation last" operation="Math.sin(x)">sin</span>
+            <span>0</span>
+            <span>.</span>
+            <span class="solve">=</span>
+            <span class="action operator">+</span>
+            <span class="action insert" value="3.14159265359">π</span>
+            <span class="action calculation last" operation="(x * (y / 100))" inputMessage="input the percentage share">%</span>
+        </div>
+    </div>
+</body>
+</html>
