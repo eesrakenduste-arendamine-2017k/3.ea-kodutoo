@@ -1,0 +1,41 @@
+#textcontent {
+    display: none;
+}
+
+#bgcontent{
+    display: none;
+}
+
+a,h3:link {
+    text-decoration: none;
+    color: #000000;
+}
+
+a,h3:hover {
+    font-weight: bold;
+    background-color: #baff00;
+}
+
+.btn{
+    background-color:#44c767;
+    -moz-border-radius:7px;
+    -webkit-border-radius:7px;
+    border-radius:7px;
+    border:1px solid #2b9936;
+    display:inline-block;
+    cursor:pointer;
+    color:#ffffff;
+    font-family:Trebuchet MS;
+    font-size:12px;
+    padding:3px 10px;
+    text-decoration:none;
+    text-shadow:0px 1px 0px #2f6627;
+}
+.btn:hover {
+    background-color:#34944b;
+}
+.btn:active {
+    position:relative;
+    top:1px;
+}
+

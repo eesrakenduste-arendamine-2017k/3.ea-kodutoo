@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="popupstyle.css">
+    <script src="firebase.js"></script>
+    <script src="config.js"></script>
+    <script src="popup.js"></script>
+</head>
+<body>
+<h2>Customize</h2>
+<div>
+    <a id="text" href="#"><h3>Text</h3></a>
+        <div class="content" id="textcontent">
+            <p>Type:</p>
+            <select id="type">
+                <option value="p" selected="selected">p</option>
+                <option value="h1">h1</option>
+                <option value="h2">h2</option>
+            </select>
+            <p>Font:</p>
+            <select id="family">
+                <option value="Times New Roman" selected ="selected">Times New Roman</option>
+                <option value="Arial">Arial</option>
+                <option value="Courier New">Courier</option>
+            </select>
+            <p>Font color:</p>
+            <input id="color" type="color">
+            <br><br>
+            <input type="button" class="btn" id="saveFont" value="Apply"/>
+        </div>
+</div>
+<div>
+    <a id="background" href="#"><h3>Background</h3></a>
+    <div class="content" id="bgcontent">
+        <p>Color:</p>
+        <input id="bgcolor" type="color">
+        <br><br>
+        <div>
+            <input type="button" id="save" class="btn" value="Apply"/>
+        </div>
+    </div>
+</div>
+<br>
+</body>
+</html>

@@ -1,0 +1,22 @@
+{
+  "name": "Customizer",
+  "description": "Enables to customize fonts, colors of a webpage",
+  "version": "1.0",
+  "permissions": [
+    "activeTab",
+    "tabs"
+  ],
+  "content_scripts" : [{
+      "matches": ["http://*/*"],
+      "css": ["style.css"],
+      "js": ["config.js","firebase.js", "background.js"]
+  }],
+  "browser_action": {
+    "default_title": "Customize layout",
+    "default_popup": "customizer.html"
+  },
+  "manifest_version": 2,
+
+  "icons": {"16": "icon16.png",
+            "48": "icon48.png"}
+}
