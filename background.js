@@ -5,49 +5,45 @@
  */
 console.log("loaded");
 
-var p = document.getElementsByTagName("p");
-var h1 = document.getElementsByTagName("h1");
-var h2 = document.getElementsByTagName("h2");
-
 firebase.initializeApp(config);
 var id = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
     var r = Math.random()*16|0, v = c == 'x' ? r : (r&0x3|0x8);
     return v.toString(16);
 });
-var pageref = firebase.database().ref('webpages/').limitToFirst(1);
-pageref.orderByChild("type").equalTo("p").on("child_added", function(data){
-    if(data.val().color !== null) {
-        for (var i = 0; i < p.length; i++) {
-            p[i].style.color = data.val().color;
-            p[i].style.fontFamily = data.val().family;
-        }
-    }
-});
 
-pageref.orderByChild("type").equalTo("h1").on("child_added", function(data){
-    if(data.val().color !== null) {
-        for (var i = 0; i < h1.length; i++) {
-            h1[i].style.color = data.val().color;
-            h1[i].style.fontFamily = data.val().family;
+function changeFont(ref, type, array){
+    ref.orderByChild("type").equalTo(type).on("child_added", function(data){
+        if(data.val() !== undefined) {
+            for (var i = 0; i < array.length; i++) {
+                array[i].style.color = data.val().color;
+                array[i].style.fontFamily = data.val().family;
+            }
         }
-    }
-});
-
-pageref.orderByChild("type").equalTo("h2").on("child_added", function(data){
-    if(data.val().color !== null) {
-        for (var i = 0; i < h2.length; i++) {
-            h2[i].style.color = data.val().color;
-            h2[i].style.fontFamily = data.val().family;
+    });
+}
+function changeBackground(ref){
+    ref.orderByChild("type").on("child_added", function(data){
+        if(data.val().bgcolor !== undefined) {
+            document.getElementsByTagName("BODY")[0].style.backgroundColor = data.val().bgcolor;
         }
-    }
-});
+    });
+}
 
-pageref.orderByChild("bgcolor").on("child_added", function(data){
-    if(data.val().bgcolor !== null) {
-        document.getElementsByTagName("BODY")[0].style.backgroundColor = data.val().bgcolor;
-        //console.log(data.val().bgcolor);
-    }
-});
+var p = document.getElementsByTagName("p");
+var h1 = document.getElementsByTagName("h1");
+var h2 = document.getElementsByTagName("h2");
+
+window.setInterval(function(){
+    var queryfont = firebase.database().ref("fonts/").limitToLast(1);
+    var querybg = firebase.database().ref("backgrounds/").limitToLast(1);
+    changeFont(queryfont, "p", p);
+    changeFont(queryfont, "h1", h1);
+    changeFont(queryfont, "h2", h2);
+    changeBackground(querybg);
+}, 1000);
+
+
+
 
 
 
