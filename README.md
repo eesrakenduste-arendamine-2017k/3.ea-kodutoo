@@ -6,5 +6,5 @@
 Extension võimaldab muuta tekstielemente(p, h1, h2) ja taustavärvi veebilehel.
 Sätted salvestatakse firebase'i.
 
-Autorid: Ege-Rita Noor, Richard Kajaste
+Autorid: Ege-Rita Noor, Richard Kajaste.
 Testimiseks kasutatud lehekülg: http://www.tlu.ee/~egenoor/VM/loremipsum.html
