@@ -62,12 +62,16 @@ TimeManagement.prototype = {
 	},
 
 	copy_code: function() {
-		var code_sections = document.getElementsByClassName("default prettyprint prettyprinted");
+        var code_sections = document.querySelectorAll(".prettyprint");
+
 
 		for(let i = 0; i < code_sections.length; i++){
 			code_sections[i].addEventListener("dblclick", function() {
+
+				var user = code_sections.parentElement.parentElement.querySelector("div.user-details a").href;
+
 				var copyFrom = document.createElement("textarea");
-				copyFrom.textContent = code_sections[i].textContent;
+				copyFrom.textContent = user + "\n" + code_sections[i].textContent;
 				var body = document.getElementsByTagName('body')[0];
 				body.appendChild(copyFrom);
 				copyFrom.select();
@@ -75,6 +79,10 @@ TimeManagement.prototype = {
 				body.removeChild(copyFrom);
 			});
 		}
+	}
+
+	get_user: function(code_node){
+
 	}
 };
 
