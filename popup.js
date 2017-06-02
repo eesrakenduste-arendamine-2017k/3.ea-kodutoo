@@ -45,10 +45,36 @@ document.addEventListener('DOMContentLoaded', function() {
 	document.getElementById('button1').addEventListener('click', loadLinks);
 	document.getElementById('button2').addEventListener('click', saveLinks);
 	document.getElementById('button3').addEventListener('click', clearLinks);
+	document.getElementById('button4').addEventListener('click', function(){
+		//uue tabi avamine - https://stackoverflow.com/questions/8457382/opening-a-new-tab-on-google-chrome-extension
+		chrome.tabs.create({ url: 'help.html' });
+    });
+	
+	//extensioni tausta värvi muutmine
+	document.getElementById("color").addEventListener("change", colorPicker);
+	function colorPicker() {
+		document.body.style.backgroundColor = this.value;
+		localStorage.backgroundColor = this.value;
+	}
+	
+	//extensioni fondi muutmine
+	document.getElementById("font").addEventListener("change", fontPicker);
+	function fontPicker() {
+		document.body.style.fontFamily = this.value;
+		localStorage.fontFamily = this.value;
+	}
 	
 	var links = localStorage.links;
+	var backgroundColor = localStorage.backgroundColor;
+	var fontFamily = localStorage.fontFamily;
 	if (!links) {return;} else {
 		document.getElementById('links').value = links;
+	}
+	if (!backgroundColor) {return;} {
+		document.body.style.backgroundColor = backgroundColor;
+	}
+	if (!fontFamily) {return;} {
+		document.body.style.fontFamily = fontFamily;
 	}
 	
 });
