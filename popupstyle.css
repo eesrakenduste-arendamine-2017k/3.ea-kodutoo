@@ -6,12 +6,12 @@
     display: none;
 }
 
-a:link {
+a,h3:link {
     text-decoration: none;
     color: #000000;
 }
 
-a:hover {
+a,h3:hover {
     font-weight: bold;
     background-color: #baff00;
 }

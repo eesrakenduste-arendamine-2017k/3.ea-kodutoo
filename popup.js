@@ -1,5 +1,5 @@
 var font = {type: null, family: null, color: null};
-var bg = {color: null, file: null};
+var bg = {color: null};
 
 function displayText(){
     if(document.getElementById("textcontent").style.display === "none" || document.getElementById("textcontent").style.display === ""){
@@ -30,11 +30,9 @@ function save_font_db(){
 }
 function save_bg_db(){
     bg.color = document.getElementById("bgcolor").value;
-    bg.file = document.getElementById("bgfile").value;
 
     firebase.database().ref('backgrounds/' + new Date().getTime()).set({
         bgcolor: bg.color,
-        bgfile: bg.file
     });
 
 }

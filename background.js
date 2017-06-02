@@ -1,10 +1,3 @@
-/*
-1. taust korda
-2. timer satete jaoks
-3. tausta pilt ja selle scale + repeat
- */
-console.log("loaded");
-
 firebase.initializeApp(config);
 var id = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
     var r = Math.random()*16|0, v = c == 'x' ? r : (r&0x3|0x8);

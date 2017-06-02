@@ -1,3 +1,4 @@
+![alt text](https://raw.githubusercontent.com/rkajaste/3.ea-kodutoo/beforeafter.png)
 # 3. kodutöö – Chrome extension
 
 Kodutööna peab looma Chrome extension'i selliselt, et nõuded oleksid täidetud.
