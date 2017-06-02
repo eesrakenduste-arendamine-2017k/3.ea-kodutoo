@@ -7,6 +7,7 @@ console.log("loaded");
 
 var p = document.getElementsByTagName("p");
 var h1 = document.getElementsByTagName("h1");
+var h2 = document.getElementsByTagName("h2");
 
 firebase.initializeApp(config);
 var id = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
@@ -28,6 +29,15 @@ pageref.orderByChild("type").equalTo("h1").on("child_added", function(data){
         for (var i = 0; i < h1.length; i++) {
             h1[i].style.color = data.val().color;
             h1[i].style.fontFamily = data.val().family;
+        }
+    }
+});
+
+pageref.orderByChild("type").equalTo("h2").on("child_added", function(data){
+    if(data.val().color !== null) {
+        for (var i = 0; i < h2.length; i++) {
+            h2[i].style.color = data.val().color;
+            h2[i].style.fontFamily = data.val().family;
         }
     }
 });
