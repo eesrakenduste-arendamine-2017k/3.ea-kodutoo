@@ -4,7 +4,9 @@ function TimeManagement() {
 	this.months = ["jaanuar", "veebruar", "märts", "april", "mai", "juuni", "juuli", "august", "september", "oktoober", "november", "detsember"];
 	this.time = 0;
 
-	if(window.location.hostname === "stackoverflow.com"){this.copy_code();}
+	if(window.location.hostname === "stackoverflow.com"){
+		this.copy_code();
+	}
 	this.init();
 }
 
@@ -59,17 +61,19 @@ TimeManagement.prototype = {
 		}
 	},
 
-	copy_code: function(){
+	copy_code: function() {
 		var code_sections = document.getElementsByClassName("default prettyprint prettyprinted");
 
-		for(var i=0; i<code_sections.length; i++){
+		for(let i = 0; i < code_sections.length; i++){
 			code_sections[i].addEventListener("dblclick", function() {
-				var node = document.createElement("textarea");
-				node.setAttribute("value", code_sections[this.i].textContent);
-				node.select();
-				document.execCommand("copy");
-				console.log("Data copied.")
-			}.bind(this, false));
+				var copyFrom = document.createElement("textarea");
+				copyFrom.textContent = code_sections[i].textContent;
+				var body = document.getElementsByTagName('body')[0];
+				body.appendChild(copyFrom);
+				copyFrom.select();
+				document.execCommand('copy');
+				body.removeChild(copyFrom);
+			});
 		}
 	}
 };

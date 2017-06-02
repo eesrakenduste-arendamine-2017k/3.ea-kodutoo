@@ -9,7 +9,9 @@
 	"tabs",
 	"downloads",
 	"http://*/*",
-	"https://*/*"
+	"https://*/*",
+	"clipboardRead",
+	"clipboardWrite"
   ],
 
   "content_scripts": [
