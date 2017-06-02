@@ -15,6 +15,12 @@ function saveLinks() {
     }
 }
 
+function clearLinks(){
+	//kustutab kõigepealt tühjaks ja siis salvestab tühjana
+	var links = document.getElementById('links').value = "";
+	saveLinks();	
+}
+
 function loadLinks() {
 	var links = document.getElementById('links').value.split(/\s+/);
     for(var i=0; i<links.length; i++){
@@ -31,3 +37,18 @@ function loadLinks() {
 		}
     }
 }
+
+
+//lehelaadimisel
+document.addEventListener('DOMContentLoaded', function() {
+	//kuularid
+	document.getElementById('button1').addEventListener('click', loadLinks);
+	document.getElementById('button2').addEventListener('click', saveLinks);
+	document.getElementById('button3').addEventListener('click', clearLinks);
+	
+	var links = localStorage.links;
+	if (!links) {return;} else {
+		document.getElementById('links').value = links;
+	}
+	
+});
