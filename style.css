@@ -1,1 +1,21 @@
-test
+body{
+	font-family: Arial;
+	font-size: 13px;
+}
+
+h2, p{
+	text-align: center;
+}
+
+textarea{
+	min-width: 300px;
+}
+
+.main{
+	width: 350px;
+}
+
+.buttons{
+	text-align: center;
+}
+
