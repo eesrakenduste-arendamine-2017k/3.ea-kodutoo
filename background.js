@@ -1,5 +1,5 @@
 "use strict"
-function TimeManagement() {
+function Master() {
 	this.weekdays = ["pühapäev", "esmaspäev", "teisipäev", "kolmapäev", "neljapäev", "reede", "laupäev"];
 	this.months = ["jaanuar", "veebruar", "märts", "april", "mai", "juuni", "juuli", "august", "september", "oktoober", "november", "detsember"];
 	this.time = 0;
@@ -11,7 +11,7 @@ function TimeManagement() {
 }
 
 
-TimeManagement.prototype = {
+Master.prototype = {
 
 	save_to_database: function(id) {
 
@@ -64,30 +64,37 @@ TimeManagement.prototype = {
 	copy_code: function() {
         var code_sections = document.querySelectorAll(".prettyprint");
 
-
+		// execCommand("copy") saab aintult kasutada formivälju kasutades body seest.
+		// Luuakse textarea, pannakse sinna sisse tekst, lükatakse body sisse, lisatakse clipboardi ja kustatakse bodyst.
+		// Textarea sisu sisse lükatakse veel link kasutajala ja lehekülje url kust kood võeti.
 		for(let i = 0; i < code_sections.length; i++){
 			code_sections[i].addEventListener("dblclick", function() {
 
-				var user = code_sections.parentElement.parentElement.querySelector("div.user-details a").href;
+				// Võtab kätte kasutajanime liikudes koodi elemendist content div'i ja sealt otsib query selectoriga õige kausta välja.
+				let user = code_sections[i].parentElement.parentElement.querySelector("div.user-details a").href;
 
-				var copyFrom = document.createElement("textarea");
-				copyFrom.textContent = user + "\n" + code_sections[i].textContent;
-				var body = document.getElementsByTagName('body')[0];
+				let copyFrom = document.createElement("textarea");
+				copyFrom.textContent = "// "+ user + "\n" + "// " + window.location.href + "\n" + code_sections[i].textContent;
+				let body = document.getElementsByTagName('body')[0];
 				body.appendChild(copyFrom);
+
 				copyFrom.select();
 				document.execCommand('copy');
 				body.removeChild(copyFrom);
-			});
+
+
+				console.log("Andmed salvestatud");
+                code_sections[i].style.backgroundColor = "black";
+				setTimeout(function(){code_sections[i].style.backgroundColor = "#eff0f1";},600);
+
+            });
 		}
 	}
 
-	get_user: function(code_node){
-
-	}
 };
 
 
 window.onload = function() {
-	var master = new TimeManagement();
+	let master = new Master();
 	window.master = master;
 };
