@@ -1,4 +1,4 @@
-"use strict"
+"use strict";
 function Master() {
     firebase.initializeApp(config);
 
@@ -10,9 +10,13 @@ function Master() {
     this.https_usage = this.get_https();
     this.todays_usage = this.get_today_sites();
 
-    console.log(this.https_usage);
-    console.log(this.http_usage);
-    console.log(this.todays_usage);
+    let that = this;
+
+    // https://stackoverflow.com/users/3800583/kenticny
+    // https://stackoverflow.com/questions/26296181/simple-message-passing-between-background-js-to-contentscript-js
+    chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
+        sendResponse({farewell: that.http_usage });
+    });
 
     this.init();
 }
@@ -27,6 +31,10 @@ Master.prototype = {
             "protocol": window.location.protocol,
             "time_spent": this.time
         });
+    },
+
+    handleMessage: function (request, sender, sendResponse) {
+        console.log("Message from the content script: " + request.greeting);
     },
 
     init: function () {
@@ -103,7 +111,7 @@ Master.prototype = {
         let time = new Date().getTime();
 
         let ref = firebase.database().ref('websites/');
-        ref.orderByChild("time").equalTo(time).on('value', function (data) {
+        ref.orderByChild("time").equalTo(time).once('value', function (data) {
             data.forEach(function (snapshot) {
                 content.push(snapshot.val());
             })
@@ -114,7 +122,7 @@ Master.prototype = {
     get_https: function () {
         let content = [];
         let ref = firebase.database().ref('websites/');
-        ref.orderByChild("protocol").equalTo("https:").on('value', function (data) {
+        ref.orderByChild("protocol").equalTo("https:").once('value', function (data) {
             data.forEach(function (snapshot) {
                 content.push(snapshot.val());
             })
@@ -125,7 +133,7 @@ Master.prototype = {
     get_http: function () {
         let content = [];
         let ref = firebase.database().ref('websites/');
-        ref.orderByChild("protocol").equalTo("http:").on('value', function (data) {
+        ref.orderByChild("protocol").equalTo("http:").once('value', function (data) {
             data.forEach(function (snapshot) {
                 content.push(snapshot.val());
             })
