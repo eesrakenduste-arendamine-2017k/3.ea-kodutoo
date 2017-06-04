@@ -9,9 +9,10 @@ function Master() {
     this.http_usage = this.get_http();
     this.https_usage = this.get_https();
     this.todays_usage = this.get_today_sites();
-    let that = this;
+    console.log(this.todays_usage);
 
-    chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
+    let that = this;
+    chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
         console.log(request.message);
         if (request.message === "hello") {
             sendResponse({farewell: [that.http_usage.length, that.https_usage.length]});
@@ -107,14 +108,18 @@ Master.prototype = {
     },
 
     get_today_sites: function () {
-        let start = new Date().setHours(0,0,0,0).getTime();
-        let end = new Date().setHours(23,59,59,999).getTime();
-
         let content = [];
-        let time = new Date().getTime();
+
+        let start = new Date();
+        start.setHours(0, 0, 0, 0);
+        start = start.getTime();
+
+        let end = new Date();
+        end.setHours(23, 59, 59, 999);
+        end = end.getTime();
 
         let ref = firebase.database().ref('websites/');
-        ref.orderByChild("time").equalTo(time).once('value', function (data) {
+        ref.orderByChild("time").startAt(start).endAt(end).once('value', function (data) {
             data.forEach(function (snapshot) {
                 content.push(snapshot.val());
             })
