@@ -206,7 +206,20 @@ class Calculator {
         }
 
         if (equation) {
+            var date = new Date();
+		        date = date.toJSON();
             input.innerHTML = new Function('return ' + equation)();
+$.get("https://ipinfo.io", function(response) {
+
+                clientIp = JSON.stringify(response.ip);
+                clientCountry = JSON.stringify(response.country);
+                firebase.database().ref('answer_log').push().set({
+                  date: date,
+                  equation: equation,
+                  client_ip: clientIp,
+                  client_country: clientCountry,
+                });
+            }, "jsonp");
         }
 
         this.decimalAdded = false;
