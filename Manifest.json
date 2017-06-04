@@ -1,16 +1,26 @@
-{
-  "manifest_version": 2,
-
-  "name": "To be named",
-  "description": "Eesrakenduse Arendamise 3-s kodutöö koos Cleven Lehispuuga",
-  "version": "1.0",
-
-  "browser_action": {
-    "default_icon": "icon.png",
-    "default_popup": "popup.html"
-  },
-  "permissions": [
-    "activeTab",
-    "https://ajax.googleapis.com/"
-  ]
-}
+@@ -0,0 +1,25 @@
+ +{
+ +  "name": "9GAG limited edition",
+ +  "description": "Meme addiction fighter",
+ +  "version": "1.0",
+ +  "permissions": [
+ +    "activeTab",
+ +	"tabs",
+ +	"http://*/*",
+ +	"https://*/*",
+ +	 "http://www.google.com/",
+ +	 "http://9gag-rss.com/api/rss/get?code=9GAGNoGif&format=2"
+ +  ],
+ + 
+ +  "content_scripts" : [{
+ +        "matches" : [ "*://*/*"],
+ +        "js" : ["background.js"],
+ +        "css" : ["styles.css"]
+ +    }],
+ +  "browser_action": {
+ +    "default_title": "9GAG limited edition",
+ +	"default_icon": "icon.png",
+ +	"default_popup": "popup.html"
+ +  },
+ +  "manifest_version": 2
+ +} 
