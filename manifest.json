@@ -1,0 +1,44 @@
+{
+  "manifest_version": 2,
+  "name": "Kalkulaator kodutoo3",
+  "version": "0.1.0",
+  "description": "Kodutoo3 extension",
+
+
+  "background": {
+     "scripts": [
+        "js/lib/jquery.js",
+        "js/lib/jquery.md5.js"
+     ]
+  },
+
+  "content_scripts": [ {
+     "js": ["js/lib/firebase.js", "js/calculator.js"],
+     "matches": ["http://*/*","https://*/*"]
+   } ],
+
+  "browser_action": {
+
+     "default_popup": "popup.html",
+     "default_title": "Calculator"
+  },
+
+  "icons": {
+    "16": "img/icon16.png",
+    "48": "img/icon48.png",
+    "128": "img/icon128.png" },
+
+  "default_locale": "en",
+
+  "permissions": [
+     "tabs",
+     "storage",
+     "cookies",
+     "webRequest",
+     "webRequestBlocking",
+     "https://*/*",
+     "http://*/*"
+   ],
+
+   "content_security_policy": "script-src 'self' https://ipinfo.io https://cdn.firebase.com https://*.firebaseio.com 'unsafe-inline' 'unsafe-eval'; object-src 'self'"
+}
