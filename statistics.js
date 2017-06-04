@@ -37,6 +37,7 @@ function get_data(){
     chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
         chrome.tabs.sendMessage(tabs[0].id, {message: "hello"}, function(response) {
             make_piechart(response.farewell);
+            console.log(response.farewell);
         });
     });
 

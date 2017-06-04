@@ -1,30 +1,33 @@
 "use strict";
 function Master() {
     firebase.initializeApp(config);
-
-    this.weekdays = ["pühapäev", "esmaspäev", "teisipäev", "kolmapäev", "neljapäev", "reede", "laupäev"];
-    this.months = ["jaanuar", "veebruar", "märts", "april", "mai", "juuni", "juuli", "august", "september", "oktoober", "november", "detsember"];
+    let that = this;
+    this.labels = [];
     this.time = 0;
 
+    // Salvestab kõik http(s) protokolliga ja tänasel kuupäeval tehtud kirjed listi. [Object1, Object2, Object...]
+    // Firebase salvestab asünkroonselt andmeid, peab arvestama sellega et andmete saatmine ei toimuks enne kui FB'st kohale jõuab.
     this.http_usage = this.get_http();
     this.https_usage = this.get_https();
     this.todays_usage = this.get_today_sites();
-    console.log(this.todays_usage);
 
-    let that = this;
+    // Kuulab päringut extensio seest ning kui saab siis saadab tagasi andmeid.
+    // Saadetavatel andmetel on limiit peal. u 50MB.
     chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
         console.log(request.message);
         if (request.message === "hello") {
-            sendResponse({farewell: [that.http_usage.length, that.https_usage.length]});
+            sendResponse({farewell: [that.http_usage.length, that.https_usage.length, that.labels]});
         }
     });
+    this.save_time_inloop();
 
-    this.init();
 }
 
 
 Master.prototype = {
 
+    // Võtab akna seest andmeid ja salvestab andmebaasi sisse.
+    // Kutsutakse välja save_time_inloop seest iga kolme sekundi tagant.
     save_to_database: function (id) {
         firebase.database().ref("websites/" + id).set({
             "time": new Date().getTime(),
@@ -34,11 +37,11 @@ Master.prototype = {
         });
     },
 
-    handleMessage: function (request, sender, sendResponse) {
-        console.log("Message from the content script: " + request.greeting);
-    },
-
-    init: function () {
+    // Annab igale lahtitehtud tab'i Visibility API'st kuulaja.
+    // Kui kasutajal on tab aktiivne, siis loeb taimer aega ja salvestab selle pidevalt andmebaasi.
+    // Kui veebilehitseja aken pannakse kinni, vajutatakse lingile või vahetatakse tab, siis time ei loe.
+    // Tab'i tagasitulle hakkab taimer jälle tööle.
+    save_time_inloop: function () {
         if (window.location.hostname === "stackoverflow.com") {
             this.copy_code();
         }
@@ -52,7 +55,7 @@ Master.prototype = {
             }
         }, 1000);
 
-        // Loob unikaalse id salvestamiseks.
+        // Loob unikaalse id igale lahtitehtud tab'l salvestamiseks andmebaasi.
         let id = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
             let r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
             return v.toString(16);
@@ -62,11 +65,9 @@ Master.prototype = {
         this.save_to_database(id);
 
         // Uuendab kirjet iga kolme sekundi tagant.
-        // Trükib välja vastava teate konsooli.
         let db = firebase.database();
         let save_data = setInterval(function () {
             db.ref("/websites/" + id).update({"time_spent": master.time});
-            //console.log("Updated data in the database");
         }, 3000);
 
         // Lehe kinni panemisel, viisakalt võtab välja kõik intervalid. Igaksjuhuks.
@@ -76,10 +77,10 @@ Master.prototype = {
         }
     },
 
+    // Juhul kui lahti tehtud lehekülg on Stackowerflow, siis lisab koodi kopeerimise funktsionaalsuse.
+    // Töötab ainult <code> elemendi peale dopeltvajutust tehes salvestades selle sisu clipboardi, code snippetid ei tööta.
+    // Lisab salvestatud koodile juurde url threadi leheküljest ja selle esitanud kassutaja profiil.
     copy_code: function () {
-        // execCommand("copy") saab aintult kasutada formivälju kasutades body seest.
-        // Luuakse textarea, pannakse sinna sisse tekst, lükatakse body sisse, lisatakse clipboardi ja kustatakse bodyst.
-        // Textarea sisu sisse lükatakse veel link kasutajala ja lehekülje url kust kood võeti.
         let code_sections = document.querySelectorAll(".prettyprint");
         for (let i = 0; i < code_sections.length; i++) {
             code_sections[i].addEventListener("dblclick", function () {
@@ -87,26 +88,31 @@ Master.prototype = {
                 // Võtab kätte kasutajanime liikudes koodi elemendist content div'i ja sealt otsib query selectoriga õige kausta välja.
                 let user = code_sections[i].parentElement.parentElement.querySelector("div.user-details a").href;
 
+                // Loob textarea elemendi, täidab sinna sisu ja lisab body sisse.
+                // Vajalik, kuna execCommand("copy") vajab selectimist, mis on ainult formiväljadel võimalik body seest.
                 let copyFrom = document.createElement("textarea");
                 copyFrom.textContent = "// " + user + "\n" + "// " + window.location.href + "\n" + code_sections[i].textContent;
                 let body = document.getElementsByTagName('body')[0];
                 body.appendChild(copyFrom);
 
+                // Valitakse lisatud fomiväli, kopeeritakse selle väärtus clipboardi ja kustutatakse see body seest.
                 copyFrom.select();
                 document.execCommand('copy');
                 body.removeChild(copyFrom);
 
-
-                console.log("Andmed salvestatud");
+                // Vilgutab välja koodiala tagasisideks.
                 code_sections[i].style.backgroundColor = "black";
                 setTimeout(function () {
                     code_sections[i].style.backgroundColor = "#eff0f1";
                 }, 600);
+                console.log("Andmed salvestatud");
 
             });
         }
     },
 
+    // Annab kätte kõik tänasel päeval tehtud postitused.
+    // Piirkonnad võetakse kätte tänase päeva baasil.
     get_today_sites: function () {
         let content = [];
 
@@ -124,6 +130,17 @@ Master.prototype = {
                 content.push(snapshot.val());
             })
         });
+
+        let site_names = [];
+        content.forEach(function (element) {
+            if (site_names.indexOf(element.url) === -1) {
+                site_names.push(element.url);
+            }
+        });
+
+        // Set võtab enda sisse massiivi ja jätab enda sisse ainult unikaalsed väärtused.
+        // ... muudab Set tagasi massiiviks.
+        this.labels = [...new Set(site_names)];
         return content;
     },
 
