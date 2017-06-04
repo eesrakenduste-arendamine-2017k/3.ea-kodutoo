@@ -9,13 +9,13 @@ function Master() {
     this.http_usage = this.get_http();
     this.https_usage = this.get_https();
     this.todays_usage = this.get_today_sites();
-
     let that = this;
 
-    // https://stackoverflow.com/users/3800583/kenticny
-    // https://stackoverflow.com/questions/26296181/simple-message-passing-between-background-js-to-contentscript-js
-    chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
-        sendResponse({farewell: that.http_usage });
+    chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
+        console.log(request.message);
+        if (request.message === "hello") {
+            sendResponse({farewell: [that.http_usage.length, that.https_usage.length]});
+        }
     });
 
     this.init();
@@ -107,6 +107,9 @@ Master.prototype = {
     },
 
     get_today_sites: function () {
+        let start = new Date().setHours(0,0,0,0).getTime();
+        let end = new Date().setHours(23,59,59,999).getTime();
+
         let content = [];
         let time = new Date().getTime();
 
