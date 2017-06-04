@@ -19,3 +19,16 @@ Kodutööna peab looma Chrome extension'i selliselt, et nõuded oleksid täidetu
 
 * Chrome extension API [JavaScript APIs](https://developer.chrome.com/extensions/api_index/)
 * Chrome extension'ite näited [Sample Extensions](https://developer.chrome.com/extensions/samples/)
+
+
+# Rakendus
+* Stackoverflow, code sectionile vajutades kopeerib see selle sisu automaatselt clipboardi ning lisab sinna juurde JS (ainult JS)
+kommentaari selle threadi urls ja link autori kasutajale, kes seda andis.
+
+* Rakendus ise aga jälgib pidevalt külastatuid lehekülgi, salvestades iga külastuskäiguga lehekülge, kasutatud protokolli http/https,,
+kellaaega/kuupäeva ning kasutades Google Chrome visibility API'd, ka kui kaua keegi mingi lehekülje peal on olnud.
+
+* Rakenduse ikoonile vajutades, näitab see lihtsal kujul välja HTTP/HTTPS esinevus kordi pie chart abil, ning kasutusaja päeval tehtud
+veebikülastuste arvu bar chart abil.
+
+Rakendus kasutab Chart.js graafide näitamiseks, mida greenys pole võimalik niisama installida.
