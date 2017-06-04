@@ -15,10 +15,10 @@ function Master() {
     chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
         console.log(request.message);
         if (request.message === "hello") {
-            sendResponse({farewell: [that.http_usage.length, that.https_usage.length, JSON.stringify(that.todays_usage)]});
+            sendResponse({farewell: [that.http_usage.length, that.https_usage.length, that.todays_usage]});
         }
     });
-    
+
     this.start_visibilityTimer();
 
 }
@@ -115,7 +115,7 @@ Master.prototype = {
     // Piirkonnad võetakse kätte tänase päeva baasil.
     get_today_sites: function () {
         let content = [];
-        let site_names = [];
+        let unique_urls = [];
         let count_data = [];
 
         let start = new Date();
@@ -134,29 +134,31 @@ Master.prototype = {
 
             // Kui listis ei ole olemas url'i väärtus, siis lisab selle.
             content.forEach(function (element) {
-                if(site_names.indexOf(element.url) === -1){
-                    site_names.push(element.url);
+                if (unique_urls.indexOf(element.url) === -1) {
+                    unique_urls.push(element.url);
                 }
             });
 
             // Set võtab enda sisse massiivi ja jätab enda sisse ainult unikaalsed väärtused.
             // ... muudab Set tagasi massiiviks.
-            site_names = ([...new Set(site_names)]);
+            unique_urls = ([...new Set(unique_urls)]);
 
             // Käib üle unikaalsete url'i listi, ja iga elemendi jaoks läbib kõikide külastuste listi, suurendab lugejat ja lõpus lisab listi.
-
-
-
+            // Algoritmiline keerukus on.... liiga suur.
+            unique_urls.forEach(function (element) {
+                let counter = 0;
+                content.forEach(function (query) {
+                    if (query.url === element) {
+                        counter = counter + 1;
+                    }
+                });
+                count_data.push(counter);
+            })
 
 
         });
 
-
-
-
-
-
-        return {today_sites : [content, site_names]};
+        return [content, unique_urls, count_data];
     },
 
     get_https: function () {
@@ -180,6 +182,7 @@ Master.prototype = {
         });
         return content;
     }
+
 };
 
 

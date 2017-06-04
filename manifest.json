@@ -24,9 +24,6 @@
         "config.js",
         "firebase.js",
         "background.js"
-      ],
-      "css": [
-        "styles.css"
       ]
     }
   ],
