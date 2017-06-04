@@ -2,7 +2,6 @@
 function Master() {
     firebase.initializeApp(config);
     let that = this;
-    this.labels = [];
     this.time = 0;
 
     // Salvestab kõik http(s) protokolliga ja tänasel kuupäeval tehtud kirjed listi. [Object1, Object2, Object...]
@@ -16,10 +15,11 @@ function Master() {
     chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
         console.log(request.message);
         if (request.message === "hello") {
-            sendResponse({farewell: [that.http_usage.length, that.https_usage.length, that.labels]});
+            sendResponse({farewell: [that.http_usage.length, that.https_usage.length, JSON.stringify(that.todays_usage)]});
         }
     });
-    this.save_time_inloop();
+    
+    this.start_visibilityTimer();
 
 }
 
@@ -27,7 +27,7 @@ function Master() {
 Master.prototype = {
 
     // Võtab akna seest andmeid ja salvestab andmebaasi sisse.
-    // Kutsutakse välja save_time_inloop seest iga kolme sekundi tagant.
+    // Kutsutakse välja start_visibilityTimer seest iga kolme sekundi tagant.
     save_to_database: function (id) {
         firebase.database().ref("websites/" + id).set({
             "time": new Date().getTime(),
@@ -41,7 +41,7 @@ Master.prototype = {
     // Kui kasutajal on tab aktiivne, siis loeb taimer aega ja salvestab selle pidevalt andmebaasi.
     // Kui veebilehitseja aken pannakse kinni, vajutatakse lingile või vahetatakse tab, siis time ei loe.
     // Tab'i tagasitulle hakkab taimer jälle tööle.
-    save_time_inloop: function () {
+    start_visibilityTimer: function () {
         if (window.location.hostname === "stackoverflow.com") {
             this.copy_code();
         }
@@ -115,6 +115,8 @@ Master.prototype = {
     // Piirkonnad võetakse kätte tänase päeva baasil.
     get_today_sites: function () {
         let content = [];
+        let site_names = [];
+        let count_data = [];
 
         let start = new Date();
         start.setHours(0, 0, 0, 0);
@@ -128,20 +130,33 @@ Master.prototype = {
         ref.orderByChild("time").startAt(start).endAt(end).once('value', function (data) {
             data.forEach(function (snapshot) {
                 content.push(snapshot.val());
-            })
+            });
+
+            // Kui listis ei ole olemas url'i väärtus, siis lisab selle.
+            content.forEach(function (element) {
+                if(site_names.indexOf(element.url) === -1){
+                    site_names.push(element.url);
+                }
+            });
+
+            // Set võtab enda sisse massiivi ja jätab enda sisse ainult unikaalsed väärtused.
+            // ... muudab Set tagasi massiiviks.
+            site_names = ([...new Set(site_names)]);
+
+            // Käib üle unikaalsete url'i listi, ja iga elemendi jaoks läbib kõikide külastuste listi, suurendab lugejat ja lõpus lisab listi.
+
+
+
+
+
         });
 
-        let site_names = [];
-        content.forEach(function (element) {
-            if (site_names.indexOf(element.url) === -1) {
-                site_names.push(element.url);
-            }
-        });
 
-        // Set võtab enda sisse massiivi ja jätab enda sisse ainult unikaalsed väärtused.
-        // ... muudab Set tagasi massiiviks.
-        this.labels = [...new Set(site_names)];
-        return content;
+
+
+
+
+        return {today_sites : [content, site_names]};
     },
 
     get_https: function () {
