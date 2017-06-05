@@ -1,3 +1,5 @@
+//aitah uku poder hea motte ja rss feedi lugemise algoritmi eest!
+
 function createCORSRequest(method = "get", url = "https://smithsdownunder.com/reddit_rss/?rss=r/news/.rss"){
     var xhr = new XMLHttpRequest();
     if ("withCredentials" in xhr){
