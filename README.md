@@ -1,8 +1,5 @@
 # 3. kodutöö – Chrome extension
 
-**Rakendus laseb kasutajal sisestada mitu veebilehte, mida ta sagedasti kasutab, salvestab need local storagesse ja avab need  ühe nupuvajutusega.
-**veebilehtede huvitavamaks tehemiseks lisasin ka funktsiooni, mis muudab lehel valitud teksti taguse punaseks.
-
 Kodutööna peab looma Chrome extension'i selliselt, et nõuded oleksid täidetud.
 
 **Töö võib teha ka kahekesi, kuid siis peab GitHubis nägema, kes mida tegi!**

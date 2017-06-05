@@ -3,11 +3,18 @@ function loadUrls() {
   // textareast urlide leidmine
   var urls = document.getElementById('urls').value.split('\n');
 
+
     for(var i=0; i<urls.length; i++){
-      // cleanimput
+      // cleaninput
+
       cleanUrl = urls[i].replace(/\s/g, '');
       // sobivad urlid
+
       if(cleanUrl !== '') {
+        var http = 'https://';
+        if (cleanUrl.substr(0, http.length) !== http) {
+          cleanUrl = http + cleanUrl;
+        }
          chrome.tabs.create({"url": cleanUrl, "selected": false});
       }
 
@@ -37,14 +44,23 @@ function saveUrls() {
 
 document.addEventListener('DOMContentLoaded', function () {
 
-  document.getElementById('button').addEventListener('click', loadUrls);
+  document.getElementById('loadButton').addEventListener('click', loadUrls);
 
-  document.getElementById('button').addEventListener('click', saveUrls);
+  document.getElementById('saveButton').addEventListener('click', saveUrls);
 
     // lae urlid browseris
+
     var urls = localStorage.urls;
+    var http = 'http://';
+
     if (!urls) {
       return;
     }
+
+/*
+    if (urls.substr(0, http.length) != http) {
+      urls = http + urls;
+    }
+    */
     document.getElementById('urls').value = urls;
 });
