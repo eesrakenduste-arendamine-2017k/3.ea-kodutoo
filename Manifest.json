@@ -1,23 +1,21 @@
 {
-    "name": "9GAG limited edition",
-    "description": "Meme addiction fighter",
+    "name": "Reddit news",
+    "description": "Fast reddit news",
     "version": "1.0",
     "permissions": [
         "activeTab",
         "tabs",
         "http://*/*",
         "https://*/*",
-        "http://www.google.com/",
-        "http://9gag-rss.com/api/rss/get?code=9GAGNoGif&format=2"
+        "https://smithsdownunder.com/reddit_rss/?rss=r/news/.rss"
         ],
 
     "content_scripts" : [{
         "matches" : [ "*://*/*"],
-        "js" : ["popup.js"],
-        "css" : ["styles.css"]
+        "js" : ["popup.js"]
         }],
     "browser_action": {
-        "default_title": "9GAG limited edition",
+        "default_title": "Reddit news",
         "default_icon": "icon.png",
         "default_popup": "popup.html"
         },
