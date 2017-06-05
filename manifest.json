@@ -1,0 +1,24 @@
+{
+  "manifest_version": 2,
+  "name": "Eye rester",
+  "description": "This extension will alert you to rest your eyes when you have spent too much time on the internet.",
+  "version": "1.0",
+
+"content_scripts": [
+  {
+    "matches": ["<all_urls>"],
+    "js": ["background.js"]
+  }
+],
+
+  "browser_action": {
+    "default_icon": "icon.png"
+  },
+
+  "permissions": [
+   "activeTab",
+   "tabs",
+   "storage"
+   ]
+
+}
