@@ -1,51 +1,115 @@
-function createCORSRequest(method = "get", url = "https://postimees.ee/rss"){
-    var xhr = new XMLHttpRequest();
-    if ("withCredentials" in xhr){
-        // XHR has 'withCredentials' property only if it supports CORS
+window.onload=function(){
+	document.getElementById('titles').innerHTML = "See on uudiselugeja. Vali sobiv allikas."
+	var y;
 
-        xhr.open(method, url, true);
-				//console.log(xhr);
-
-    } else if (typeof XDomainRequest != "undefined"){ // if IE use XDR
-        xhr = new XDomainRequest();
-        xhr.open(method, url);
-    } else {
-        xhr = null;
-    }
-    return xhr;
-}
-
-var raw = document.createElement('div');
-var container = document.getElementById('container');
-var print = function(item) {
-    var title = document.createElement('div');
-    title.innerHTML = document.createTextNode(item.getElementsByTagName('title')[0].value);
-    //Loeme descriptioni ka sisse kuigi ei tee esialgu sellega midagi
-    var description = item.getElementsByTagName('description')[0].value;
-    //misiganes su wrapper div on kuhu kylge kuvatavat appendid - n2ites container
-    container.appendChild(title);
-
-}
-
-var request = createCORSRequest("get", "https://postimees.ee/rss"  );
-if ( request ){
-// Define a callback function
-	request.onload = function(){
-
-		raw.innerHTML = request.responseText;
-		
-		var x = document.createElement('div');
-		x.innerHTML =raw.innerHTML;
-		var descriptions = x.getElementsByTagName('description');
-		var titles = x.getElementsByTagName('title');
-		var pubDate = x.getElementsByTagName('pubDate');
-
-		for (var i=2; i<8; i++){
-			document.getElementById('titles').innerHTML += "<b>"+titles[i].textContent+"</b><br>"+
-															""+descriptions[i].textContent+"<br>";
+	document.getElementById("switch").addEventListener("click", function(){	
+		y = document.getElementById("switch").checked;
+	});
+	
+	$(document).ready(function(){
+	   $('body').on('click', 'a', function(){
+		 chrome.tabs.create({url: $(this).attr('href')});
+		 return false;
+	   });
+	});
+	
+	document.getElementById("Delfi").addEventListener("click", function(){
+		document.getElementById("HS").style.background='';
+		document.getElementById("Postimees").style.background='';
+		document.getElementById("Delfi").style.background='#4CAF50';
+		document.getElementById('titles').innerHTML ="";
+		var counter=0;
+		$.get('http://feeds2.feedburner.com/delfiuudised', function (data) {
+			$(data).find("item").each(function () { // or "item" or whatever suits your feed
+				var el = $(this);
+				
+				var address = el.find("link").text();
+				var description = el.find("description").text()+"<br>";
+				if (y==true){
+					var titles = "<h2><a href="+address+"><b>"+el.find('title').text()+"</b></a></h2>";
+					//var picture = "<img src="+el.find("enclosure").attr('url')+"><br>";
+					//Delfi RSS img link katki.
+				}else{
+					var titles = "<b>"+el.find("title").text()+"</b><br>";
+				}
+							
+				
+				if (counter<20){
+					$('#titles').append(titles);
+					$('#titles').append(description);
+					counter++;
+				}
+				
+			});
 			
-		}
-	};
-request.send();
+		});
 
+	});
+	
+	document.getElementById("Postimees").addEventListener("click", function(){
+		document.getElementById("Delfi").style.background='';
+		document.getElementById("HS").style.background='';
+		document.getElementById("Postimees").style.background='#4CAF50';
+		document.getElementById('titles').innerHTML ="";
+		var counter=0;
+		$.get('https://postimees.ee/rss', function (data) {
+			$(data).find("item").each(function () { // or "item" or whatever suits your feed
+				var el = $(this);
+				
+				
+				var address = el.find("link").text();
+				var description = el.find("description").text()+"<br>";
+				if (y==true){
+					var titles = "<h2><a href="+address+"><b>"+el.find('title').text()+"</b></a></h2>";
+					var picture = "<img src="+el.find("enclosure").attr('url')+"><br>";
+				}else{
+					var titles = "<b>"+el.find("title").text()+"</b><br>";
+				}
+				
+				
+				
+				if (counter<20){
+					$('#titles').append(titles);
+					$('#titles').append(picture);
+					$('#titles').append(description);
+					counter++;
+				}
+				
+			});
+			
+		});
+		
+	});
+	
+	document.getElementById("HS").addEventListener("click", function(){
+		document.getElementById("Delfi").style.background='';
+		document.getElementById("Postimees").style.background='';
+		document.getElementById("HS").style.background='#4CAF50';
+		document.getElementById('titles').innerHTML ="";
+		var counter=0;
+		$.get('http://www.hs.fi/rss/tuoreimmat.xml', function (data) {
+			$(data).find("item").each(function () { // or "item" or whatever suits your feed
+				var el = $(this);
+				
+				
+				var address = el.find("link").text();
+				var description = el.find("description").text()+"<br>";
+				if (y==true){
+					var titles = "<h2><a href="+address+"><b>"+el.find('title').text()+"</b></a></h2>";
+					var picture = "<img src="+el.find("enclosure").attr('url')+"><br>";
+				}else{
+					var titles = "<b>"+el.find("title").text()+"</b><br>";
+				}
+				if (counter<20){
+					$('#titles').append(titles);
+					$('#titles').append(picture);
+					$('#titles').append(description);
+					counter++;
+				}
+				
+			});
+			
+		});
+		
+	});
 }
