@@ -57,10 +57,6 @@ document.addEventListener('DOMContentLoaded', function () {
       return;
     }
 
-/*
-    if (urls.substr(0, http.length) != http) {
-      urls = http + urls;
-    }
-    */
+
     document.getElementById('urls').value = urls;
 });
