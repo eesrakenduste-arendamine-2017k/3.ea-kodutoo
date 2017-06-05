@@ -1,20 +1,25 @@
 var s;
 var start;
 var kokku=0;
-var timeOut = 3*60;
+var timeOut = 15;
 var secondsCounter = 0;
 var end;
 var totaltime = 0;
 
 
+
 window.onload = function (){
-  console.log(localStorage.getItem("timerSec"));
-  if(localStorage.getItem("timerSec") === null){
-    localStorage.setItem("timerSec", 0);
-  } else {
-    totaltime = parseInt(localStorage.getItem("timerSec"));
-  }
-startTimer();
+
+    chrome.storage.sync.get("totaltime", function(data) {
+      //console.log("data", data);
+      totaltime = data.totaltime;
+      console.log("Sain kätte: "+totaltime);
+      if(totaltime===null){
+        totaltime=0;
+        console.log("Algväärtustasin aja: ", totaltime);
+      }
+    });
+    startTimer();
   var myVar = setInterval(timedata, 1000);
 
 };
@@ -26,10 +31,13 @@ function timedata(){
         start = performance.now();
 
         console.log("totaltime: "+ totaltime);
-        localStorage.setItem("timerSec", totaltime);
+        chrome.storage.sync.set({'totaltime': totaltime}, function() {
+           // Notify that we saved.
+           console.log("salvestatud "+totaltime);
+         });
 
 
-        if(totaltime > 20*60){
+        if(totaltime > 30){
           kokku  += totaltime;
           console.log("Kokku: "+ kokku);
 
@@ -43,6 +51,11 @@ function alert(){
   saveUsage();
   console.log("Time's up!");
   totaltime = 0;
+  chrome.storage.sync.set({'totaltime': totaltime}, function() {
+      chrome.storage.sync.get("totaltime", function(data) {
+        console.log("Tagasi nulli: ", data);
+      });
+    });
   confirm("Puhka silmi 1 minut! Seejärel vajuta OK, et jätkata.");
   startTimer();
 }
@@ -75,6 +88,11 @@ function checkTime() {
         console.log("Kokku: " +kokku);
         secondsCounter = 0;
         totaltime = 0;
+        chrome.storage.sync.set({'totaltime': totaltime}, function() {
+            chrome.storage.sync.get("totaltime", function(data) {
+              console.log("Tagasi nulli: ", data);
+            });
+          });
         confirm("Olid mõnda aega eemal, vajuta OK kui oled tagasi.");
         startTimer();
     }
