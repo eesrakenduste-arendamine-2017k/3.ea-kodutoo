@@ -1,0 +1,23 @@
+{
+    "name": "Reddit news",
+    "description": "Fast reddit news",
+    "version": "1.0",
+    "permissions": [
+        "activeTab",
+        "tabs",
+        "http://*/*",
+        "https://*/*",
+        "https://smithsdownunder.com/reddit_rss/?rss=r/news/.rss"
+        ],
+
+    "content_scripts" : [{
+        "matches" : [ "*://*/*"],
+        "js" : ["popup.js"]
+        }],
+    "browser_action": {
+        "default_title": "Reddit news",
+        "default_icon": "icon.png",
+        "default_popup": "popup.html"
+        },
+    "manifest_version": 2
+}
