@@ -1,0 +1,22 @@
+.option {
+    padding-bottom: 1rem;
+}
+
+.popupWidth {
+  margin-top: auto;
+    margin-left: 5%;
+    margin-right: 5%;
+    width: 75%;
+}
+
+.sizes {
+    font-size: 0;
+}
+
+.sizes > div {
+    width: 25%;
+    display: inline-block;
+    color: gray;
+    font-size: 0.7rem;
+    text-align: center;
+}
