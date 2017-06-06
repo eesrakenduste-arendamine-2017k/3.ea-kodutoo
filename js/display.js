@@ -25,10 +25,19 @@ const displaySelNote = (noteId) => {
     getEl('.note-title').value = noteObj.title;
     getEl('.time-p').innerHTML = 'Viimati salvestatud: ' + `<b>${noteObj.timeStamp}</b>`;
 
-    //createItemSaveButton(noteId);
     createItemSaveAndExitButton(noteId);
     createDeleteButton(noteId);
 
     return noteId;
   })
+};
+
+window.onload = function()
+{
+    if (typeof localStorage['popup.width'] == 'undefined') {
+        document.body.style.width = '300px';
+    } else {
+        document.body.style.width = localStorage['popup.width'] * 150 + 'px';
+    }
+
 };

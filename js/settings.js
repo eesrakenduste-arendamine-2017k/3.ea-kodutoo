@@ -3,15 +3,30 @@ window.onload = function() {
     document.querySelector('#shortcutLink').addEventListener('click', function() {
         settings.openLink('chrome://extensions/configureCommands');
     });
+    document.querySelector('.popupWidth').addEventListener('change', function(e) {
+        localStorage['popup.width'] = e.target.value;
+    });
 
     var settings = new Settings();
     settings.displayShortcut();
+    settings.setupWidthSlider();
 };
 
 function Settings()
 {
     setInterval(this.displayShortcut, 1000);
 }
+
+Settings.prototype.setupWidthSlider = function()
+{
+    var selected = localStorage['popup.width'];
+
+    if (typeof localStorage['popup.width'] == 'undefined') {
+        document.querySelector('.popupWidth').value = 2;
+    } else {
+        document.querySelector('.popupWidth').value = selected;
+    }
+};
 
 Settings.prototype.displayShortcut = function()
 {
