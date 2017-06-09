@@ -11,10 +11,15 @@ function loadUrls() {
       // sobivad urlid
 
       if(cleanUrl !== '') {
-        var http = 'https://';
-        if (cleanUrl.substr(0, http.length) !== http) {
-          cleanUrl = http + cleanUrl;
+
+        var https = 'https://';
+        var http = 'http://';
+        if (cleanUrl.substr(0, http.length) == http) {
+          cleanUrl = cleanUrl;
+        }else if (cleanUrl.substr(0, https.length) !== https) {
+          cleanUrl = https + cleanUrl;
         }
+
          chrome.tabs.create({"url": cleanUrl, "selected": false});
       }
 
@@ -51,7 +56,7 @@ document.addEventListener('DOMContentLoaded', function () {
     // lae urlid browseris
 
     var urls = localStorage.urls;
-    var http = 'http://';
+
 
     if (!urls) {
       return;
