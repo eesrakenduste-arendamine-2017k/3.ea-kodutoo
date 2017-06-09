@@ -29,7 +29,7 @@ function identifyUser() {
 
 /*===== saves session time to firebase =====*/
 
-function saveSession(totalTime){
+function saveSession(victim, totalTime){
     firebase.database().ref("webtracker/"+ victim).set({
 		full_time: totalTime
     });
