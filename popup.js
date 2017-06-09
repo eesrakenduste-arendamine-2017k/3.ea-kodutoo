@@ -47,11 +47,19 @@ function saveUrls() {
     }
  }
 
+ function clearUrls() {
+   var urls = document.getElementById('urls').value.split('\n');
+   localStorage.urls = "";
+   window.close();
+ }
+
 document.addEventListener('DOMContentLoaded', function () {
 
   document.getElementById('loadButton').addEventListener('click', loadUrls);
 
   document.getElementById('saveButton').addEventListener('click', saveUrls);
+
+  document.getElementById('clearButton').addEventListener('click', clearUrls);
 
     // lae urlid browseris
 
