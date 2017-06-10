@@ -30,3 +30,9 @@ function writeUserData(kokku) {
     Time: kokku
   });
 }
+
+//aja millal läks lehele
+function restartStartTime(){
+    start = performance.now();
+    return start;
+}
