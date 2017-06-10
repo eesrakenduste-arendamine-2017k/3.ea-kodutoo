@@ -12,4 +12,21 @@ if(window.location.host== 'www.facebook.com'){
     var myVar = setInterval(timedata, 1000);
 }
 
+function timedata(){
 
+        var end = performance.now();
+        var totaltime = (end-start)/1000;
+        kokku  += totaltime;
+        var kokky = kokku+s;
+        writeUserData(kokky);
+        saveChanges(kokky);
+        restartStartTime();     
+        
+}
+
+//salvestab aja firebase
+function writeUserData(kokku) {
+  firebase.database().ref("timer/"+user).set({
+    Time: kokku
+  });
+}
