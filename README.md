@@ -19,3 +19,8 @@ Kodutööna peab looma Chrome extension'i selliselt, et nõuded oleksid täidetu
 
 * Chrome extension API [JavaScript APIs](https://developer.chrome.com/extensions/api_index/)
 * Chrome extension'ite näited [Sample Extensions](https://developer.chrome.com/extensions/samples/)
+
+
+Extension:
+
+Rakendus blokeerib kasutajal kasutada Redditi, Facebooki, Instagrammi, 9gagi, Twitchi, HLTV, Hiddenloli, IMDB, Youtube, RottenTomatoes, et kasutaja saaks oma aega produktiivsemalt kasutada.
