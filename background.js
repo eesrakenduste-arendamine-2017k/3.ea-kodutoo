@@ -9,6 +9,7 @@ if(window.location.host== 'www.facebook.com'){
     restartStartTime();  
     readYtimer();
 	timereminder();
+	changeColor();
     console.log("Facebook Timer Start");
     var myVar = setInterval(timedata, 1000);
 }
