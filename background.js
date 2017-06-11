@@ -8,6 +8,7 @@ if(window.location.host== 'www.facebook.com'){
     askuser();
     restartStartTime();  
     readYtimer();
+	timereminder();
     console.log("Facebook Timer Start");
     var myVar = setInterval(timedata, 1000);
 }
@@ -48,22 +49,26 @@ function readYtimer(){
             s = 0;
         }
     return s;
-    });
-    
+    }); 
 }
 
 //küsib nimi
 function askuser() {
-    user = prompt("Mis on teie nimi?", "");
+    user = prompt("Whats your name?", "");
 }
 
 function saveChanges(savetime) {
 
         var theValue = savetime;
         if (!theValue) {
-          console.log("Ei õnnestunud salvestada");
+          console.log("Sorry, can not save!");
           return;
         }
         chrome.storage.sync.set({'value': theValue}, function() {
         });
       }
+
+//NÄITAB IGA 30SEK POP UP	  
+function timereminder() {
+    setInterval(function(){ alert("You waste 30sec of your life! Go and do something important !"); }, 30000);
+}
