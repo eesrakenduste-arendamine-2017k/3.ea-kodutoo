@@ -1,0 +1,23 @@
+{
+  "name": "RedditTracker",
+  "description": "Keeps a running tally of how long you've spent on Reddit and current session length.",
+  "version": "0.1",
+  "permissions": [
+    "activeTab",
+    "webNavigation",
+    "tabs",
+    "http://*/*",
+    "https://*/*",
+    "storage"
+  ],
+  "content_scripts" : [{
+        "matches" : [ "https://*/*"],
+        "js" : ["config.js","firebase.js","background.js"],
+        "css" : ["styles.css"]
+    }],
+  "browser_action": {
+    "default_title": "RedditTracker",
+	"default_popup": "popup.html"
+  },
+  "manifest_version": 2
+}
