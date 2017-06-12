@@ -1,9 +1,7 @@
 <!--
-
 Abiks:
 https://developer.chrome.com/extensions/getstarted
 https://chrome.google.com/webstore/detail/bulk-url-opener-extension/hgenngnjgfkdggambccohomebieocekm?hl=en
-
 -->
 
 <!DOCTYPE html>
@@ -12,14 +10,28 @@ https://chrome.google.com/webstore/detail/bulk-url-opener-extension/hgenngnjgfkd
 	<meta charset="UTF-8">
 	<title>Multiple Tab Opener</title>
 	<script type="text/javascript" src="popup.js"></script>
+	<style>
+		body{
+			background-color: #333;
+			color: #fff;
+		}
+
+		textarea{
+			background-color: #222;
+			color: #fff;
+		}
+
+		.btn{
+			border: none;
+			outline: none;
+			padding: 5px;
+		}
+	</style>
 </head>
 <body>
-	<h3><center> Paste the links below </center></h3>
-	<hr>
-
-	<textarea rows="10" cols="80" id="urls"></textarea>
+	<h4><center>Paste the links below</center></h4>
+	<textarea rows="8" cols="60" id="urls"></textarea>
 	<br>
-
-	<button type="submit" align="center" style="width:470px;" id="button">Submit</button>
+	<button type="submit" class="btn" id="button">Open tabs</button>
 </body>
 </html>
