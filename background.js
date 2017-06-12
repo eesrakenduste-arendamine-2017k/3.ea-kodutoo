@@ -48,7 +48,7 @@ if ( request ){
 			var pubDate = update.rss.channel.item[i].pubDate["#text"].slice(-0,-5);
 			var title = update.rss.channel.item[i].title["#text"];
 		
-			document.getElementById('titles').innerHTML += "<a href='"+link+"' target='"+"_blank"+"'>"+"<b>"+title+"</b>"+"</a>"+
+			document.getElementById('titles').innerHTML += "<a href='"+link+"' target='"+"_blank"+"' style=color:#E8C37C>"+"<b>"+title+"</b>"+"</a>"+
 															""+"<br>"+
 															pubDate+"<br>";
 			
