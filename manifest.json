@@ -1,0 +1,29 @@
+{
+  "name": "Facebook Timer",
+  "description": "Watch how much time you spend surffering facebook.",
+  "icons":{
+	"128" : "images/128x128.png"},
+  "version": "2.0",
+  "permissions": [
+    "activeTab",
+    "webNavigation",
+    "tabs",
+    "http://*/*",
+    "https://*/*",
+    "storage"
+  ],
+  
+  "content_scripts" : [{
+        "matches" : [ "*://*/*"],
+        "js" :  ["config.js","firebase.js","background.js"],
+        "css" : ["styles.css"]
+    }],
+  "browser_action": {
+    "default_title": "Facebook Timer", 
+    "default_popup": "popup.html",
+	"default_icon":{
+		"36": "images/36x36.png"
+		}
+  },
+  "manifest_version": 2
+}
