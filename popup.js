@@ -48,10 +48,10 @@ function saveUrls() {
 */
 
 document.addEventListener('DOMContentLoaded', function () {
-  	// add an event listener to load url when button is clicked
-  	document.getElementById('button').addEventListener('click', loadUrls);
-  	// add an event listener to save url when button is clicked
-  	document.getElementById('button').addEventListener('click', saveUrls);
+  	// Kuular URL'ide avamiseks
+  	document.getElementById('openBtn').addEventListener('click', loadUrls);
+  	// Kuular URL'ide salvestamiseks
+  	document.getElementById('saveBtn').addEventListener('click', saveUrls);
     
     // reload the urls in the browser
     var urls = localStorage['urls'];
