@@ -23,7 +23,7 @@ if(window.location.host=='www.reddit.com'){
 
 function addSecond(){
 	currentSession += 1;
-		console.log(currentSession);
+		//console.log(currentSession);
 	
 }
 
@@ -69,6 +69,17 @@ function retrieveSession(){
 function timeCalc() {
 	full_time  = currentSession + t;
 	console.log('full_time value: ' + full_time);
+	var full_time2 = full_time;
+	saveLocalStorage(full_time2);
+}
+
+
+function saveLocalStorage(timetest) {
+	var placeholder = timetest;
+	//saving to Chrome via storage API
+	chrome.storage.sync.set({'value' : placeholder}, function(){
+		console.log("Saved to browser " + timetest);
+	});
 }
 
 
