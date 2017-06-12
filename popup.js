@@ -8,6 +8,7 @@ function loadUrls() {
     // Tsükkel kõikide  URL'ide läbikäimiseks
     for (var i = 0; i < urls.length; i++){
       	// Eemaldan URL'ist ebavajalikud asjad
+      	// Viide: https://stackoverflow.com/questions/6623231/remove-all-white-spaces-from-text
       	cleanUrl = urls[i].replace(/\s/g, '');
       	// Kui puhastatud URL pole tühi, siis avan selle uues aknas
       	if(cleanUrl != '') {
