@@ -3,6 +3,7 @@ function loadUrls() {
 
   	// Võtan HTML'ist URL'id ja splitin nad reavahetuse koha pealt
 	var urls = document.getElementById('urls').value.split('\n');
+	var openedStats = 0;
  
     // Tsükkel kõikide  URL'ide läbikäimiseks
     for (var i = 0; i < urls.length; i++){
@@ -21,7 +22,6 @@ function loadUrls() {
 }
 
 function saveUrls() {
-    
     // Võtan HTML'ist URL'id ja splitin nad reavahetuse koha pealt
     var urls = document.getElementById('urls').value.split('\n');
     // Tekitan muutuja kuhu sisse URL'id panen
