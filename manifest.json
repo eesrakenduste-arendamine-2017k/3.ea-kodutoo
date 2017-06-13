@@ -2,7 +2,7 @@
 	// Nimi, kirjeldus, versioon
 	"name": "Multiple Tab Opener",
 	"description": "This extension will allow you to open a bulk of links at once, all in their own tabs.",
-	"version": "1",
+	"version": "1.0",
 	// Manifesti versioon
 	"manifest_version": 2,
 	// Browser action

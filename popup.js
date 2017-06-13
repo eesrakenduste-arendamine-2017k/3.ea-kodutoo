@@ -1,9 +1,10 @@
+var timesUsed = 0;
+var linksOpened = 0;
 
 function loadUrls() {
 
   	// Võtan HTML'ist URL'id ja splitin nad reavahetuse koha pealt
 	var urls = document.getElementById('urls').value.split('\n');
-	var openedStats = 0;
  
     // Tsükkel kõikide  URL'ide läbikäimiseks
     for (var i = 0; i < urls.length; i++){
@@ -17,9 +18,13 @@ function loadUrls() {
 	      	if (!cleanUrl.match(/^[a-zA-Z]+:\/\//)){
 			    cleanUrl = 'http://' + cleanUrl;
 			    chrome.tabs.create({"url": cleanUrl, "selected": false});
+			    linksOpened += 1;
 			}
       	}
     }
+	timesUsed += 1;
+    document.getElementById("timesUsed").innerHTML = timesUsed;
+    document.getElementById("linksOpened").innerHTML = linksOpened;
 }
 
 function saveUrls() {
@@ -37,6 +42,23 @@ function saveUrls() {
     }
 }
 
+function loadStats() {
+	linksOpened = parseInt(localStorage['linksOpened']);
+	if (!linksOpened) {
+		linksOpened = 0;
+	}
+
+	timesUsed = parseInt(localStorage['timesUsed']);
+	if (!timesUsed) {
+		timesUsed = 0;
+	}
+}
+
+function saveStats() {
+	localStorage['linksOpened'] = linksOpened;
+	localStorage['timesUsed'] = timesUsed;
+}
+
 /*
 ** STACK OVERFLOWST SAADUD KOOD, TÄPSET VIIDET EI LEIDNUD UUESTI ÜLES
 */
@@ -47,6 +69,9 @@ document.addEventListener('DOMContentLoaded', function () {
   	// Kuularid URL'ide salvestamiseks
   	document.getElementById('saveBtn').addEventListener('click', saveUrls);
   	document.getElementById('openBtn').addEventListener('click', saveUrls);
+  	//
+  	document.getElementById('openBtn').addEventListener('click', saveStats);
+  	document.getElementById('openBtn').addEventListener('click', loadStats);
     
     // reload the urls in the browser
     var urls = localStorage['urls'];
@@ -54,5 +79,8 @@ document.addEventListener('DOMContentLoaded', function () {
     	return;
     }
 
+    loadStats();
+    document.getElementById("timesUsed").innerHTML = timesUsed;
+    document.getElementById("linksOpened").innerHTML = linksOpened;
     document.getElementById('urls').value = urls;
 });
