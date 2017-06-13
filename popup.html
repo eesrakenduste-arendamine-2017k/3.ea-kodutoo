@@ -1,0 +1,60 @@
+<!--
+Abiks:
+https://developer.chrome.com/extensions/getstarted
+https://chrome.google.com/webstore/detail/bulk-url-opener-extension/hgenngnjgfkdggambccohomebieocekm?hl=en
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Multiple Tab Opener</title>
+	<script type="text/javascript" src="popup.js"></script>
+	<style>
+		body{
+			background-color: #444;
+			color: #fff;
+			user-select: none;
+		}
+
+		h3{
+			user-select: none;
+		}
+
+		textarea{
+			background-color: #222;
+			color: #fff;
+			resize: none;
+			outline: none;
+			border: none;
+		}
+
+		.btn{
+			user-select: none;
+			border: none;
+			outline: none;
+			padding: 5px;
+			background-color: #222;
+			color: #fff;
+		}
+
+		.btn:hover{
+			background-color: #fff;
+			color: #222;
+			cursor: pointer;
+		}
+	</style>
+</head>
+<body>
+
+	<h3>Statistics</h3>
+	<p class="stats">Times used: <span id="timesUsed" /></p>
+	<p class="stats">Links opened: <span id="linksOpened" /></p>
+	
+	<h3>Paste links below</h3>
+	<textarea rows="8" cols="60" id="urls"></textarea>
+	<button type="submit" class="btn" id="openBtn">Open</button>
+	<button type="submit" class="btn" id="saveBtn">Save</button>
+
+</body>
+</html>
