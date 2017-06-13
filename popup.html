@@ -17,7 +17,7 @@ https://chrome.google.com/webstore/detail/bulk-url-opener-extension/hgenngnjgfkd
 			user-select: none;
 		}
 
-		h4{
+		h3{
 			user-select: none;
 		}
 
@@ -46,12 +46,15 @@ https://chrome.google.com/webstore/detail/bulk-url-opener-extension/hgenngnjgfkd
 	</style>
 </head>
 <body>
-	<h4><center>Paste links below</center></h4>
+
+	<h3>Statistics</h3>
+	<p class="stats">Times used: <span id="timesUsed" /></p>
+	<p class="stats">Links opened: <span id="linksOpened" /></p>
+	
+	<h3>Paste links below</h3>
 	<textarea rows="8" cols="60" id="urls"></textarea>
-	<br>
 	<button type="submit" class="btn" id="openBtn">Open</button>
 	<button type="submit" class="btn" id="saveBtn">Save</button>
-	<p id="timesUsed"></p>
-	<p id="linksOpened"></p>
+
 </body>
 </html>
