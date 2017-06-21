@@ -1,0 +1,18 @@
+{
+	// Nimi, kirjeldus, versioon
+	"name": "Multitabs",
+	"description": "This extension will allow you to open multiple links at once.",
+	"version": "1",
+	// Manifesti versioon
+	"manifest_version": 2,
+	// Browser action
+	"browser_action":{
+		"default_icon": "icon.png",
+		"default_popup": "index.html"
+	},
+	// Permissions
+	"permissions": [
+		"tabs",
+		"storage"
+	]
+}
