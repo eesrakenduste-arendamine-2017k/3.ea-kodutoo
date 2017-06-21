@@ -32,7 +32,7 @@ function openLinksFun() {
 	saveLinksFun();
 	// Open all the links stored in localstorage under (link + i)
 	for (var i = 1; i <= localStorage.getItem("amountOfLinksToShow"); i++) {
-		if(localStorage.getItem("link" + i) != ""){
+		if(localStorage.getItem("link" + i) != "" && localStorage.getItem("link" + i) != null){
 			chrome.tabs.create({"url": localStorage.getItem("link" + i), "selected": false});
 		}
 	}
@@ -64,6 +64,8 @@ function removeLinkFun(){
 	if(localStorage.getItem("amountOfLinksToShow") > 1){
 		// remove 1 input field
 		document.getElementById("textfield" + localStorage.getItem("amountOfLinksToShow")).remove();
+		// empty links local storage
+		localStorage.setItem("link" + localStorage.getItem("amountOfLinksToShow"), "");
 		// degrease amountOfLinksToShow by one
 	    localStorage.setItem("amountOfLinksToShow", parseInt(localStorage.getItem("amountOfLinksToShow")) - 1);
 	}
